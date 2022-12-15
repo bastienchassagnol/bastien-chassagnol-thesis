@@ -1,0 +1,37 @@
+% 
+\newcommand\vect[1]{\bm{#1}}
+\newcommand\conj[1]{\overline{#1}}
+
+% derivées
+\newcommand\der[2]{\dfrac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand\derpart[2]{\dfrac{\partial #1}{\partial #2}}
+
+% maths
+\newcommand\R{\mathbb{R}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\I{\mathrm{i}}
+\newcommand\E{\mathrm{e}}
+\let\geq\geqslant
+\let\leq\leqslant
+\newcommand\D{\mathrm{d}}
+\newcommand\norm[2]{\left\|#1\right\|^{#2}}
+\newcommand\prodscal[2]{\langle#1,\;#2\rangle}
+\newcommand\sphere{\mathbf{S}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% style
+\newcommand\latin[1]{\textit{#1}}
+\newcommand\imp[1]{\textcolor{red!70}{#1}}
+
+% intervalle d'entier
+\newcommand\interint[2]{\left\llbracket 1, 5\right\rrbracket}
+
+% Remark
+\newenvironment{Remark}{%
+\tcbset{%
+arc=0pt,outer arc=0pt,colback=gray!10!white,colframe=gray!60!white,
+boxsep=0pt,left=5pt,right=5pt,top=8pt,bottom=8pt, bottomtitle = 3pt, toptitle=3pt,
+boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt}
+\begin{tcolorbox}[fonttitle=\sffamily\bfseries,title=Remark]}%
+{\end{tcolorbox}}
