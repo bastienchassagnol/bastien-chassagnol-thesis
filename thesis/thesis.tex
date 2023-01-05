@@ -3,7 +3,7 @@
 % liste des packages à charger
 \usepackage{booktabs} % pour des beaux tableaux
 \usepackage{pgfplots} % pgfplots
-\usepackage{amsmath,mathtools}
+\usepackage{tdsfrmath} % lots of predefined maths operators, no need to call amsmaths, as alreay loaded
 %\usepackage{algorithmic,algorithm} % les algorithmes
 \usepackage[xindy,acronyms,symbols]{glossaries} % le glossaire, avec les définitions
 \usepackage[utf8]{inputenc}
@@ -16,6 +16,13 @@
 \usepackage{hyperref} % pour les liens URL
 \usepackage{floatrow} % to format together image and captions
 \usepackage{caption} % to format the caption environment
+\usepackage{todonotes} % to insert todonotes
+\usepackage{csquotes} % enquote macro for proper quotation formatting ""
+
+\usepackage{ntheorem} % to use theorems environement
+\theoremstyle{marginbreak} % cool styling of the theorem environment
+
+\usepackage{cleveref} % for the use of Cref, à toujours placer en dernier
 
 % macros
 \input{configuration/macros}
@@ -72,11 +79,13 @@
 
 \mainmatter
 
-\include{chapters/introductionEN}
-
-\include{chapters/introductionFR}
+\include{chapters/introduction}
 
 \include{chapters/chapitre1}
+\include{chapters/chapitre2}
+\include{chapters/chapitre3}
+
+\include{chapters/conclusion}
 
 \printbibliography
 
