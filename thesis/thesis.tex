@@ -21,8 +21,9 @@
 
 \usepackage{ntheorem} % to use theorems environement
 \theoremstyle{marginbreak} % cool styling of the theorem environment
-
+\usepackage{enumitem} % for customised environments lists
 \usepackage{cleveref} % for the use of Cref, à toujours placer en dernier
+
 
 % macros
 \input{configuration/macros}
@@ -31,13 +32,13 @@
 %\makeindex
 
 % Génération du glossaire et configuration
-\makeglossaries
-\setglossarystyle{indexhypergroup}
-\setacronymstyle{long-sc-short}
-
 \loadglsentries{auxiliaires/glossaire}
 \loadglsentries{auxiliaires/acronymes}
 \loadglsentries{auxiliaires/symboles}
+
+\makeglossaries
+\setglossarystyle{indexhypergroup}
+\setacronymstyle{long-sc-short}
 
 % la bibliographie
 \usepackage[maxnames=6, giveninits=true, backend=biber]{biblatex}
