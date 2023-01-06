@@ -3,7 +3,7 @@
 % liste des packages à charger
 \usepackage{booktabs} % pour des beaux tableaux
 \usepackage{pgfplots} % pgfplots
-\usepackage{tdsfrmath} % lots of predefined maths operators, no need to call amsmaths, as alreay loaded
+\usepackage[taupe, suite]{tdsfrmath} % lots of predefined maths operators, no need to call amsmaths, as alreay loaded
 %\usepackage{algorithmic,algorithm} % les algorithmes
 \usepackage[xindy,acronyms,symbols]{glossaries} % le glossaire, avec les définitions
 \usepackage[utf8]{inputenc}
@@ -28,7 +28,7 @@
 \input{configuration/macros}
 
 % Génération de l'index
-\makeindex
+%\makeindex
 
 % Génération du glossaire et configuration
 \makeglossaries
@@ -40,7 +40,7 @@
 \loadglsentries{auxiliaires/symboles}
 
 % la bibliographie
-\usepackage[backend=biber, maxnames=6, giveninits=true]{biblatex}
+\usepackage[maxnames=6, giveninits=true, backend=biber]{biblatex}
 \addbibresource{bibliographie.bib}
 
 \begin{document}
@@ -82,6 +82,7 @@
 \include{chapters/introduction}
 
 \include{chapters/chapitre1}
+Je cite l'auteur suivant: \cite{Allgower1990}.
 \include{chapters/chapitre2}
 \include{chapters/chapitre3}
 
@@ -108,7 +109,7 @@
 \printsymbols
 
 % Génération de l'index
-\printindex
+%\printindex
 
 % print list of tabeles and figures
 \listoftables
