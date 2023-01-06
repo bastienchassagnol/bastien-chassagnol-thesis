@@ -5,13 +5,13 @@
 \usepackage{pgfplots} % pgfplots
 \usepackage[taupe, suite]{tdsfrmath} % lots of predefined maths operators, no need to call amsmaths, as alreay loaded
 %\usepackage{algorithmic,algorithm} % les algorithmes
-\usepackage[xindy,acronyms,symbols]{glossaries} % le glossaire, avec les définitions
+\usepackage[acronyms,symbols, xindy]{glossaries} % le glossaire, avec les définitions
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{siunitx} % pour les unités métriques
 \usepackage{lmodern} % to allow additional font sizes
 \usepackage{csquotes} % to be coupled with babel and polyglossia
-\usepackage{imakeidx} % avec la liste des index à afficher 
+%\usepackage{imakeidx} % avec la liste des index à afficher 
 \usepackage{listings} % pour les environemments informatiques
 \usepackage{hyperref} % pour les liens URL
 \usepackage{floatrow} % to format together image and captions
@@ -32,13 +32,18 @@
 %\makeindex
 
 % Génération du glossaire et configuration
+%\makeglossaries
+% \setglossarystyle{indexhypergroup}
+
+
+\makenoidxglossaries
+\setacronymstyle{long-short}
+\setglossarystyle{listhypergroup}
+
+
 \loadglsentries{auxiliaires/glossaire}
 \loadglsentries{auxiliaires/acronymes}
 \loadglsentries{auxiliaires/symboles}
-
-\makeglossaries
-\setglossarystyle{indexhypergroup}
-\setacronymstyle{long-sc-short}
 
 % la bibliographie
 \usepackage[maxnames=6, giveninits=true, backend=biber]{biblatex}
@@ -56,6 +61,7 @@
 
 \makelaboratory
 
+
 \dedication{Je dédie à \dots}
 \dedication{À mon directeur bien-aimé !}
 \dedication{À mon co-directeur bien-co-aimé !}
@@ -72,11 +78,16 @@
 \input{liminaires/abstract}
 \makeabstract
 
+\printglossary
 % acknowledgments
 \include{liminaires/remerciements}
 
 % Sommaire
 \tableofcontents[depth=chapter]
+
+% \printacronyms
+
+% \printsymbols
 
 \mainmatter
 
@@ -104,10 +115,12 @@ Je cite l'auteur suivant: \cite{Allgower1990}.
 
 % Génération du glossaire
 
-\printglossary
-%\printglossary[type=\acronymtype]
-\printacronyms
-\printsymbols
+
+%\printacronyms
+%\printsymbols
+%\printglossary[title=Special Terms, toctitle=List of terms]
+
+\printnoidxglossaries
 
 % Génération de l'index
 %\printindex
