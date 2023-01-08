@@ -13,6 +13,51 @@ Et je teste les fonctionnalités du lexique:
 \item \gls{lpsm}
 \end{itemize}
 
+Puis les opérateurs mathématiques suivants:
+
+\begin{itemize}
+    \item $\vect{a}$
+    \item $\norm{b}{2}$
+\end{itemize}
+
+
+
+% \begin{Theorem}{Summation of Numbers}{summation}
+%   For all natural number $n$ it holds:
+%   \begin{equation}
+%   \tcbhighmath{\sum\limits_{i=1}^n i = \frac{n(n+1)}{2}.}
+%   \end{equation}
+% \end{Theorem}
+
+The following theorem is numbered as \Cref{theo:diffbarstetig} and 
+referenced with the marker \texttt{theo:diffbarstetig}.
+
+\begin{Theorem}{Differenzierbarkeit bedingt Stetigkeit, wobei diese Benennung
+zu Testzwecken ungew\"{o}hnlich lang ist}{diffbarstetig}%
+
+Eine Funktion $f:I\to\mathbb{R}$ ist in $x_0\in I$ stetig, wenn $f$ in
+$x_0$ differenzierbar ist.
+\end{Theorem}
+
+
+\Cref{pr:matrix-calculus} will be relevant for the derivation of the gradient:
+
+\begin{Property}{Common matrix calculus formulas}{matrix-calculus}
+Given three matrices $\boldsymbol{A}$, $\boldsymbol{C}$, $\boldsymbol{D}$ and two vectors of same size $\boldsymbol{b}$ and $\boldsymbol{e}$ not depending of variable $\boldsymbol{p}$, the partial derivative with respect to $\boldsymbol{p}$ of the quadratic form $(\boldsymbol{A} \boldsymbol{p} + \boldsymbol{b})^\top \boldsymbol{C} (\boldsymbol{D} \boldsymbol{p} + \boldsymbol{e})$ is given by \Cref{eq:general-calculus-formula}:
+\begin{equation}
+\label{eq:general-calculus-formula}
+    \frac{\partial (\boldsymbol{A} \boldsymbol{p} + \boldsymbol{b})^\top \boldsymbol{C} (\boldsymbol{D} \boldsymbol{p} + \boldsymbol{e})}{\partial \boldsymbol{p}} = (\boldsymbol{D} \boldsymbol{p} + \boldsymbol{e})^\top \boldsymbol{C}^\top \boldsymbol{A} + (\boldsymbol{A} \boldsymbol{p} + \boldsymbol{b})^\top \boldsymbol{C} \boldsymbol{D}
+\end{equation}
+
+Notably, using the transpose properties enumerated in \Cref{transpose-properties}, setting $\boldsymbol{A} = \boldsymbol{D} = - \boldsymbol{x}$ as vectors living in $\mathrm{R}^G$, $p$ a real scalar and $\boldsymbol{b} = \boldsymbol{e} = \boldsymbol{y}$ the derivative \cref{eq:general-calculus-formula} and additionally coercing $\Theta$ to be symmetric yields:
+\begin{equation*}
+\label{eq:general-calculus-formula-easy}
+    \frac{\partial (\boldsymbol{y} - \boldsymbol{x} p)^\top \Theta (\boldsymbol{y} - \boldsymbol{x} p)}{\partial p} = -2  (\boldsymbol{y} - \boldsymbol{x} p)^\top \Theta \boldsymbol{x} = -2 \boldsymbol{x}^\top \Theta (\boldsymbol{y} - \boldsymbol{x} p)
+\end{equation*}
+
+\footnote{Other matrix calculus formulas and notations are available on \href{https://en.wikipedia.org/wiki/Matrix_calculus\#Scalar-by-vector}{Matrix calculus}.}
+\end{Property}
+
 \section{Data curation}
 
 \section{Data normalisation and transformation}

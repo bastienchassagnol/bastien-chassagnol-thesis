@@ -19,10 +19,43 @@
 \usepackage{todonotes} % to insert todonotes
 \usepackage{csquotes} % enquote macro for proper quotation formatting ""
 
-\usepackage{ntheorem} % to use theorems environement
-\theoremstyle{marginbreak} % cool styling of the theorem environment
+%%%% Theorems  %%%%
+%\usepackage[thmmarks, standard]{ntheorem} % to use theorems environement, with the option to personaline the environments
+%\theoremsymbol{\ensuremath{\star}} % and the ending symbol is defined to be a star
+%\theoremstyle{marginbreak} % cool styling of the theorem environment
+
 \usepackage{enumitem} % for customised environments lists
 \usepackage{cleveref} % for the use of Cref, à toujours placer en dernier
+
+% to define colourful theorem environments
+% \newtheorem{Property}{Property}[section]
+\tcbuselibrary{theorems} % to load the theorems property from tcolorbox
+
+% \newtcbtheorem[auto counter,number within=section, crefname={theorem}{theorems}]{Theorem}%
+%   {Theorem}{fonttitle=\bfseries\upshape, fontupper=\slshape,
+%      arc=0mm, colback=blue!5!white,colframe=blue!75!black}{theo}
+
+\tcbset{
+defstyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
+arc=2pt, colback=blue!5!white,colframe=blue!75!black},
+theostyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
+colback=red!10!white,colframe=red!75!black, arc=2pt, every float=\centering},
+propstyle/.style = {fonttitle=\bfseries\upshape, fontupper=\slshape, arc=2pt, colback=green!5!white,colframe=green!75!black},
+proofstyle/.style = {colback=white,
+  colframe=black,  coltext=black, arc=2pt}
+}
+
+\newtcbtheorem[number within=section,crefname={definition}{definitions}]%
+{Definition}{Definition}{defstyle}{def}
+\newtcbtheorem[use counter from=Definition,crefname={theorem}{theorems}]%
+{Theorem}{Theorem}{theostyle}{theo}
+\newtcbtheorem[use counter from=Theorem,crefname={Proof}{Proofs}]%
+{Proof}{Proof}{proofstyle}{proof}
+\newtcbtheorem[use counter from=Definition,crefname={corollary}{corollaries}]%
+{Corollary}{Corollary}{theostyle}{cor}
+\newtcbtheorem[number within=section,crefname={property}{properties}]%
+{Property}{Property}{propstyle}{pr}
+
 
 
 % macros
@@ -90,6 +123,7 @@
 % \printsymbols
 
 \mainmatter
+
 
 \include{chapters/introduction}
 

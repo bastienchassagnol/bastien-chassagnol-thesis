@@ -1,24 +1,17 @@
-% 
-\newcommand\vect[1]{\bm{#1}}
-\newcommand\conj[1]{\overline{#1}}
 
 % maths
-%\newcommand\R{\mathbb{R}}
-%\newcommand\Z{\mathbb{Z}}
-%\newcommand\E{\mathrm{e}}
+\newcommand\vect[1]{\boldsymbol{#1}}
 \newcommand\norm[2]{\left\|#1\right\|^{#2}}
-\newcommand\sphere{\mathbf{S}}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
-
-% intervalle d'entier
-\newcommand\interint[2]{\left\llbracket 1, 5\right\rrbracket}
+\DeclareMathOperator*{\Tr}{Tr}
+\DeclareMathOperator*{\DET}{Det}
 
 % Remark
-\newenvironment{Remark}{%
-\tcbset{%
-arc=0pt,outer arc=0pt,colback=gray!10!white,colframe=gray!60!white,
-boxsep=0pt,left=5pt,right=5pt,top=8pt,bottom=8pt, bottomtitle = 3pt, toptitle=3pt,
-boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt}
-\begin{tcolorbox}[fonttitle=\sffamily\bfseries,title=Remark]}%
-{\end{tcolorbox}}
+% \newenvironment{Remark}{%
+% \tcbset{%
+% arc=0pt,outer arc=0pt,colback=gray!10!white,colframe=gray!60!white,
+% boxsep=0pt,left=5pt,right=5pt,top=8pt,bottom=8pt, bottomtitle = 3pt, toptitle=3pt,
+% boxrule=0pt,bottomrule=0.5pt,toprule=0.5pt}
+% \begin{tcolorbox}[fonttitle=\sffamily\bfseries,title=Remark]}%
+% {\end{tcolorbox}}
