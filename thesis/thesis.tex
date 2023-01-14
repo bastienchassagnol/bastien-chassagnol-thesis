@@ -1,4 +1,4 @@
-\documentclass[mainlanguage=english,fncychap=none, numlaboratories=2, nofrontcover=true, noaim=false, localbibs, colophon-location=nowhere, appendix={titletoc}]{yathesis}
+\documentclass[mainlanguage=english,numlaboratories=2, nofrontcover=true, noaim=false, localbibs, colophon-location=nowhere, appendix={titletoc}]{yathesis}
 
 % liste des packages à charger
 \usepackage{booktabs} % pour des beaux tableaux
@@ -9,8 +9,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{siunitx} % pour les unités métriques
-\usepackage{lmodern} % to allow additional font sizes
-\usepackage{csquotes} % to be coupled with babel and polyglossia
 %\usepackage{imakeidx} % avec la liste des index à afficher 
 \usepackage{listings} % pour les environemments informatiques
 \usepackage{hyperref} % pour les liens URL
@@ -25,15 +23,13 @@
 %\theoremstyle{marginbreak} % cool styling of the theorem environment
 
 \usepackage{enumitem} % for customised environments lists
-\usepackage{cleveref} % for the use of Cref, à toujours placer en dernier
+
 
 % to define colourful theorem environments
-% \newtheorem{Property}{Property}[section]
-\tcbuselibrary{theorems} % to load the theorems property from tcolorbox
 
-% \newtcbtheorem[auto counter,number within=section, crefname={theorem}{theorems}]{Theorem}%
-%   {Theorem}{fonttitle=\bfseries\upshape, fontupper=\slshape,
-%      arc=0mm, colback=blue!5!white,colframe=blue!75!black}{theo}
+\usepackage{cleveref} % for the use of Cref, à toujours placer en dernier
+
+\tcbuselibrary{theorems} % to load the theorems property from tcolorbox
 
 \tcbset{
 defstyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
@@ -58,6 +54,7 @@ proofstyle/.style = {colback=white,
 
 
 
+
 % macros
 \input{configuration/macros}
 
@@ -70,7 +67,7 @@ proofstyle/.style = {colback=white,
 
 
 \makenoidxglossaries
-\setacronymstyle{long-short}
+\setabbreviationstyle[acronym]
 \setglossarystyle{listhypergroup}
 
 
@@ -87,25 +84,16 @@ proofstyle/.style = {colback=white,
 
 \maketitle[frametitle=shadowbox]
 
-% \disclaimertext{⟨clause⟩} 
-\makedisclaimer
-
 \makekeywords
 
 \makelaboratory
 
 
-\dedication{Je dédie à \dots}
-\dedication{À mon directeur bien-aimé !}
-\dedication{À mon co-directeur bien-co-aimé !}
-\makededications
+% \dedication{Je dédie à \dots}
+% \dedication{À mon directeur bien-aimé !}
+% \dedication{À mon co-directeur bien-co-aimé !}
+% \makededications
 
-% Épigraphes(s) :
-\frontepigraph{Science sans conscience n'est que ruine de l'âme.}{François Rabelais}
-\frontepigraph[english]{I can resist everything, except temptation!}{Oscar Wilde}
-
-% Production de la page de d'épigraphe(s) 
-% \makefrontepigraphs
 
 % génération de l'abstract
 \input{liminaires/abstract}
@@ -125,21 +113,26 @@ proofstyle/.style = {colback=white,
 \mainmatter
 
 
-\include{chapters/introduction}
+\include{chapters/introduction_biology}
+\include{chapters/introduction_RNASeq_worflow}
+\include{chapters/introduction_networks}
 
-\include{chapters/chapitre1}
-Je cite l'auteur suivant: \cite{Allgower1990}.
-\include{chapters/chapitre2}
-\include{chapters/chapitre3}
+\include{chapters/introduction_variability}
+
+\include{chapters/results}
 
 \include{chapters/conclusion}
 
 \printbibliography
 
 \appendix
+\chapter{Notations}
 
-\include{annexes/neural_networks}
-\include{annexes/repositioning}
+\chapter{Numerical analysis}
+
+\chapter{Scientific contributions}
+inser the original papers
+
 \backmatter
 
 
