@@ -1,36 +1,30 @@
-\documentclass[mainlanguage=english,numlaboratories=2, nofrontcover=true, noaim=false, localbibs, colophon-location=nowhere, appendix={titletoc}]{yathesis}
+\documentclass[mainlanguage=english,numlaboratories=2, nofrontcover=true, noaim=false, localbibs, colophon-location=nowhere]{yathesis}
+
+% , appendix={titletoc}
 
 % liste des packages à charger
 \usepackage{booktabs} % pour des beaux tableaux
 \usepackage{pgfplots} % pgfplots
 \usepackage[taupe, suite]{tdsfrmath} % lots of predefined maths operators, no need to call amsmaths, as alreay loaded
-%\usepackage{algorithmic,algorithm} % les algorithmes
+\usepackage{lmodern} % load relevant fonts for cleveref
 \usepackage[acronyms,symbols, xindy]{glossaries} % le glossaire, avec les définitions
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{siunitx} % pour les unités métriques
 %\usepackage{imakeidx} % avec la liste des index à afficher 
 \usepackage{listings} % pour les environemments informatiques
-\usepackage{hyperref} % pour les liens URL
 \usepackage{floatrow} % to format together image and captions
 \usepackage{caption} % to format the caption environment
 \usepackage{todonotes} % to insert todonotes
 \usepackage{csquotes} % enquote macro for proper quotation formatting ""
-
-%%%% Theorems  %%%%
-%\usepackage[thmmarks, standard]{ntheorem} % to use theorems environement, with the option to personaline the environments
-%\theoremsymbol{\ensuremath{\star}} % and the ending symbol is defined to be a star
-%\theoremstyle{marginbreak} % cool styling of the theorem environment
-
-\usepackage{enumitem} % for customised environments lists
+\usepackage{enumitem} % for latin-alpha lists
+\usepackage{hyperref} % pour les liens URL
 
 
-% to define colourful theorem environments
+%%%% Colourful Theorems  %%%%
 
 \usepackage{cleveref} % for the use of Cref, à toujours placer en dernier
-
 \tcbuselibrary{theorems} % to load the theorems property from tcolorbox
-
 \tcbset{
 defstyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
 arc=2pt, colback=blue!5!white,colframe=blue!75!black},
@@ -48,35 +42,29 @@ proofstyle/.style = {colback=white,
 \newtcbtheorem[use counter from=Theorem,crefname={Proof}{Proofs}]%
 {Proof}{Proof}{proofstyle}{proof}
 \newtcbtheorem[use counter from=Definition,crefname={corollary}{corollaries}]%
-{Corollary}{Corollary}{theostyle}{cor}
+{Corollary}{Corollary}{theostyle}{cr}
 \newtcbtheorem[number within=section,crefname={property}{properties}]%
 {Property}{Property}{propstyle}{pr}
 
 
 
+%%%%%%%%%%%%  Preamble  %%%%%%%%%%
 
 % macros
 \input{configuration/macros}
 
-% Génération de l'index
-%\makeindex
-
-% Génération du glossaire et configuration
-%\makeglossaries
-% \setglossarystyle{indexhypergroup}
-
-
+% generate and load the gloassary, with its acronyms
 \makenoidxglossaries
-\setabbreviationstyle[acronym]
+\setacronymstyle{long-short}
 \setglossarystyle{listhypergroup}
-
 
 \loadglsentries{auxiliaires/glossaire}
 \loadglsentries{auxiliaires/acronymes}
 \loadglsentries{auxiliaires/symboles}
 
 % la bibliographie
-\usepackage[maxnames=6, giveninits=true, backend=biber]{biblatex}
+\usepackage[backend=biber, sorting=ynt, style=alphabetic]{biblatex}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space} % comma between author and year 
 \addbibresource{bibliographie.bib}
 
 \begin{document}
@@ -88,40 +76,24 @@ proofstyle/.style = {colback=white,
 
 \makelaboratory
 
-
-% \dedication{Je dédie à \dots}
-% \dedication{À mon directeur bien-aimé !}
-% \dedication{À mon co-directeur bien-co-aimé !}
-% \makededications
-
-
 % génération de l'abstract
 \input{liminaires/abstract}
 \makeabstract
 
-\printglossary
 % acknowledgments
 \include{liminaires/remerciements}
 
 % Sommaire
 \tableofcontents[depth=chapter]
 
-% \printacronyms
-
-% \printsymbols
-
 \mainmatter
 
-
-\include{chapters/introduction_biology}
-\include{chapters/introduction_RNASeq_worflow}
-\include{chapters/introduction_networks}
-
-\include{chapters/introduction_variability}
-
+% \include{chapters/introduction_biology}
+% \include{chapters/introduction_RNASeq_worflow}
+% \include{chapters/introduction_networks}
+% \include{chapters/introduction_variability}
 \include{chapters/results}
-
-\include{chapters/conclusion}
+% \include{chapters/conclusion}
 
 \printbibliography
 
@@ -131,28 +103,15 @@ proofstyle/.style = {colback=white,
 \chapter{Numerical analysis}
 
 \chapter{Scientific contributions}
-inser the original papers
+insert here the original papers
 
 \backmatter
-
-
-
-
 
 % génération du toc entier
 \tableofcontents
 
 % Génération du glossaire
-
-
-%\printacronyms
-%\printsymbols
-%\printglossary[title=Special Terms, toctitle=List of terms]
-
 \printnoidxglossaries
-
-% Génération de l'index
-%\printindex
 
 % print list of tabeles and figures
 \listoftables
