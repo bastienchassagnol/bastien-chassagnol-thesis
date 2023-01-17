@@ -88,17 +88,18 @@ proofstyle/.style = {colback=white,
 
 \mainmatter
 
-% \include{chapters/introduction_biology}
-% \include{chapters/introduction_RNASeq_worflow}
-% \include{chapters/introduction_networks}
-% \include{chapters/introduction_variability}
+\part{Introduction}
+ \include{chapters/introduction_biology}
+ \include{chapters/introduction_RNASeq_worflow}
+ \include{chapters/introduction_networks}
+ \include{chapters/introduction_variability}
 \include{chapters/results}
-% \include{chapters/conclusion}
+ \include{chapters/conclusion}
 
 \printbibliography
 
 \appendix
-\chapter{Notations}
+
 
 \chapter{Numerical analysis}
 
@@ -107,8 +108,10 @@ insert here the original papers
 
 \backmatter
 
+\chapter{Notations}
+
 % génération du toc entier
-\tableofcontents
+\tableofcontents[depth=subparagraph]
 
 % Génération du glossaire
 \printnoidxglossaries
