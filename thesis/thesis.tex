@@ -89,31 +89,37 @@ proofstyle/.style = {colback=white,
 \mainmatter
 
 \part{Introduction}
- \include{chapters/introduction_biology}
- \include{chapters/introduction_RNASeq_worflow}
- \include{chapters/introduction_networks}
- \include{chapters/introduction_variability}
-\include{chapters/results}
- \include{chapters/conclusion}
+
+ \include{introduction/biology}
+ \include{introduction/supservised_analysis}
+ \include{introduction/variability}
+ 
+ 
+ \part{Results}
+
+\include{chapters/RNAseq_workflow}
+\include{chapters/Repurposing}
+\include{chapters/mixture_models}
+\include{chapters/deconvolution}
+\include{chapters/conclusion}
 
 \printbibliography
 
 \appendix
 
+\include{appendix/em_simulation}
+\include{appendix/gene_networks}
+\include{appendix/optimisation}
+\include{appendix/collaborative_publications}
 
-\chapter{Numerical analysis}
-
-\chapter{Scientific contributions}
-insert here the original papers
 
 \backmatter
-
-\chapter{Notations}
 
 % génération du toc entier
 \tableofcontents[depth=subparagraph]
 
 % Génération du glossaire
+\chapter{Notations}
 \printnoidxglossaries
 
 % print list of tabeles and figures
