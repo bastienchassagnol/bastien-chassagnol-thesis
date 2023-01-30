@@ -1,4 +1,4 @@
-\documentclass[mainlanguage=english,numlaboratories=2, nofrontcover=true, noaim=false, localbibs, colophon-location=nowhere]{yathesis}
+\documentclass[mainlanguage=english,numlaboratories=2, nofrontcover=true, noaim=false, localbibs, colophon-location=nowhere, oneside, 10pt]{yathesis}
 
 % , appendix={titletoc}
 
@@ -86,13 +86,20 @@ proofstyle/.style = {colback=white,
 % Sommaire
 \tableofcontents[depth=chapter]
 
+\chapter*{Digest}
+% \selectlanguage{french} be careful not to introduce cleveref relations here
+\todo[fancyline]{summary in french}
+
+% \selectlanguage{english}
+
 \mainmatter
 
 \part{Introduction}
 
  \include{introduction/biology}
- \include{introduction/supservised_analysis}
- \include{introduction/variability}
+ \include{introduction/analyse_transcriptome}
+ \include{introduction/mixture_models}
+ \include{introduction/cellular_deconvolution}
  
  
  \part{Results}
