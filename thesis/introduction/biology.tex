@@ -7,6 +7,7 @@ The central dogma of biology states that genetic information flows in a one-way 
 
 The process by which \GLS{rna} is synthesised from \GLS{dna} is called \textit{transcription} while the synthesis of proteins from \GLS{rna} is called \textit{translation}. The central dogma states that \GLS{dna} is never directly translated into proteins and reciprocally, implying that the flow of genetic information is always from \GLS{dna} to proteins, using \GLS{rna} as template, and never in the reverse direction. The genetic information flow from DNA to proteins is referred to as \textit{gene expression}.
 
+
 \subsection{DNA molecule}
 \label{subsec:DNA}
 \GLS{dna} is the hereditary material of most of the known living organisms, consisting of a double-stranded molecule. The basic building bricks of \GLS{dna} are the nucleotides, of four types: adenine (A), cytosine (C), guanine (G), and thymine (T). A base is composed of three parts: a sugar molecule (the so-called deoxyribose), a phosphate group and a nitrogen base. On the one hand, the nucleotides along a given strand are connected together by covalent bonds between the sugar and phosphate groups, forming a sugar-phosphate \gls{backbone}. On the other hand, the hydrogen bonds between the nitrogenous bases join together the two strands, always connecting an A with a T nucleotide (2 bonds), and a C with a G (3 bonds). The pairwise bounds between the nucleotides form the rungs of a ladder known as the \enquote{double helix structure}, alternating major and minor grooves. 
@@ -24,6 +25,7 @@ Nonetheless, even this definition seems too restrictive and oversimplified. Firs
 Indeed, in addition to the DNA coding sequence itself used as template for the transcription of the corresponding mRNA strand, the \enquote{transcription unit}, specific sequences of nucleotides mark the beginning of the transcription upstream, namely \textit{the promoter}, while others indicate the end of the transcription downstream \cref{fig:from-DNA-to-RNA}. We will understand the importance of these non-coding regions for the transcription process (\fullref{subsec:transcript}) and its regulation (\fullref{subsec:reg-transcript}) in the next sections.
 
 Finally, most of the DNA genes do not code for a functional polypeptide, but rather for RNA strands of the utmost importance in both the transcription and translation steps, including rRNA, tRNA or snRNA. The most updated and consensual definition of a gene, the most crucial biomolecular unit, is the following: \enquote{\textit{A gene is a region of DNA that can be expressed to produce a final functional product that is either a polypeptide or an RNA molecule.}}
+
 
 \subsection{Transcription}
 \label{subsec:transcript}
@@ -251,6 +253,7 @@ The following protocol is common to most of the microarray technologies:
 
 Although generally neglected nowadays against NGS technologies, new promising microarray applications continue to emerge, ranging from SNP detection to copy number variations and identification of methylated regions or protein binding sites. Notably, their extreme high miniaturisation makes them the best compromise between the requirement of high-throughput and cost-saving technologies \todo{expression pour dire "vont de" ... "à" ... "en passant par" ... + parler des limites des techniques de microarray}. For instance, the Human Genome U133 Plus 2.0 Array gathers \num{54000} probesets, spotted by 11 different probes,  comprising overall more than \num{1300000} distinct oligonucleotide sites.
 
+
 \subsection{RNASeq technology}
 \label{subsec:RNASeq}
 \GLS{ngs} methods are state-of-the-art technologies, emerging from early 2000's, seek the best of both worlds, combining the high-throughput of microarray technologies, with the flexibility of original sequencing methods, the only ones able to rebuild from scratch a new unsequenced genome (for instance, a mutated RNA or an unknown spliced exon will likely not be captured or underestimated with canonical microarray technology, as differing from its complementary probe). 
@@ -297,9 +300,11 @@ Several characteristics justify the prevalence of RNA-seq over microarray based 
 
 The flexibility of NGS platforms enable a wide variety of methods, using genomic, transcriptomic, or epigenomic. While the sequencing stage is relatively general, RNA or DNA preparation as well as tools used to assemble and analyse the resulting reads have a strong impact on the type of downstream analysis carried on. With Illumina, the library preparation kits are already provided, including whole-genome sequencing(WGS), RNAsequencing(RNA-Seq), targeted sequencing, protein-binding regions, and more. A brief overview is described hereafter:
 
+
 \href{https://ifb-elixirfr.github.io/EBAII/}{Inserm à roscoff} 
 
 \begin{enumerate}[label=(\roman*)]
+
 \item[Genomics sequencing:] Three applications benefit from the high-throughput sequencing process of NGS: WGS (whole genome sequencing), WES (whole exome sequencing) and \textit{de novo} sequencing. Genome-wide association studies(GWAS) are a common approach for identifying disease association patterns across the whole genome: while relying previously on a final set of pre-defined markers interrogated by microarray-based methods, the most comprehensive method of interrogating the 3.2 billion bases of the whole human genome has only emerged with the more scalable and flexible NGS technology. 
 
 In order to decrease the costs, it is also possible to focus only on the set of protein-coding sequences (the exome), since they  gather most of the known disease-causing variants. Even further, \textit{targeted sequencing} broadens the scalability of NGS methods by focusing resources on a specific region of interest. Notably, targeted resequencing projects has typically a coverage of $500-1000 \times$ against an average of $30\times$ for traditional WGS projects. Such a strategy increases the possibility to detect rare variants, notably somatic mutations in highly-heterogeneous samples (eg in the Tumoral MicroEnvironment, with a variety of tumoral clone populations shuffled with germline cells).15,16 
@@ -318,7 +323,6 @@ Ribosome profiling focuses on mRNA fragments that migrate to the ribosome comple
 
 While some regulation processes occur in localised regions of the genome, other processes modify globally the rate of transcription by acting on the spatial configuration of the DNA overall \fullref{subsec:reg-transcript}. Such processes imply notably chromatin remodelling, which can now be precisely quantified by the combination of NGS tehcnologies with the ATAC (Assay for Transposase-Accessible Chromatin) approach.
 
-\item[ChIP-seq/ATAC-seq] 
 \item[Single-cell RNASeq]
 \end{enumerate}
 
