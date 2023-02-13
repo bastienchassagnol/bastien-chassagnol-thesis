@@ -1,42 +1,331 @@
 \chapter{Biological background}
 
-Une definiton:
-$\gls{maths}$
-
-
 \section{From gene to protein}
 
 \paragraph{Overview: the Central dogma of Molecular Biology}
+The central dogma of biology states that genetic information flows in a one-way direction from \gls{dna} to proteins. \GLS{dna} stores the hereditary material of an organism while \gls{rna} serves as a template for the synthesis of proteins. 
+
+The process by which \GLS{rna} is synthesised from \GLS{dna} is called \textit{transcription} while the synthesis of proteins from \GLS{rna} is called \textit{translation}. The central dogma states that \GLS{dna} is never directly translated into proteins and reciprocally, implying that the flow of genetic information is always from \GLS{dna} to proteins, using \GLS{rna} as template, and never in the reverse direction. The genetic information flow from DNA to proteins is referred to as \textit{gene expression}.
 
 \subsection{DNA molecule}
-\subsection{Transcription}
-\subsection{Translation}
+\label{subsec:DNA}
+\GLS{dna} is the hereditary material of most of the known living organisms, consisting of a double-stranded molecule. The basic building bricks of \GLS{dna} are the nucleotides, of four types: adenine (A), cytosine (C), guanine (G), and thymine (T). A base is composed of three parts: a sugar molecule (the so-called deoxyribose), a phosphate group and a nitrogen base. On the one hand, the nucleotides along a given strand are connected together by covalent bonds between the sugar and phosphate groups, forming a sugar-phosphate \gls{backbone}. On the other hand, the hydrogen bonds between the nitrogenous bases join together the two strands, always connecting an A with a T nucleotide (2 bonds), and a C with a G (3 bonds). The pairwise bounds between the nucleotides form the rungs of a ladder known as the \enquote{double helix structure}, alternating major and minor grooves. 
 
-\todo[fancyline]{Biological resources from Campbell + biologu classes BIM // criticicse the limitations about the central dogma}
+
+The strands run in opposite directions to permit base pairing between them, an essential feature for replication or transcription of the encoded information.  By convention, single strands of \GLS{dna} and \gls{rna} are written in a 5'(\enquote{five-prime end, the 5' carbon of the ribose ring bound to a phosphate group})-to-3' direction, corresponding to the usual direction of transcription in organisms.
+
+In the nucleus,\GLS{dna} is wrapped around histone proteins, forming altogether a chromatine fibre, whose basal unit is the \textit{nucleosome} complex. The high compaction of \GLS{dna} molecules enabled by this structure enables to store a prominent genetic information within the cell nuclei, while the availability of the chromatin plays a prevailing role in the regulation of the gene expression and replication phases.
+
+
+The \GLS{dna} is made up with segments, called \textit{genes}, that code and control the synthesis of proteins. However, a consensus definition of what is exactly recovered by the term \textit{gene} seems unreachable and versatile over time. Indeed, the term itself has evolved from the concept of Mendelian inheritance to a specific nucleotide sequence along the DNA molecule, coding for a functional polypeptide. 
+
+Nonetheless, even this definition seems too restrictive and oversimplified. First, in opposition to the initial assumptions of biologists,  whole genome sequencing (WGS) projects revealed in early 2000's, that most of the nucleotides sequences in the human genome do not code for proteins, but rather did not display any obvious functionally. As so, these seemingly useless regions were referred as to \enquote{junk DNA}. And even more recently, geneticists find out that parts of these DNA sequences do play an indirect but crucial role, by regulating the level of gene expression \fullref{subsec:reg-transcript}. Accordingly, molecular biologists also often include promoters and certain other regulatory DNA sequences within the boundaries of a gene.
+
+Indeed, in addition to the DNA coding sequence itself used as template for the transcription of the corresponding mRNA strand, the \enquote{transcription unit}, specific sequences of nucleotides mark the beginning of the transcription upstream, namely \textit{the promoter}, while others indicate the end of the transcription downstream \cref{fig:from-DNA-to-RNA}. We will understand the importance of these non-coding regions for the transcription process (\fullref{subsec:transcript}) and its regulation (\fullref{subsec:reg-transcript}) in the next sections.
+
+Finally, most of the DNA genes do not code for a functional polypeptide, but rather for RNA strands of the utmost importance in both the transcription and translation steps, including rRNA, tRNA or snRNA. The most updated and consensual definition of a gene, the most crucial biomolecular unit, is the following: \enquote{\textit{A gene is a region of DNA that can be expressed to produce a final functional product that is either a polypeptide or an RNA molecule.}}
+
+\subsection{Transcription}
+\label{subsec:transcript}
+
+\textit{Transcription} is the first step in gene expression, in which the information encoded in DNA is converted to a RNA molecule, in the nucleus of eukaryotic cells.  It involves the following steps:
+
+\begin{enumerate}
+    \item[Initiation and promoter recognition:] An enzyme, the RNA polymerase II, recognises the starting site of a gene and binds to the DNA strand. Then, the polymerase binds to a promoter region, signalling the start of a gene, and initiates transcription.
+    \item[Strand separation:] The RNA polymerase then pries the two strands of DNA apart.  
+    \item[Elongation:] The RNA polymerase moves along and synthesises a RNA molecule complementary to the DNA sequence. Like the DNA polymerases involved in DNA replication, RNA polymerases can only assemble a polynucleotide in the 5' to 3' direction, alternatively from \enquote{upstream} to \enquote{downstream}, by successive adds of ribonucleotides to the 3' end of the growing RNA chain. Indeed, RNA, like DNA, is composed of a series of four nucleotides, but Thymine (T) is replaced by a similar molecule called Uracil (U).
+    \item[Termination:] Finally, the RNA polymerase detaches the newly synthesised RNA molecule once the termination site of the DNA sequence has been reached. It is composed of two elements, a DNA sequence called the polyadenylation signal, the AAUAAA, followed 10–35 nucleotides downstream by a cleavage marking actually the end of the mRNA. The corresponding messenger RNA (mRNA) is then transported to the cytoplasm through the nuclear pores.  
+\end{enumerate}
+
+The resulting mRNA molecule is not yet mature and undergoes a series of post-transcriptional modifications. RNA post-processing notably involves the addition of the 5' cap and poly-A tail at each end of the RNA strand, and splicing of non-coding sequences called \enquote{introns} that are respectively crucial for the integrity of the RNA strand and the overall regulation of the gene expression \fullref{subsec:reg-transcript}.
+
+We display the main steps that results in a final mature mRNA strand, ready to be translated into a functional protein in \cref{fig:from-DNA-to-RNA}.
+
+
+\begin{figure}
+     \centering
+     \includegraphics[width=\textwidth]{thesis/figures/from-DNA-to-RNA.png}
+     \captionsetup{singlelinecheck=off}
+    \caption[An eukaryotic gene and its transcript.]{
+    This figure is reproduced from ~\autocite[Fig.~18.9, p.~373]{campbell_etal20}. 
+    \begin{itemize}
+        \item \textbf{Eukaryotic gene structure.} In addition to the coding sequence itself, each eukaryotic gene has a promoter, a DNA sequence where RNA polymerase binds and starts transcription. Control elements (in gold) \enquote{upstream} of both types, either close (proximal to) or far (distal to) from the initiation site, are involved in regulating the level of transcription. At the other end of the gene, a polyadenylation (poly-A) sequence signals roughly where the transcript is cleaved and the poly-A tail is added, while the RNA polymerase may proceed the transcription up to hundred of nucleotides further, stopping in the \textit{transcription termination region}. But the corresponding ribonucleotides are not added to the mRNA strand, and are rapidly degraded by enzymes instead.
+        \item \textbf{Pre-mature RN.} Enzymes modify the two ends of a eukaryotic premRNA by the addition of the 5' cap and poly-A tail. The modified ends enable to export the mRNA to the cytoplasm, protect it from degradation and promote ribosome attachment during the protein synthesis phase. The 5' cap and poly-A tail are not translated into protein, nor are the 5' and 3' untranslated regions. The pink parts are the introns, sequences of RNA that are removed of the final mRNA strand, while the exons, the red parts, remain.
+        \item \textbf{Mature mRNA.} During RNA processing, the introns are cut out and the exons spliced together. In many genes, the introns are much longer than the exons. (The UTR regions, while not coding for proteins, are considered exons because they remain in the final mRNA strand.) In the cell, some of these processes act simultaneously, addition of the 5' cap and splicing occurs while transcription is still under way.
+    \end{itemize}}
+    \label{fig:from-DNA-to-RNA}
+\end{figure}
+
+
+
+% \begin{figure}
+%      \centering
+%      \begin{subfigure}[b]{0.45\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{thesis/figures/pre-mature-RNA.png}
+%          \caption{\textbf{Pre-mature RNA}: Enzymes modify the two ends of a eukaryotic premRNA by the addition of the 5' cap and poly-A tail. The modified ends enable to export the mRNA to the
+% cytoplasm, protect it from degradation and promote ribosome attachment during the protein synthesis phase. The 5' cap and poly-A tail are not translated into protein, nor are the 5' and 3' untranslated regions. The pink parts are the introns, sequences of RNA that are removed of the final mRNA strand, while the exons, the red parts, remain.}
+%          \label{fig:transcript-pre-mature}
+%      \end{subfigure}
+%      \hfill
+%      \begin{subfigure}[b]{0.45\textwidth}
+%          \centering
+%          \includegraphics[width=\textwidth]{thesis/figures/mature-RNA.png}
+%          \caption{\textbf{Mature mRNA.} During RNA processing, the introns are cut out and the exons spliced together. In many genes, the introns are much longer than the exons. (The UTR regions, while not coding for proteins, are considered exons because they remain in the final mRNA strand.)}
+%          \label{fig:transcript-mature}
+%      \end{subfigure}
+% \end{figure}
+
+
+\subsection{Translation}
+Translation is the process of synthesising a protein molecule from a RNA blueprint, driven by ribosomes (\enquote{protein complex} mixed with ribosomal RNA). It converts codons (triplets of adjacent nucleotides) of mRNA into the corresponding amino acids, the joined polypeptide sequence of them forming a protein.  
+
+The process of translation can be divided into three main stages: initiation, elongation, and termination.
+\begin{enumerate}
+    \item Translation begins with the binding of the ribosome to the mRNA at \textit{the start codon} AUG, coding for methionine. Binding is facilitated by \textit{initiation factors}.
+    \item The ribosome moves along the mRNA, adding amino acids to the growing polypeptide chain in the order specified by the genetic code. The \enquote{genetic code} relates the RNA sequence to the amino acid sequence in proteins: there are in total $4^3=64$ possible sequences of 3 codons, however, only 20 amino-acids prevail in nature. This implies that distinct codons code for the same protein. Each amino acid is brought to the ribosome by a transfer RNA (tRNA) molecule.
+    \item Translation terminates when the ribosome reaches one of the tree \enquote{stop codons}, namely UAA, UAG, and UGA, acting as the end site of the polypeptide chain. The completed protein is then released from the ribosome.
+\end{enumerate}
+
+Defects in translation can result in the synthesis of non-functional or toxic proteins, leading to various diseases and disorders. Indeed, proteins are essential, complex molecules that perform a wide range of functions in the human body, intervening directly in most of the biomechanical processes: 
+
+\begin{enumerate}[label=(\alph*)]
+\item[Structural support:] They are the essential bricks of our architecture, including tendons, bones, and skin, whilst maintaining the cell envelope. While some are inactive, others have the ability to contract, enabling the contraction of muscle fibres, such as actin and myosin.
+\item[Enzymes:] Some species of proteins catalyse biochemical reactions, speeding up reactions within cells.
+\item[Transport:] Some carry essential metabolites in vital fluids of the human organism, such as blood or lymph liquids. For instance, hemoglobin is in charge with the transport of oxygen in the blood towards the organs. 
+\item[Cell signalling:] They convey essential signals among cells, enabling efficient commutation in remote tissues. This ranges from hormones that regulate the \gls{metabolism} and control various physiological processes, such as insulin or adrenaline, to signal \gls{transduction}.
+\item[Antibodies:] they intervene in the adaptive immune system by recognising and neutralising specifically foreign invaders.
+\item[Storage:] Proteins such as ovalbumin are a renewed source of amino acids for building up other proteins.
+\item[DNA replication and repair:] helicases and polymerases intervene in DNA replication, transcription and repair.
+\end{enumerate}
+
+Not only the specific linear arrangement of amino acids in the protein sequence but its spatial configuration at four distinct scales determines whether it is functional or not:  
+\begin{enumerate}
+    \item[Primary structure:]It refers to the linear sequence of amino acids in the polypeptide chain, giving the protein's unique chemical and physical properties.
+    \item[Secondary structure:] It refers to the local arrangements of the polypeptide chain, stabilised by hydrogen bonds. The most common ones are the alpha-helices and beta-sheets.  
+    \item[Tertiary structure:] It is the global three-dimensional shape of the polypeptide chain, determined by the interactions between the amide backbone and the side chains attached to it: hydrogen and ionic bonds, hydrophobic interactions, and disulfide bridges.
+    \item[Quaternary structure:] It details \enquote{protein complex},  formed from the combination of multiple polypeptide chains. 
+\end{enumerate}
+It is worth noted that not all proteins follow this scheme of multi-layer complexity, some may only have a single flat polypeptide sequence. Changes in this arrangement, at any level, can alter significantly the function of the protein, resulting potentially in larger metabolic disorder. We display in the next page a diagram of the main steps enabling the synthesis of a functional protein from a DNA sequence \cref{fig:from-DNA-to-protein}.
+
+\clearpage
+\begin{figure}
+     \centering
+     \includegraphics[width=\textwidth]{thesis/figures/from-DNA-to-protein.png}
+    \caption[A schematic view of the process involved in protein production from an eukaryotic gene.]{
+    This figure is reproduced from ~\autocite[Fig.~17.25, p.~356]{campbell_etal20}. Each gene in the DNA can be transcribed into several RNA molecules, and each mRNA can be translated to several proteins.}
+    \label{fig:from-DNA-to-protein}
+\end{figure}
+
+% \todo[fancyline]{biologu classes BIM}
+
 
 \section{Regulation of gene expression}
-\paragraph{Overview: coordinate the gene interactions}
+\paragraph{Overview: coordinate the gene interactions:}
+Just before the starting of concert, members of the orchestra individually tune their instruments in a gleeful but disordered cacophony. However, as soon as the conductor’s baton rises, all instruments join in to raise or lower their volume and their pitch at properly timing. And the original discordant sounds switch into a beautiful symphony that enraptures the audience.
+
+In a similar way, cells must precisely regulate and coordinate their gene expression. Indeed, each cell type contains the same genetic material, however, by expressing a different subset of genes in a specific schedule, they are able to adjust to varying environmental conditions, to perform completely distinct actions, to pursue different biological roles and to fit to the growth development of the individual. Without this fine tune of gene regulation, how could we explain the complete distinct role played by a neuronal and a pancreatic cell? And how a fully developed human body emerges from a single egg cell, passing through the embryonic, foetal and adulescent stages? In the following sections we provide an overview of the \textit{regulation mechanisms} occurring in cells,  namely the way in which different genes are turned on and off at the right time. Gene regulation, as we will see, can occur in any stage of the gene expression process.
+
 \subsection{Regulation of the chromatin structure}
+Firstly, the level of transcription is modulated by the availability of the initiation sites and by extension to the level of compactness of the chromatin fibre.  Recall from \fullref{subsec:DNA}  that the DNA of eukaryotic cells is packed with proteins in a \enquote{protein complex} known as chromatin, the basic unit of which is the nucleosome. Indeed, when histones and DNA are tightly bound in the chromatin fibre, they limit the access of the RNA polymerase to promoters. This phenomenon of dynamic modification of chromatin architecture is called \textit{chromatin remodelling}.
+
+
+The regulation of gene expression with respect to the compactness of the chromatin structure is influenced by three factors: the location of a gene’s promoter relative to the initiation sites, the overall compactness of the chromatin structure, for instance, genes within the heterochromatin, a highly-condensed region remain unexpressed. Lastly, some chemical modifications catalysed by specific enzymes over the tails of the histones protruding outward from nucleosomes or the DNA sequence itself can influence locally the chromatin structure by modifying the tridimensional structure and the folding of the histone proteins. 
+
+Reversible addition of methyl groups (-CH3) to amino acids in histone tails can promote the condensation of the chromatin, while addition of a phosphate group, namely \textit{phosphorylation},  or \textit{histone acytelation}, namely when acetyl groups attach to lysines, induce a looser structure of the chromatin. The \textit{histone code} hypothesis suggests that the specific combination and order of chemical modifications yields the final configuration of the chromatin, which in turn influences transcription.
+
+
+While some enzymes interact chemically with the tails of histone proteins, \textit{DNA methylation} refers to the process performed by a different set of enzymes, methylating directly certain bases in the DNA itself. It generally occurs at CpG (Cytosine-phosphate-Guanine) sites, the regions of the DNA sequence where a guanine follows a cytosine. DNA methylation mechanisms play a critical roles in gene silencing by inducing the condensation of the chromatin. Notably, DNA methylation seems to be involved in the long-term inactivation of genes supposed to remain active only during the embryonic phase. In opposition to the reversible changes induced by histone methylation, it seems that the methylation patterns remain permanent, with highly-specialised cells keeping the methylation blueprint acquired during the developmental phase, a process named \textit{genomic imprinting}. 
+
+\todo{def eukaryotic, add illustration of the complex structure of a gene and alternative splicing, heterochromatin and eurochromatin 330-379 Campbell 12}
+
 \subsection{Regulation of transcription initiation}
+\label{subsec:reg-transcript}
+Chromatin-modifying enzymes provide the first initial regulation of the
+gene expression by controlling the access of a region of the DNA either more. Once the promoter site is reachable, the initiation of transcription involves the recruitment of proteins, building a \textit{transcription initiation complex} \fullref{subsec:transcript}.
+
+Among them, the RNA polymerase II transcribes the gene and synthesises it into a primary RNA transcript (pre-mRNA). However, appropriate binding and efficient transcription requires the combination of regulatory proteins called \textit{\Glspl{tf}} with their corresponding binding sites acting as control elements.  Together, TFs interplay to precisely achieve the fine-tune regulation of gene expression seen, either activating or inhibiting the transcription process.
+
+
+We set apart two types of transcription factors:
+\begin{itemize}
+    \item[\textit{General transcription factors}:] they are required for the initiation of the transcription of all genes, by either binding to the TATA box, a sequence present in most promoters, to other TFs or to RNA polymerase. However, their presence only leads to a low rate of RNA production. 
+\item[\textit{Specific transcription factors}.] Precise and specific production of a given gene involves another set of proteins, the so-called specific Tfs. They recognise specific sequences of DNA, that might be located close to the promoter (\textit{proximal contorl elements} or may be distant up to thousands of nucleotides upstream or downstream, the \textit{distal control elements}. A group of control elements acting together to which a TF uniquely binds to is called an \textit{enhancer}. Interestingly, while a gene may be associated to several enhancers, whose availability varies over time, each enhancer is only associated with a gene. 
+
+TFs can either act as activators or repressors, and bind to other TFs or the DNA sequence itself. In the last case, they display the same two structural elements: a \textit{DNA-binding domain} that binds to the corresponding DNA control elements and several \textit{activation domains} that ease or inhibit \GLS{ppi} networks and by extension the efficiency of the transcription. 
+\end{itemize}
+
+Amazingly, while up to \num{20000} genes must be regulated in a human cell, only a dozen distinct nucleotide sequences control the pairing between TF and the DNA sequence, each enhancer being composed
+on average of about ten control elements. It is the particular combination of control elements that yields the one-way matching between the enhancer and its corresponding TF. 
+
+
 \subsection{Post-transcriptional regulation}
 
-\section{Capture variations of the transcriptome}
-\paragraph{Overview: definition of the transcriptome}
+Recall from \fullref{subsec:transcript} that the original strand of mRNA resulting the transcription is not yet mature, and undergoes a series of biochemical interactions modifying its properties. Among them, \textit{alternative splicing} is the most fundamental mechanism of post-transcriptional regulation. 
 
-\subsection{Microarray technology}
+Indeed, while all the introns are removed, not all the exons, even though coding directly for a protein, are kept in the final mature mRNA. It enables the production of protein variants, \textit{isoform proteins}, starting from the same pre-mRNA, as illustrated with the troponin gene below \cref{fig:alternative-splicing}. Thus, a single gene can achieve different functions in the cell by controlling the proportion of each isoform produced. In fact, alternative splicing is the most likely explanation until now ($90\%$ of human protein-coding genes undergo splicing) for the low number of human genes identified (around \num{20000}), similar to that of a soil worm (nematode) or a mustard plant. 
+
+\begin{figure}
+    \centering
+    \includegraphics{thesis/figures/alternative-splicing.png}
+    \caption[Alternative RNA splicing of the troponin T gene.]{This figure is reproduced from ~\autocite[Fig.~18.14, p.~378]{campbell_etal20}. Colour background of the exons are dark and introns light. The primary transcript of this gene can be spliced in several mRNA strands:  one ended up with exon 3 (in green) and the other with exon 4 (in purple). Both mRNAs are muscle proteins, differing slightly by their operational region.}
+    \label{fig:alternative-splicing}
+\end{figure}
+Once the mature mRNA produced, it still must be translated into a protein. Conversion from a mRNA fragement to a functional protein highly depends on its average life span, which in return is related to the presence of translation regulatory proteins that recognise sequences of the 3 or 5' UTR(specific inhibition control, by preventing the binding of both RNA ends to the ribosome) or general effect protein factors, notably involved in development and differential phase. We display the mechanisms involved in ~\cref{fig:model-enhancer}.
+
+\begin{figure}
+    \centering
+    \includegraphics{thesis/figures/model-enhancer.png}
+    \caption[Model for the coordinate action of RNA polymerase and TFs.]{This figure is reproduced from ~\autocite[Fig.~18.11, p.~375]{campbell_etal20}. The transcription initiation complex involves the coordinate binding of RNA polymerase II and general transcription factors, while fine-tune regulation is enabled by specific TFs that bind to the enhancers (here, represented with three control elements in gold) and to mediator proteins. It is DNA bending that enables enhancers to influence the regulation remotely. }
+    \label{fig:model-enhancer}
+\end{figure}
+
+
+Interestingly, recent researches highlight the combined role of small non-coding RNAs (ncRNAs) molecules, known as microRNAs or miRNAs, and regulatory proteins in modulating gene activity. By base pairing to mRNAs, microRNAs mediate translational repression or the degradation of mRNAs. 
+Other non-coding RNAs, including long intergenic ncRNAs (lincRNAs) or small interfering RNAs (siRNAs), seems to be involved but the exact regulation mechanism still needs to be deciphered. 
+
+Precisely, one consequent genomics global approach is the ENCODE (Encyclopedia of DNA Elements) project, which started in 2003. The aim of the project was to correlate most of the human genome with a functional biological function, including both protein-coding and non-coding genes. A second aspect of the project characterised the relations between DNA and histone tridimensional structures and the DNA sequences acting in the regulation of the gene expression (the \enquote{epigenetic} changes that affect gene expression without changing the original sequence of nucleotides). Notably, the second phase of the project, involving
+more than 440 scientists in 32 research groups and 1,600 curated genomic experiences, confirm the high biological relevance of miRNAs and deny the seemingly uselessness of most of the human genome, wrongly referred to as \enquote{junk DNA} before \fullref{subsec:DNA}. Indeed, biochemical functions have been assigned
+to at least $80\%$ of the genome, $75\%$ of the human genome was found transcribed into functional RNA at some point whereas less than $2\%$ actually codes for proteins ~\cite{desouza12}, \cite{ecker_etal12}, \cite{gerstein_etal07} and \cite{snyder_etal20}.
+
+
+Complex biological functions require a coordinate set of chemical reactions, each with its own associated proteins, for instance the enzymes involved in a metabolic pathway or a transduction signal. As opposed to the solution developed in bacterias, in which genes involved in the same biological function are associated to the same promoter (\textit{operon} structure), genes that require co-expression are often scattered over the whole genome in human cells. In that case, coordinate control is triggered by \gls{cellular communication}, that in turn promote the recruitment of TFs. Since they move freely in the nucleus,  they are able to recognise and bind to the whole set of control elements.
+
+
+
+\subsection{Post-translational regulation}
+\label{subsec:post-transla}
+Finally, post-translational modifications can occur at any time after the translation of the protein. By inducing chemical modifications to proteins, they alter its metabolic function or \textit{targeting}, a part of the protein sequence itself that addresses the final polypeptide sequence to its appropriate localisation. The most common modifications involve covalent additions of one or more side groups, including without intention of exhaustivity, phosphorylation, acylation, alkylation, and glycosylation. 
+
+For instance, cell-surface proteins require membrane targeting and addition of sugars to get functional, while the insulin polypeptide proceeds from an original bigger precursor. 
+
+Finally, the life span of each protein is strictly regulated by selective degradation. Giant protein complexes, the \textit{proteasomes}, recognise the ubiquitin-tagged proteins and degrade them. 
+
+
+The several modifications discussed before do not entail a change in the DNA sequence, yet they may be transmitted to future generations of cells. The mechanisms involved in the inheritance of these specific traits is called \textit{epigenetic inheritance}, which in opposition to DNA mutations, are generally reversible. An increasing number of experiences confirm the importance of epigenetic may explain why only one of a pair of twins develops a genetically-based disease or the initiation of pro-tumoral conditions promoting the apparition of cancers. 
+
+The control the epigenetic regulation mechanisms is itself modulated by the interactions between genes and the environment. Indeed, the degree of DNA methylation is thought to be related to the availability of nutrients. We display below a diagram summing up the biological mechanisms involved in gene regulation \cref{fig:gene-regulation}.
+
+\begin{figure}
+    \centering
+    \includegraphics{thesis/figures/global-gene-regulation.png}
+    \caption[The main gene regulation stages.]{This figure is reproduced from ~\autocite[Fig.~18.6, p.~370]{campbell_etal20}. In this diagram, each colour indicates the type of molecule regulated (blue = DNA, red or orange = RNA, purple = protein). Not all genes are regulated at
+all stages.}
+    \label{fig:gene-regulation}
+\end{figure}
+
+\todo{autre figure, ou en GRN, à mettre ici, du stage de boolean}
+
+It is also worth noted that the whole regulation machinery set is not necessarily involved for the production of a given gene. Additionally, some regulation factors can play on several levels: TFs can affect the chromatin structure, either by recruiting proteins that acetylate histones, thus promoting transcription or, on the contrary, by removing acetyl groups and \textit{silencing} the transcription ~\autocite{walters_etal12}. More recently, new \textit{chromosome conformation capture} techniques reveal that entire regions within a chromosome (\textit{topologically associated domains}, or \textit{TADs}) bind into loops and congregate with each other, or with TADs from other chromosomes, to form sites associated with high transcriptional activity levels and often related to a given biological function. These \textit{transcription factories} are indeed rich in RNA polymerase and other TFs. 
+
+In next section, we detail some sequencing tools that can be used to keep track of the variations of the transcriptome and help unravel the relations between the biological features. 
+
+\section{Capture variations of the transcriptome}
+\subsection{Overview: definition of the transcriptome:} 
+\label{subsec:transcriptome-overview}
+Among the several types of omics that can be analysed to unravel the relationships between the biological entities, we will focus on transcriptomics, the analytical study of the transcriptome, as it is certainly the kind of biological data for which the most technologies have been developed, and as it indirectly provide clues on the interaction between DNA and protein and how they contribute to the biochemical processes involved in keeping the organism in proper operating order. The transcriptome is simply the collection of all RNA molecules, types and quantity, present at a given time in a biological sample.  
+
+While tools for quantifying gene expression levels have been developed for years, for a long time, they focused on a single gene at a time. Among them, the most widely used were Northern blots or Reverse Transcription-Polymerase Chain Reaction (RT-PCR) as well as sequence-based approaches such as Serial Analysis of Gene Expression (SAGE) or comparative Expressed Sequence Tag (EST). Nevertheless, all the technologies described above have in common the generation of a sequence of nucleotides complementary to the original material. Precisely, the specific mRNA sequence of interest is used as a template to synthesise a complementary, single-stranded RNA strand using nucleic acid hybridisation (recall from \fullref{subsec:DNA} that the two strands of DNA hold from base-pairing, with each nucleotide uniquely recognising another amino acid among a repertoire of four, property called \textit{hybridisation}). Each of these paired nucleotides, used as as a surrogate for the presence of the mRNA, is called a \textit{nucleic acid probe}. In addition, the pair original mRNA-cRNA or DNA is uniquely identified with a fluorescent tag, in a technique called \textit{in situ (\enquote{in place}) hybridisation.} (the total number of mRNAs that can be followed at the same time is however limited). 
+
+
+As an example, we describe in few words the widely used \textit{reverse transcriptase polymerase chain reaction (RT-PCR)} method. The first step consists of synthesising a double strand complementary DNA sequence, expunged of introns, by the combined use of reverse transcriptase and DNA polymerase with a RNAse enzyme in charge of degrading the original mRNA material. Indeed, RNA is reverse transcribed to cDNA since DNA is more stable and enables more efficient amplification and the use of mature DNA sequencing technology. Then follows an \textit{amplification stage} generating many copies of the RNA segment of interest: the PCR step, which notably requires \textit{primers}, short chemically synthesised oligonucleotides that initiate the replication by attaching the DNA polymerase in place. Finally, newer methods such as qRT-PCR (\textit{q} stands for \textit{quantitative}) enable precise quantification while avoiding the burdensome and tiem-consuming electrophoresis step.
+
+
+However, it is generally much more interesting to capture \textit{simultaneously} the evolution of the mRAN levels between all the genes to better understand how they act in concert to perform complex biological functions. This new approach of the field is called the \textit{system(s)-atic approach}. For that reason, we focus on the technologies that enable to analyse the \textit{whole transcriptome} in a high-throughput manner, with, by chronological order, the apparition of microarray technologies, and then the development of Next-Generation Sequencing (NGS) methods. Compared to microarray, NGS technologies present the main advantage of not being restricted to already known documented DNA or RNA sequences. 
+
+The principle and technology of microarrays and RNASeq methods are further detailed respectively in \fullref{subsec:microarray} and \fullref{subsec:RNASeq} from a biologist and \gls{bioinformatic} point of view, namely from the data production workflow to the raw mapping of counts, without further normalisation. Promising technologies, that would enable to follow in real time the spatial and temporal evolution of transcriptomics, are mentioned in the last paragraph of this section \fullref{subsec:miscelleanous-innovative-rna-seq}. Note that these promising technologies would not have been possible without the global sequencing projects in late \nth{20} century, as most of them rely on a reference genome to align the investigated mRNAs. 
+
+Finally, once we have collected the raw counts or arbitrary quantitative units (for microarray), we detail in \fullref{chap:transcriptome-workflow} the statistical challenges and the corresponding normalisation processes to make these datasets useable. Indeed, the biological applications of transcriptome datasets include \textit{differential analysis}, aka \textit{class comparison} to identify genes that express differently between two biological conditions (typically control or healthy samples vs disease patients), identify subgroups of patients sharing similar expression profiles, usually by performing \textit{clustering}-based methods and predict the disease state evolution of a patient, generally by assigning it to the most probable cluster, that has either been defined using prior medical knowledge or \textit{unsupervised} machine-learning methods.
+
+ \subsection{Microarrays technology to quantify gene expression}
+\label{subsec:microarray}
+Microarray plates are small chips onto which tens of thousands oligonucleotide probes, with sequences complementary to fragments of actual genes, are engraved. Generally, each gene is normally represented by a set of probes, so called a \textit{probeset}, each representing a different but highly-specific gene region. Indeed, designing customised probes reveals a painstaking task, as the challenge is to identify a combination of nucleotides both characteristic of our coding gene and not matching any other genome region, with the risk of detecting a spurious pairing otherwise. In addition, due to natural limitations of sequencing technologies, the length of the complementary probe is generally limited to a few dozens of nucleotides, 20 on the widely used Affymetrix array.  
+
+The following protocol is common to most of the microarray technologies:
+\begin{enumerate}
+    \item The mRNA samples, called the \enquote{targets}, are extracted from the investigated biological sample. 
+    \item The targets hybridise to their complementary probe on the microarray and are labelled using fluorescence or radioactive labels. 
+    \item Two competitive methods are used to compare gene expression levels between two biological conditions. Either the two mRNA preparations are hybridised at the same time, the RNA strands competing for the access to the probes, or each sample is assigned its own array, but with the same dying label. In both cases, each probe is generally duplicated thousands of time in the  same \enquote{probe cell}, called a \textit{spot}, to capture any mRNA fragment.
+    \item Once the hybridisation step is performed, high-spatial resolution pictures of the plate are carried out, on which a spot is likely to be represented by many pixels. The \textit{segmentation} stage sets apart pixels proceeding from a spot, marked as relevant signal, from pixels out, marked as background noise. Finally, the \textit{quantification} stage itself aggregates the individual intensity values of a spot into an unique signal, used as proxy of the abundance of mRNA and reports them in files with CEL extension.
+\end{enumerate}
+
+Although generally neglected nowadays against NGS technologies, new promising microarray applications continue to emerge, ranging from SNP detection to copy number variations and identification of methylated regions or protein binding sites. Notably, their extreme high miniaturisation makes them the best compromise between the requirement of high-throughput and cost-saving technologies \todo{expression pour dire "vont de" ... "à" ... "en passant par" ... + parler des limites des techniques de microarray}. For instance, the Human Genome U133 Plus 2.0 Array gathers \num{54000} probesets, spotted by 11 different probes,  comprising overall more than \num{1300000} distinct oligonucleotide sites.
+
 \subsection{RNASeq technology}
-\subsection{Miscellaneous technologies to measure the transcriptome}
+\label{subsec:RNASeq}
+\GLS{ngs} methods are state-of-the-art technologies, emerging from early 2000's, seek the best of both worlds, combining the high-throughput of microarray technologies, with the flexibility of original sequencing methods, the only ones able to rebuild from scratch a new unsequenced genome (for instance, a mutated RNA or an unknown spliced exon will likely not be captured or underestimated with canonical microarray technology, as differing from its complementary probe). 
+
+
+While a diversity of NGS technologies have been developed, they all share the same following general stages:
+\begin{enumerate}[label=(\roman*)]
+    \item[Library preparation:] The transcriptome of the sample or tissue of interest, after an isolation stage, is reverse-transcribed into \gls{cDNA} for stability purposes. The next step consists of randomly fragmenting cDNA into strands of similar sizes     
+    and ligating two distinct adaptors, one at each end, in a process called \enquote{tagmentation}: the resulting fragment is called an \textit{insert}. The whole collection of cDNA strands is termed the \textit{library}.
+    \item[DNA amplification:] Compared to old-fashioned sequencing methods, NGS technologies mostly differ by their higher capacity of DNA amplification and sequencing. Since most of our datasets, as well as up to $90\%$ of all sequenced data (feature from 2015), proceed from an Illumina-based workflow, we dive into further details in this technology. On the top of that, Illumina's technology becomes the first technology to sequence an entire human genome for just $\$1000$, with an expected $\$100$ target in a near future. Finally, Illumina NGS technology comes along with a series of highly scalable and customisable sequencing systems, raging from the MiniSeq system for targeted sequencing easily portable in small laboratories to whole-genome sequencing in populations, as part of the strategy developed in large genome centres (Figure 6).
+    
+    After an initial amplification stage, with a similar process to RT-PCR \fullref{subsec:transcriptome-overview}, comes an intensive \textit{clonal amplification}, which increases by several orders of magnitude the total amount of DNA available for sequencing. 
+    Specifically, a lawn of oligos, complementary to the sequences of the adaptors, is attached to a glass surface, called a \textit{flow cell}, further broken down into thousands of \textit{tiles.} The DNA library is first \textit{denatured} to form single-stranded DNA (ssDNA), then, the surface-bound oligos are used as probes to tether the ssDNA fragments within the flow cell. 
+    
+    Next, the high-throughput DNA sequencing of Illumina platform relies on a process called \enquote{bridge amplification}, in which each hybridised fragment is cloned separately and simultaneously into $\approx 1000$ copies, forming a \textit{cluster}. This process is enabled by the two types of oligonucleotides bound to the flow cell: they indeed allow alternated synthesis in both directions of the cDNA fragments, a process repeated until the desired amount of DNA has been reached. 
+    
+    \item[Sequencing:] Then comes the sequencing stage itself, in order to determine the series of nucleotides of all fragments. The main proprietary innovation of the Illumina protocol lies in the development of a massively parallel, proprietary reversible terminator–based method that detects single addition of bases in the mean time they are incorporated, using DNA polymerase and the tethered DNA strands as template. Specifically, each sequencing cycle starts with the addition of a primer and fluorescent reversible-terminator nucleotide (rt-dNTPs), ensuring that only one nucleotide is added at a time. Any unbound nucleotide is then washed away, while lasers excite the fluorescent tags of each incorporated nucleotide, each being associated to its own wavelength. Finally, the tag is cleaved off, putting an end to the cycle. This process, termed \enquote{sequencing-by-synthesis}, is repeated until the desired length of the sequence, the number of cycles determining exactly the length of the sequence, generally a fine-tuned compromise between a too short strand, that would reveal pointless or noisy in the next assembly stage, or too long, with an increased risk of poor synthesis quality of the 3' end. 
+
+    The resulting images are then processed to return the \textit{reads} themselves, the discretised series of nucleotides, that are generally stored in a FASTQ file. To do so, for each cluster's coordinates, in each series of raw images files resulting from the excited signals of the \enquote{sequencing-by-synthesis} stage, the signal intensity and noise are computed. The conversion of raw intensities into readable reads, including background noise correction and proper cluster identification, and estimation of the scaling intensity, is known as \textit{base-calling}.
+    
+    Precisely, clonal amplification in the previous stage aims at counterbalancing the relative lower sequencing quality compared to traditional NGS while enabling a much stronger \textit{coverage} of the genome (up to 180 million reads are generated using the HiSeq 2000 platform), notably within regions that are typically difficult to accurately sequence, like repetitive and GC-rich regions or homopolymers.
+    
+    A growing alternative, guarantee of a better sequencing quality, consists of synthesising fragments in both directions of each cDNA sequence, with the help of specific short sequences marking the index of the transcription. The resulting \enquote{paired-end} library has twice the number of reads, for the same efforts, increasing the quality of the alignment and providing refined opportunities for the detection of \enquote{indels} (insertion deletion modifications), SNVs and SNPs mutations.
+    
+    Another feature that justifies the leading position of Illumina on the sequencing market is the increased sample throughput per run. It is enabled by the combination of physically separated sequencing lines on the same surface and \textit{multiplexing}. Indeed, the Illumina flow cell is made up with eight independent, physically distinct areas, termed \textit{lanes}, that allows up to eight separate samples to be processed at the same time. In addition,  multiplexing allows multiple libraries to be pooled and sequenced simultaneously on the same lane, by adding unique barcode sequences during library preparation and final discrimination of the strands before the final analysis itself, in a \textit{demultiplexing} process.
+    
+    \item[Alignment:]  From the billions of reads sequenced, computer software and bioinformatic tools rebuild the whole transcriptome, by locating each read in the genome. Two strategies are used, a \textit{genome-guided} strategy in which the reads are aligned and mapped onto a genome of reference, or \textit{de-novo} strategy, in which the reads are assembled when no annotations are available. The last one has a strong computational burden, with increased risk of not covering precisely highly repetitive regions of the genome, that can be mitigated by combination of short and long insert sizes (\enquote{mate pair}) with paired-end sequencing. Since the human genome is well annotated since the early 2000's, the last strategy is generally favoured. 
+
+    While a substantial literature corpus on alignment methods, including the world-famous BLAST, initially introduced by Altschul et al. (1990), they generally dedicate to the mapping of long reads, as generated by conventional sequencing. However, unfortunately, due to the short size of reads produced by NGS technologies and the additional ordeal of aligning reads that do not directly align along continuous portions of the reference genome (recall that some portions of the original coding sequence are not kept in mature mRNA, \fullref{subsec:transcript}), such algorithms do not perform well. Finally, short reads presenting highly-repetitive patterns are equally likely to align against several remote regions of the genome. 
+    
+    Hence, various specialised bioinformatics tools have been developed since, benchmarked and described in details in Grant et al. (2011). Notably, to deal with alternative splicing, most of these methods resort to align shorter portions of the read, named \endquote{seeds}, and dynamic programming to find the optimal alignments: TopHat (which builds on BowTie results to align splice junctions),[68][69] Subread,[70] STAR,[66] HISAT2,[71] and GMAP and map them back to the genome, storing the locations of each read in BAM files. The number of reads that is finally mapped back to the genome is referred to as the \textit{library size} or \textit{sequencing depth}.
+    
+    Finally, all reads are uniquely summarised and mapped to the transcript level, with the output stored in FASTA files. Primarily, only the reads overlapping the exons were annotated: HTSeq,[81] FeatureCounts,[82] Rcount,[83] maxcounts,[84] FIXSEQ,[85] and Cuffquant. More sophisticated approaches, more reliable with poor annotation information, involve the reconstruction of \textit{contigs}, by incorporating inclusion of junction reads and unannotated transcripts, see for instance Cufflinks[Trapnell et al. (2010)] or StringTie[73] tools. This extension notably enables to rebuild from scratch newly unobserved transcripts variants. 
+\end{enumerate}
+
+The major objective of the last final summarisation step is the evaluation of the transcriptome. While quantification of the gene expression in itself, to study cellular changes in response to external stimuli or dysregulated biological conditions, they can also often be used as a proxy for protein abundance (however, they are not directly applicable, due to post transcriptional events described in \fullref{subsec:post-transla}). 
+
+In most cases, however, RNASeq only enables consistent comparisons between the levels of transcripts, and the absolute expression of individual genes still needs to be confirmed by RT-PCR \fullref{subsec:miscelleanous-innovative-rna-seq}. However, absolute quantification can be obtained through RNA \textit{spike-ins} samples, whose RNA concentrations are known precisely and thus can be used as gold standards. In addition to absolute quantification, they are required for the detection of genome-wide effects (regulation at the genome level, such as chromatine remodelling), as such effects are poorly captured and not congruent with canonical normalisation techniques.
+
+Several characteristics justify the prevalence of RNA-seq over microarray based technologies. First, it is not based on hybridisation with a labelled probe (no need of annotated genome). Second, it can measure levels of expression over a very wide range, in an interpretive way: indeed, while microarrays measure a continuous signal, with limited detection range (noise background for low levels of expression and saturation at the high end), the RNASeq measure is inherently digital, with each gene expression quantified by a non-negative integer. Third, the flexibility of RNASeq technologies yields new fields of studies, ranging from detection of alternative splicing isoforms to specific mutation disorders, without being restricted to SNPs, such as transcript fusion detection. In the next subsection, we cover some of these promising avenues. 
+
+\subsection{Miscellaneous applications of RNASeq technologies}
+\label{subsec:miscelleanous-innovative-rna-seq}
+
+The flexibility of NGS platforms enable a wide variety of methods, using genomic, transcriptomic, or epigenomic. While the sequencing stage is relatively general, RNA or DNA preparation as well as tools used to assemble and analyse the resulting reads have a strong impact on the type of downstream analysis carried on. With Illumina, the library preparation kits are already provided, including whole-genome sequencing(WGS), RNAsequencing(RNA-Seq), targeted sequencing, protein-binding regions, and more. A brief overview is described hereafter:
 
 \href{https://ifb-elixirfr.github.io/EBAII/}{Inserm à roscoff} 
+
 \begin{enumerate}[label=(\roman*)]
-\item[ChIP-seq/ATAC-seq]
-\item[Variants of DNA-seq]
+\item[Genomics sequencing:] Three applications benefit from the high-throughput sequencing process of NGS: WGS (whole genome sequencing), WES (whole exome sequencing) and \textit{de novo} sequencing. Genome-wide association studies(GWAS) are a common approach for identifying disease association patterns across the whole genome: while relying previously on a final set of pre-defined markers interrogated by microarray-based methods, the most comprehensive method of interrogating the 3.2 billion bases of the whole human genome has only emerged with the more scalable and flexible NGS technology. 
+
+In order to decrease the costs, it is also possible to focus only on the set of protein-coding sequences (the exome), since they  gather most of the known disease-causing variants. Even further, \textit{targeted sequencing} broadens the scalability of NGS methods by focusing resources on a specific region of interest. Notably, targeted resequencing projects has typically a coverage of $500-1000 \times$ against an average of $30\times$ for traditional WGS projects. Such a strategy increases the possibility to detect rare variants, notably somatic mutations in highly-heterogeneous samples (eg in the Tumoral MicroEnvironment, with a variety of tumoral clone populations shuffled with germline cells).15,16 
+
+Finally, \textit{De novo} is required where there is no reference available for alignment: it reveals that the best sequencing quality and coverage is obtained by assembling strands coming in a variety of sizes: short ones proceeding from NGS and logn inserts by traditional sequencing methods, generally at a lower read depth. 
+
+\item[Transcriptomics] In addition to total mRNA sequencing already discussed comprehensively in previous section, it is also possible to restrain the scope of study to transcripts of interest, to be better highlight potential differential expression, alternative splicing and the corresponding splice junctions, isoforms or mRNA mutations. Finally, specific library kits enable prior selection of microRNAs, short, non-translated nucleotide sequences, likely to play a role in the regulation of gene expression \fullref{subsec:reg-transcript}18, 19
+
+\item[Epigenomics] Epigenetics tackles with differential regulation of the gen expression, that is not caused by mutations of the DNA sequence: from DNA methylation to smallRNA–mediated regulation and PPI interactions with the genome.
+
+Methylation sequencing focuses generally on highly regulated regions, such as promoters or heterochromatin, generally enriched in CG sequences (20) and leveraging NGS technologies to dive down to the nucleotide level. The two major methylation methods are whole-genome bisulfite sequencing(WGBS) and reduced representation bisulfite sequencing (RRBS), proceeding generally by degrading specially un methylated regions. 
+
+Protein–DNA or protein–RNA interactions can be precisely surveyed, combing the high-throughput sequencing of NGS with chromatin immuno-precipitation (ChIP-Seq). These methods are able to identify the set of binding sites for a given protein a the scope of the whole genome. 
+
+Ribosome profiling focuses on mRNA fragments that migrate to the ribosome complexes, and the are more likeliky to be translated into proteins. This information gives an indirect insight on the set of proteins currently translated in the cell (the proteome) and an overview of some post-transcriptional regulation effects \fullref{subsec:post-transla}, which is much easier than the direct quantification of proteins in production. 
+
+While some regulation processes occur in localised regions of the genome, other processes modify globally the rate of transcription by acting on the spatial configuration of the DNA overall \fullref{subsec:reg-transcript}. Such processes imply notably chromatin remodelling, which can now be precisely quantified by the combination of NGS tehcnologies with the ATAC (Assay for Transposase-Accessible Chromatin) approach.
+
+\item[ChIP-seq/ATAC-seq] 
 \item[Single-cell RNASeq]
 \end{enumerate}
 
 \subsection{Perspectives: spatial and temporal transcriptome analyses}
 \todo{Hétérogénéité tumorale et plasticité dans l’espace et le temps, conférence (et aussi pour le TME)}
 
+\todo{preprocessing to introduce the next section}
 
 \section{A glance at the world of immunology}
 
