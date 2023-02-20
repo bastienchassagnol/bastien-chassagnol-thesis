@@ -144,3 +144,43 @@ To find the \gls{mle}, we need to determine the values for which the \gls{grad} 
 \subsubsection{Results}
 
 \section{Discussion: the next challenges of cellular deconvolution}
+\label{sec:perspective-deconvolution}
+
+The recent application of scRNA-seq cell profiles towards deconvolution purposes provided a new perspective of disentanglement methods applied to ST. As discussed in \ref{subsec:single-cell-spatial-transcript}, major improvements of existing ST methods, in parallel to a higher resolution and sequencing throughput, will likely result from algorithms tailored to integrate ST and scRNA-seq datasets. Indeed, there is currently no ST experimental protocols that resolve tissue at single-cell resolution, with the depth and coverage of scRNA-seq methods. It turns out that mapping and deconvolution algorithms are paramount to that purpose.
+
+
+For both methods, the general workflow is made up with the same four stages, referred to as the four As:
+\begin{itemize}
+    \item[Adopt] From literature, a subset of the tissues or the populations of interest, with intricate spatial patterns, is selected for further analysis. 
+    \item[Assay] Survey the same tissue (to keep the same phenotypical conditions and limit technical variability) with scRNA-sequencing (its higher coverage and unbiased nature makes it a promising candidate for the selection of candidate genes) and spatial barcoding to locate their prevailing location within the tissue. Then, track the spatial and temporal dynamics of this subset of genes with HPRI imaging (recall that this method requires to know in advance the sequence of the genes).
+    \item[Assemble] Using deconvolution and mapping algorithms, generate maps that assigns each coordinate to one cell type. Matching histology images may reveal informative landmarks and help denoising complex areas, such as the tumour leading edge, transition region between cancer and normal tissue. 
+    \item[Analyse] The high-dimensionality of ST datasets was use to corroborate ligand-receptor interactions involved in cellular signalling, or to survey evolving dynamics occurring in a disease progressing condition.
+\end{itemize}
+
+
+Similar to the aforementioned deconvolution methods, spatial deconvolution estimates the cell composition for each capture spot. However, instead of using a bulk profile for each cell population, cell ratios derive from single-cell RNA sequencing profiles, optionally followed by an aggregation stage to reconstitute a \enquote{pseudo-mixture}. They are either generated from the same sample (paired) or from a database typically subjected to the same biological conditions (unpaired). Besides, since the spatial barcoding methods are recent methods, only a limited number of models are tailored towards deconvolving mRNA mixtures so far:
+
+\begin{itemize}
+    \item Variants of linear \textit{statistical regression} methods enforcing the simplex constraint and accounting for the potential presence of outliers among the final set of marker genes were used to infer cell ratios. SPOTlight (91) resolves to non-negative least squares (NNLS), and SpatialDWLS (102) computes enrichment scores, refined then by iterations of dampened weighted least squares.
+    \item \textit{Probabilistic models}, represent the mixture as a convolution of parametric distributions whose estimated cell ratios are the MLE (alternatively the MAP whereby a prior distribution is assigned to the cell ratios) of the distribution. Stereoscope (92) and Cell2location (103) fit the distribution with a negative binomial distribution, while Robust cell-type decomposition (RCTD, 90) model them with a Poisson distribution,  both adjusted to the intrinsic integer (or at least discretised) nature of transcript reads counts. 
+    
+    \item NMF regression (NMFref) is used similarly in SlideSeq52 and in SPOTLight (54).      
+    \item More exotic methods resolve to \textit{mutual nearest neighbour clustering} with the DSTG138 or deep-learning methods, such as Tangram139.  
+\end{itemize}
+
+Instead of inferring the cell types proportions, it is also possible to compute \textit{enrichment scores}, that depict how strongly a single spot can be associated to a single cellular cell type: 
+\begin{itemize}
+    \item Seurat 3.0 (62, 66) compares the average expression of the gene set used as a marker for a cell type and the corresponding average expression in the sample. 
+    \item Alternatively, multimodal intersection analysis (MIA, 33, 34)) integrate gene pathways established from scRNA-seq with gene modules enriched in spatially identified tissue niches inferred from spatial barcoding to deduce to what extent cell populations are enriched or depleted in a spot. 
+\end{itemize}
+Akin standard enrichment pipelines used for bulk RNASeq, the requirement of finding \textit{marker genes} that specifically express in the population of interest hinders the potential development of scoring methods.
+
+
+\textit{Mapping} is the alternative process to integrate scRNA-Seq with \GLS{ST}, generally from high-plex RNA imaging assays, that consists first to assign each spatially detected cell to its corresponding (scRNA-seq) profile and secondarily, infer a pattern predicting the location of each scRNA-seq cell based on its transcriptome. Mapping reveals notably useful to determine the general layout of cell populations within a tissue and to identify hotspots or \enquote{niches} (specific and localised microenvironments, where notably stem cells prevail and may differentiate further into functional, mature cell types). A benchmark of fourteen algorithms that implement mapping through cluster-based approach (112) states that the three best performing were LIGER 113, Seurat Integration 114 (from Seurat 3.0) and Harmony 115 (FIG. 4f). All three algorithms ultimately retrieve cell types by clustering a combination of \GLS{ST} and scRNA-seq datasets that were previously projected into a lower dimensional space. 
+
+
+\textit{Mismatch}, namely the discrepancy between the cell types detected in single-cell RNA sequencing and the ones spotted in spatial transcriptomics, reveals a strong burden for the performance of spatial barcoding deconvolution. Broadly, mismatch can result from errors in the pre-sequencing steps and in the post-sequencing analysis. Pre-sequencing mismatch can stem from \textit{sampling bias} of the tissue section (lower depth with spatial barcoding or lower coverage or access to intertwined tissue structures with HPRI) or from an induce change of the phenotypical conditions (stress response, or less likely, alteration of cell phenotype due to the disruption of \textit{in situ} spatial dynamics resulting from tissue dissociation). Indeed, it was previously found in 106 that some cell types were highly sensitive to disassociation and do not survive the scRNA-seq workflow, while still detected in spatial data. To. On the other hand, post sequencing mismatch results from a wrong calibration of the number of components resulting from the original clustering of scRNA-Seq datasets. 
+
+
+It is worth noted that none of these methods, without additional \textit{spike-ins}, absolute references of the whole mRNA production per cell type, achieve absolute estimation of cell ratios, and thus are restrained to comparisons within a sample. For a comprehensive review, we refer the reader to \autocite{rao_etal21} and \autocite[Table 3]{longo_etal21}. Eventually, the recent development of spatial barcoding at single-cell level \fullref{subsec:single-cell-spatial-transcript} could obviate the need for deconvolution, especially knowing that deconvolution algorithms have much worse performance with sparse datasets (103), conducive to scRNAseq and that in that context, they are generally outperformed by mapping algorithms. 
+

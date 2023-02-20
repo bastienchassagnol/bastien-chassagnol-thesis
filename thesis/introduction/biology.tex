@@ -278,7 +278,7 @@ While a diversity of NGS technologies have been developed, they all share the sa
     
     A growing alternative, guarantee of a better sequencing quality, consists of synthesising fragments in both directions of each cDNA sequence, with the help of specific short sequences marking the index of the transcription. The resulting \enquote{paired-end} library has twice the number of reads, for the same efforts, increasing the quality of the alignment and providing refined opportunities for the detection of \enquote{indels} (insertion deletion modifications), SNVs and SNPs mutations.
     
-    Another feature that justifies the leading position of Illumina on the sequencing market is the increased sample throughput per run. It is enabled by the combination of physically separated sequencing lines on the same surface and \textit{multiplexing}. Indeed, the Illumina flow cell is made up with eight independent, physically distinct areas, termed \textit{lanes}, that allows up to eight separate samples to be processed at the same time. In addition,  multiplexing allows multiple libraries to be pooled and sequenced simultaneously on the same lane, by adding unique barcode sequences during library preparation and final discrimination of the strands before the final analysis itself, in a \textit{demultiplexing} process.
+    Another feature that justifies the leading position of Illumina on the sequencing market is the increased sample throughput per run. It is enabled by the combination of physically separated sequencing lines on the same surface and \textit{multiplexing}. In addition to reduce technical biases, early multiplexing reduces both the amount of reagents and the work needed, a cost-saving technics. Indeed, the Illumina flow cell is made up with eight independent, physically distinct areas, termed \textit{lanes}, that allows up to eight separate samples to be processed at the same time. In addition,  multiplexing allows multiple libraries to be pooled and sequenced simultaneously on the same lane, by adding unique barcode sequences during library preparation and final discrimination of the strands before the final analysis itself, in a \textit{demultiplexing} process.
     
     \item[Alignment:]  From the billions of reads sequenced, computer software and bioinformatic tools rebuild the whole transcriptome, by locating each read in the genome. Two strategies are used, a \textit{genome-guided} strategy in which the reads are aligned and mapped onto a genome of reference, or \textit{de-novo} strategy, in which the reads are assembled when no annotations are available. The last one has a strong computational burden, with increased risk of not covering precisely highly repetitive regions of the genome, that can be mitigated by combination of short and long insert sizes (\enquote{mate pair}) with paired-end sequencing. Since the human genome is well annotated since the early 2000's, the last strategy is generally favoured. 
 
@@ -294,7 +294,7 @@ The major objective of the last final summarisation step is the evaluation of th
 In most cases, however, RNASeq only enables consistent comparisons between the levels of transcripts, and the absolute expression of individual genes still needs to be confirmed by RT-PCR \fullref{subsec:miscelleanous-innovative-rna-seq}. However, absolute quantification can be obtained through RNA \textit{spike-ins} samples, whose RNA concentrations are known precisely and thus can be used as gold standards. In addition to absolute quantification, they are required for the detection of genome-wide effects (regulation at the genome level, such as chromatine remodelling), as such effects are poorly captured and not congruent with canonical normalisation techniques.
 
 Several characteristics justify the prevalence of RNA-seq over microarray based technologies. First, it is not based on hybridisation with a labelled probe (no need of annotated genome). Second, it can measure levels of expression over a very wide range, in an interpretive way: indeed, while microarrays measure a continuous signal, with limited detection range (noise background for low levels of expression and saturation at the high end), the RNASeq measure is inherently digital, with each gene expression quantified by a non-negative integer. Third, the flexibility of RNASeq technologies yields new fields of studies, ranging from detection of alternative splicing isoforms to specific mutation disorders, without being restricted to SNPs, such as transcript fusion detection. In the next subsection, we cover some of these promising avenues. 
-
+Lam et al., 2012, Quail et al., 2012 review comparing RNAseq platforms
 \subsection{Miscellaneous applications of RNASeq technologies}
 \label{subsec:miscelleanous-innovative-rna-seq}
 
@@ -322,34 +322,212 @@ Protein–DNA or protein–RNA interactions can be precisely surveyed, combing t
 Ribosome profiling focuses on mRNA fragments that migrate to the ribosome complexes, and the are more likeliky to be translated into proteins. This information gives an indirect insight on the set of proteins currently translated in the cell (the proteome) and an overview of some post-transcriptional regulation effects \fullref{subsec:post-transla}, which is much easier than the direct quantification of proteins in production. 
 
 While some regulation processes occur in localised regions of the genome, other processes modify globally the rate of transcription by acting on the spatial configuration of the DNA overall \fullref{subsec:reg-transcript}. Such processes imply notably chromatin remodelling, which can now be precisely quantified by the combination of NGS tehcnologies with the ATAC (Assay for Transposase-Accessible Chromatin) approach.
-
-\item[Single-cell RNASeq]
 \end{enumerate}
 
-\subsection{Perspectives: spatial and temporal transcriptome analyses}
-\todo{Hétérogénéité tumorale et plasticité dans l’espace et le temps, conférence (et aussi pour le TME)}
+\subsection{Perspectives: single cell and spatial transcriptomics}
+\label{subsec:single-cell-spatial-transcript}
+As reviewed in \fullref{subsec:miscelleanous-innovative-rna-seq} and \fullref{subsec:RNASeq}, the ability of RNASeq technologies to perform high-throughput sequencing analysis and sample multiplexing gives new insights on biological mechanisms. However, they are tailored to dissect bulk mixtures mixing different biological entities, preventing from deciphering complex biological mechanisms proceeding from interactions between distinct biological entities. Additionally, RNASeq outcomes are simply snapshots of the current transcriptome state at a given time, without precise temporal or spatial annotation. Thus, they can not be used to understand sub-cellular mechanisms or interactions occurring between distinct biological compartments. Indeed, the first stage of the library preparation generally involves degradation of the cell membranes to isolate the RNASeq strands within. 
+
+
+The first aspect, capturing the transcriptome of individual cells, was supported by the recent development of single cell RNASeq technologies since 2009. While limited first at sequencing dozens of cells manually separated \autocite{tang_etal09}, innovative methods enabled since sequencing in parallel up to thousands of individual cells \autocite{fan_etal15}. ScRNA technologies deal with two main specific challenges: the isolation of individual cells and the amplification of minute amounts of RNA (indeed, instead of measuring the combined transcriptome of thousands of cells, it is restricted to a single one). 
+
+Techniques for the individual capture and lysis of cell types evolve rapidly, from manual isolation of a restricted number enabled by micromanipulation and LCM (laser capture microdissection) techniques, to high-throughput automated dissection and sorting of tissues, enabled by microdroplets or microfluidics methods. In addition, combining these methods with FACS enable \enquote{index sorting}, namely early physical separation using fluorescent-tagged cell markers as well as complementary data about the levels of proteins and cell size and geometry.
+
+The sequencing and amplification of RNASeq implies the same stages as standard rNASeq methods, namely (1) reverse transcription, (2) cDNA amplification with PCR (exponential amplification depending on the nature of the sequence) or in vitro hybridisation (linear amplification), and (3) the sequencing of the library itself. The main challenge here is to capture really small amounts of transcripts, the most crucial and cumbersome step being the reverse transcription. It is is believed indeed that only $10\%$ in average of all transcripts get reverse transcribed, inducing general underestimation of the level of lowly expressed genes \fullref{islam_etal14}. The amplification pattern can be relatively tedious to understand, leading to a systematic bias when comes to interpret the quantified levels of RNASeq, a default that has been partly counterbalanced by the use of \enquote{spike-ins} as a standard external absolute reference \fullref{subsec:RNASeq} and the use of UMI (unique molecular identifiers) barcoding each individual original mRNA strand. 
+
+The sparse nature of the library and the complexity of the protocol make scRNASeq technologies proned to strong technical bias, while the huge data generated requires efficient storage and analytical tools. A set of bio informatics methods, still under active development, make this type of data interpretive. First, they are used to assert respectively the quality of the library, discarding cell doublets, dead cells or samples without any cell captured, the level of degradation of the mRNA (for instance, by controlling the expression level of \textit{endogenous, housekeeping} genes that should be similar given the cell population \autocite{shalek_etal14}) and other standard tools coming from the mRNA pipeline \fullref{subsec:RNASeq}, such as the distribution of the read lengths. One of the greatest challenge when comes the decision to discard aberrant samples is to distinguish a true outlier from a rare cell type that presents an atypical expression pattern. The second objective of these bioinformatic tools is to disentangle the origin of the variability in gene expression levels, notably set apart the technical and biological factors. The biological variability between cells can then be further decomposed into three main factors: heterogeneity in gene expression can be related to the existence of multiple subpopulations (for instance in blood, consider the vast repertoire of immune cells), within a tissue from cells at different developmental stages (e.g. intestinal crypt) or within a homogeneous population from asynchronous biological processes (e.g; cell cycle or circadian rhythm), or stochastic transcription kinetics \autocite{buettner_etal15}. 
+
+The high resolution of scRNA technologies allows a better understanding of complex biological mechanisms and pathways, which were not accessible to standard methods of bulk cell population profiling. Notably, they can be used to finely characterise subpopulations within a sample by identifying specific \gls{cell marker}, driver genes involved only at well-specified stages, differential splicing and allelic expression patterns between populations. In turn, combining these information reveal useful to infer gene-regulatory networks and \textit{pseudo-time analysis}, giving insights on holistic, dynamic mechanisms of the biological systems. Notably, textit{pseudo-time analysis} aims at building \enquote{cell trajectories}, namely order the developmental stages of single cells through the gradual evolution of their transcriptome (Monocle and its minimal spanning tree approach, \autocite{trapnell_etal14},  DDRTree and its independent component analysis (ICA) approach \autocite{qiu_etal17}). We describe additional physical and computational methods sharing the same objective of decomposing the complexity of heterogeneous samples in \fullref{chap:deconvolution-state-of-the-art}.
+
+While scRNA-Seq enables to deconvolve cell populations within a tissue, it does not capture their spatial distribution, nor reveal in real time, \textit{in situ} cellular mechanisms. Indeed, the first step of the scRNA-seq protocol is destructive protoc\todo{contrary=damaging?}. It involves first tissue dissociation to isolate single cells followed by the cell lysis to make the nuclear mRNA available. For example, there is an increased risk of inducing \enquote{ectopic} gene expression (expression not expected to occur in that tissue location), leading to a suboptimal characterisation of cell populations \autocite{vandenbrink_etal17}. Alternatively, the stress induced by the dismantlement process may trigger unusual protection mechanisms for a subset of the cell populations, whom they are more proned to be wrongly assigned to a new undescribed cell group. 
+
+
+Precisely, \Gls{ST} methods aim to characterise gene expression profiles while keeping the spatial tissue context. \GLS{ST} encompass two main techniques, each with its strengths and limitations: 
+\begin{itemize}
+    \item[Image-based approach] It comprises \textit{in situ} sequencing (ISS) and \textit{in situ} hybridisation (ISH), both methods using probes to target specific genes. ISS-based methods increase the amount of transcripts available for sequencing by rolling \textit{amplification} within the tissue after a step of reverse transcription. Each amplified transcript is unequivocally mapped back to its original material and localisation by a padlock probe which encodes an unique ID for each original transcript in each individual cell. The second category hybridises targeted sequences with a complementary fluorescent probe. While both methods were originally limited in the number of distinguishable transcripts since they required each of them to be assigned an unique fluorescent barcode, recent developments involving sequential rounds of hybridisation and imaging increased multiplexing, rationalising the term of High-plex RNA imaging (HPRI) to qualify them. Hence, the error-robust barcode enables with $n$ distinct fluorescent colours and $k$ rounds of re-hybridisation and fluorescence to set apart $k^n$ distinct transcripts. An alternative method is laser-capture microdissection (LCM), that finely isolates different tissue parts from cryo-sections. 
+    Both techniques present generally a stronger bias and a lower coverage of the genome compared to the spatial barcoding approach, since they require a prior selection of target genes. Thus, they can not be used to track the apparition of unidentified isoforms or point mutations. They require additional costly equipment and skilled manpower to handle it. However, their single cell resolution (only limited by optical considerations, currently around $\sim 100 \um$) and their better detection and depth per transcript make them better candidates to track the influence of temporal dynamics on the population layout of the tissue.
+    Finally, reads are generally noisier, especially due to molecular crowding that leads to spatial overlap of fluorescence signals, limiting the total number of distinct fluorescent tags to be used to a few dozens.
+
+    \item[NGS sequencing] NGS methods are recent methods (first reported in 2016, in 41) that capture any transcript passing at one of the spots of a microarray slide and tag it with an unique series of poly-T oligonucleotides. Indeed, each \textit{capture spot} is associated with an unique DNA barcode that returns its coordinates on the microarray. Then, the sequencing step simultaneously reconstitutes the series of nucleotides composing the original mRNA fragment and map it back to its original spot, a technique consistently termed \textit{spatial barcoding}. One of the current best performing methods, Visium, was released by 10x Genomics, with increased resolution ($55\um$ in diameter) and sensitivity ($\sim \num{10000}$ transcripts per spot) 48, while still lagging behind scRNA-Seq (173). 
+    Even tough the sequencing throughput of NGS-based approaches applied to\gls{ST} is by hundreds of orders of magnitude smaller compared to traditional scRNA based methods, they share with them a relatively unbiased survey of the transcriptome coupled with a higher coverage, while the technology is much more feasible, benefiting from earlier industrial innovations. 
+    The requirement of designing a lattice of spots with pre-defined size, either using a microarray slide (48) or beads deposited in wells (HDST or Slide-Seq, 53-54) involve that the \textit{resolution} of such techniques, namely the distance between capture spots, is constrained by physical limitations. It follows that the mRNA captured at each spot represents a mixture of cells, rather than an individual one. The standardised area size imposed by the manufacturer norms restrains additionally the method to a shorter range of sizes, making it unfitted for large or small samples (although the total tissue area is hindered by the longer imaging development with HPRI methods).  However, continuous enhancement of capturing techniques and miniaturisation tends recently to alleviate the last additional physical restrictions, increasing by several factors the resolution, with smaller distance between capture spots. Ultimately, the most recent methods claim an expected resolution smaller than the average single cell size ($\sim 1 \um$ with Seq-Scope (58), enabling henceforth sequencing at subcellular resolution, while Pixel-Seq (59) increases by $\sim 200$ time the depth sequencing).
+    
+\end{itemize}
+
+Both techniques return a tensor of transcriptomic expressions, each gene being represented by a matrix of intensities representing its 2D (or even using computational assembling 3D) spatial distribution. The usual process is to represent in a 2D schematic representation of the organ the distribution of transcriptomic activities by a colouring code for each gene of interest, as pictured in . 
+
+The intrinsic complexity and high dimensionality of \GLS{ST} is likely to reveal new biological insights, unavailable for standard transcriptomic methods, by adopting an hypothesis-free approach. However, it is in return what makes the analysis and interpretability of spatial data challenging, requiring a tedious pre-processing stage to increase the \GLS{SNR} ratio, including standard techniques proceeding from RNASeq pipeline, such as TPM normalisation (116) but also specific methods, such as spatial smoothing (47). 
+In ~\autocite[Fig.~2]{rao_etal21}, several exploratory approaches are reviewed to leverage ST datasets, classically by going from a local scale (individually characterise the cell composition and gene enrichment of each spot) towards the global scale (detection of \enquote{spatial patterns} or hotspots, that may be visually confirmed from histological information), including the reconstruction and interaction of modules of genes. Proximity, or \textit{co-localisation} between the hotspots of interacting cell types are related towards their distance between them. It is worth noted that combining genes in co-regulated groups and spots into spatial clusters might alleviate the complexity of analysing high-dimensional datasets. Ultimately, \GLS{ST} makes the analysis \textit{in situ} of intercellular communications more convenient. Consider a pair receptor-ligand predicted from either literature, screening (complementary tridimensional configuration inferred from a computational drug discovery technique) or scRNA-seq correlation analysis, that occurs between two distinct cell types. If these two subpopulations reveal too remote to communicate, we will tend to discard the assumption of interaction between them, even though it is physically possible in practice. The technique of assessing premised intercellular communications through co-localisation analysis is further described in \autocite[Figure 5]{longo_etal21}, including a heuristic method developed by the SpaOTsc (\autocite{cang_nie20}) algorithm to account for longer-range communicative signals. 
+Besides, the conservative process of \GLS{ST} makes it a promising candidate to track complex dysregulations of heterogeneous systems, operating over time and space, and to assert with a higher sensibility the relevance of new clinical drugs. Applications range from unravelling the dynamics leading to neurodegenerative disorders (Alzheimer’s disease (100), AML (102)) to the ones involved in infectious and inflammatory processes (influenza, 104, sepsis, 105), and rheumatological diseases (106). 
+The next milestone in the area will be the generation of a model able to understand how emerging properties stem from the spatial layout and individual cell-cell interactions, especially knowing that the majority of cellular signalling acts in its really close vicinity (juxtacrine and paracrine signals operate from 0 to 200 $\um$) (169). We refer the reader to \autocite[Table 1]{longo_etal21} for an overview of the spatial transcriptomics technologies, reviewing the general features of the most widely used high-plex RNA imaging (HPRI) and single-cell RNA sequencing (scRNA-seq) methods. \autocite[Table 1]{longo_etal21} lists studies resolving scRNA-seq and spatial transcriptomics data to unravel complex biological mechanisms. 
+
+
+However, whatever the technique used to perform \GLS{ST}, they are far from having the transcriptome-wide \textit{coverage} and the \textit{depth} of scRNA-seq methods. Therefore, none of the current spatial methods perform a high-throughput sequencing at the scale akin to scRNA-seq. This limitation underscores the need to combine ST outputs with scRNA-seq to improve tissue resolution. There are two primary approaches for integrating scRNA-seq and spatial data: \textit{deconvolution} and \textit{mapping}, that we review briefly in the dedicated section as a future perspective of deconvolution methods, in \nameref{sec:perspective-deconvolution}. 
+
+An integrative approach is more amenable to unravel the mechanistic processes underlying the biological processes in a variety of cell populations and heterotypic conditions. Excitingly, it can track as well the temporal dynamics of tissue development through \gls{lineage tracing} (53) or RNAVelocity (172): for instance, \autocite{asp_etal19} used first scRNA-seq to define the transcripts profiles of cardiomyocyte populations, and then applied spatial barcoding to track the evolution of their spatial distribution at the embryonic stage. It is even possible with \GLS{HPRI} to generate a 3D map tracing their individual fates. Consistently, \Gls{ST} was quickly used to map the temporal evolution of dysregulated mechanisms involved in disease pathogenesis. For example, it identifies a set of 31 co-expression modules, whose temporal dynamics were strongly related with the evolution of amyotrophic lateral sclerosis, a disease notably affecting neuronal tissue. Again, spatial barcoding was associated with scRNA to profile spinal cord cross-sections \autocite{maniatis_etal19}. To sum it up, bridging the gap between the flexibility and biologically-conservative \GLS{ST} and the sequencing coverage of scRNA-seq reveal useful to impute the temporal and spatial layout of the cellular populations, as well as the spatial dynamics and re-configurations induced during development and pathogenic progression.
+
+
+
+Finally, further experimental promising developments corroborate several modalities to get further biological insights on complex mechanistic processes. Hence, mRNA sequencing at the single cell level is linked with orthogonal omic information (association between transcriptomic and epigenomic data \autocite{smallwood_etal14}, DNA sequencing \autocite{dey_etal15} or proteomics \autocite{amir_etal13}). Another promising avenue aims at matching the high-resolution tissue image with histopathology manual annotations or morphological features as the cell shape or size, and incorporate them with ST and sscRNA-seq outputs. Traditionally, these methods leverage in-situ hybridisation technics (FISSEQ \autocite{lee_etal14}, TIVA \autocite{lovatt_etal14}) or RNA tomography (Tomo-Seq, \autocite{holler_junker19}) to match the cell morphology and size with its spatial coordinates and specific transcriptome.  We recommend \autocite {longo_etal21} for a comprehensive review of the challenges that researchers had to cope with when combining NGS and imaging-based approaches, as well as a comprehensive and didactic review of the computational methods to handle them.
+
 
 \todo{preprocessing to introduce the next section}
 
 \section{A glance at the world of immunology}
-
+\label{sec:immunology}
 \todo[fancyline]{thèse d'étienne, présentation bio Servier \enquote{Immunology at a glance}, chapter 43 about the immune system}
 
-\paragraph{Overview: recognition and response}
+\paragraph{Overview: the  immune system, the keeper of our body} 
+\
+The immune system is an intertwined network of cells, organs and molecules that work together to protect the body against infectious agents that may reveal harmful for organism. Such threats are collectively named \textit{pathogens}, ranging from viruses to bacteria and fungi. Its primary role is to early recognise these intruders, in order to eliminate them quickly. The main concept here is to rapidly discriminate foreign molecules as well as self compartments such as tumoral cells that may have a pathogenic effect, from innocuous particles or self sections, for whom no immune reaction is expected. An adjusted \textit{molecular recognition} is a key feature of the immune system, as perturbations of its mechanism is at the origin of the vast majority of immune disorders. 
 
-\subsection{The Immune System}
+The immune system is traditionally divided into two interacting schemes: the \textit{innate immune system} and the \textit{adaptive immune system}. 
+Ultimately, the immune system plays a crucial role in keeping the homeostasis of the human body, by defending against a wide range of infectious diseases or inner dysregulations. 
+
+\subsection{The innate system}
+\label{subsec:innate-system}
+The innate immune system is the first line of defence and provides immediate, \textit{non-specific} protection against invading pathogens.  This includes:
+\begin{itemize}
+    \item[Barrierr defences] Physical barriers, such as the skin and mucous membranes, are the first line of defence, preventing pathogens from accessing the inner environment. However, entire sealing is impossible, since the human organism must interact with its environment, through gas exchange and nutrition to maintain homeostasis and perform vital biochemical functions. Thus, these protections are generally completed with chemical secretions trapping pathogens, specialised organelles such as lysosomes and reservoir of innate cells poised to fend off potential invasion. Finally, the mucous membranes (from mucus, a viscous fluid aimed at trapping viral particles) of the \gls{epithelial} tissues, such as the digestive or airway tract, provide additional barriers to infection. In parallel with the production of mucus, saliva and other enzymes secreted provide a washing action that inhibits colonisation by fungi and bacteria, destroy their cell walls and contribute to the acidity of the medium, killing most of susceptible bacteria.  
+    
+    \item[Immune cells] Cell-based defences quickly recognise proteins shared globally by most pathogens through specialised receptors on its surface. The most universal is certainly the Toll-like receptor (TLR), whose description was awarded by the Nobel Prize in Physiology in 2011 and whose entities bind to a general class of micro-organisms. For example, the TLR3 complex
+binds to double-stranded RNA, a common nuclic organisation in viruses while the TLR4 and TLR5 respectively target the lipopolysaccharide found on the surface of many bacteria and flagellin, the main protein of bacterial flagella. 
+
+    Then, the elimination process differs along with the nature of the cell. \textit{Macrophages} (\enquote{big eaters}) and \textit{neutrophiles} wipe out pathogens that breach the natural physical barriers by \textit{phagocytosis}. Phagocytosis, literally meaning in Greek a \enquote{cell eater}, is the process by which phagocytes engulf and digest foreign particles, including own dead cells. After a first recognition stage, the phagocyte encapsulates the intruder in the phagosome, then fuses within its cytoplasm with the lysosome organelle, whose enzymes will cut into several pieces the foreign molecules. \textit{Natural killer cells} can induce the death of virus-infected cells \footnote{The term \enquote{natural} stems from their direct action, without prior exposure or activation, while the neutralisation mechanism is akin to the TCD8 cell type. Additionally, they are strongly related to lymphocytes involved in adaptive immune response (\ref{subsec:adaptive-system}, making part of a third component}. NK cells proceed by first detecting abnormal surface-receptors proteins, such as stress signals or tumour antigens, and then by releasing toxic molecules that trigger \textit{apoptosis}, a programmed death of the stricken cell. 
+    
+    More specialised cells involve \textit{dentritic cells}, whose main function is to coordinate the innate and the adaptive response \ref{subsec:collab-innate-adaptive}, \textit{mast cells} contribute to the inflammatory response but are also involved in aberrant reactions such as allergies, along with \textit{eosinophils} and \textit{basophils}, whose original function was the protection against multicellular parasites, such as worms, that usually require an even stronger reaction. 
+    
+    \item[Signalling and antimicrobial proteins] While some peptides directly target and induce destruction of pathogens, such as the \textit{complement system}, others dedicate as regulators and coordinators of the immune response. The complement system is a set of of 30 identified proteins in blood plasma that interact with each other in a highly coordinated and sequential manner. This cascade of biochemical reactions leads to the formation of protein complexes that trigger the \textit{lysis} of invading cells (destruction through bursting of the membrane), the opsonisation (marking for destruction) and the recruitment of immune cells to the site of infection.
+    
+    Interferons interfere with  cells hosting virus, through mechanisms depending on their belonging class: $\alpha$, $\beta$ and $\gamma$. Interferons are released by virus-infected cells and by binding to neighbouring immune cells, they inhibit viral replication or promote the phagocytic ability of macrophages.
+
+    Cytokines can be released by macrophages, dendritic cells, and natural killer cells. While some of them, such as interleukin-1 (IL-1) and tumour necrosis factor alpha (TNF-alpha), promote inflammation by recruiting neutrophils to the site of infection, others, on the contrary, such as interleukin-10 (IL-10) and transforming growth factor beta (TGF-beta) resolve inflammation and promote tissue repair.  
+    
+    \item The \textit{inflammatory (from Latin \textit{inflammare}, \enquote{set on fire}) response} is the set of events that modify the microenvironment, triggered by an intertwined cellular signalling released upon infection. The first stage involves the secretion of \textit{histamine} by mast cells in the damaged region, promoting \textit{angiogenosis} and resulting in redness, and the feeling of higher skin temperature and enhanced blood flow. Besides, the released cytokines promote the migration of immune cells towards the infected region through a process called \textit{chemoattraction} (movement of a cell following the chemical gradient of a signalling molecule). Then, cycles of signalling and response keep on sustaining the inflammation process, with the deployment of the complement system and the continuous recruitment of additional immune cells. 
+
+\end{itemize}
+
+For a faster response, it is worth noted that the two main components of the inflammatory response, namely the macrophages and neutrophiles, circulate throughout the body through the lymph system, whereas others reside permanently in organs and tissues, increasing the likelihood to encounter pathogens and a prompt immune response. However, this first line of defence may reveal insufficient to fend off particularly harsh pathogens strengthened by millions of years of co-evolution. Indeed, some pathogens evolve specifically to overbalance the immune defences (a set of mechanisms referred to as \textit{immune escape}), with some bacteria have an outer capsule that prevents recognition, while others are resistant to breakdown within lysosomes. Additionally, an uncontrolled inflammatory response, resulting from mutational disorder or global tissue damage, is likely to lead to a life-threatening condition, called \textit{septic shock}. It is notably characterised by an increase by several folds of the number of white blood cells, a higher temperature resulting in \textit{fever} at the human organism scale and low blood pressure. Inflammation can also get chronic, in case of unregulated inflammatory response, notably when the antigens hide from the immune system or when own molecules are recognised as non-self. 
+
+
+
+\subsection{The adaptive system}
+\label{subsec:adaptive-system}
+The adaptive immune system, on the other hand, provides a targeted response to pathogens that have already overwhelmed the innate system, through receptors specific to the intruders. Adaptive immunity relies on two types of lymphocytes: B cells and T cells \footnote{Like all blood cells, lymphocytes originate from stem cells in the bone marrow, but while T cells migrate to the thymus, B cells undergo their maturation stage in the bone marrow}. 
+All receptor proteins on a single B or T cell share the same antigen receptor and recognise the same \textit{antigen}, any foreign molecule detected as non-self and able to elicit recognition (typically, around \num{100000} are present on their surface). To recognise any potential antigen, millions of distinct lymphocytes coexist in the body, each with its own recognition pattern, able to either bind to a protruding antigen surface or circulating agent, such as microbial toxins . 
+\todo{add table displaying the differences between both immunities}
+
+Recognition of foreign molecules by lymphocytes is largely enabled by the characteristic structure of \glspl{antibody}. The antibody does not bind to the whole foreign particle, but rather small peptide fragments referred to as \textit{epitopes}\footnote{Interestingly, a single antigen can present several epitopes, and thus can be recognised by several distinct lymphocyte strains. In practice, indeed, exposure
+to a single antigen generally activates a variety of B cells strains, each targeted different epitopes of the same antigen, promoting an even more effective reaction}. B cells and circulating antibodies can directly bind to epitopes present in the extracellular medium, such as in the blood or lymphoid system or to antigens protruding from the surface of pathogens, while T cells only recognise antigens that are displayed on the membrane of host cells by the major histocompatibility complex (MHC). It is the unique shape of the antigen-binding site of an antibody that provides a lock-and-key fit, enabling the high specificity of the recognition.
+
+
+Hence, the adaptive immune response decomposes into four stages:
+\begin{enumerate}[label=(\alph*)]
+    \item[cell diversity] This step enables the creation of a large repertoire of unique lymphocytes, which in turn allows for recognising a large pool of antigens, including theoretically even those never encountered \footnote{Studies show that one million of different B cell antigen
+receptors and 10 million different T cell antigen receptors coexist in the human organism}. Random \textit{alternative splicing} and \textit{gene recombination} are the core epigenetic mechanism, detailed in \ref{subsec:reg-transcript}, that enable through a limited number of genes to generate the extensive pool of unique arrangements of the amino acid sequences of the variable section of the antibodies \footnote{The individual pieces composing the light chain of the antibodies can be combined in 200 different ways, and even more for the heavy chain, resulting in \num{3.5e6} possible combinations within the B cell repertoire}. Once the original stem cell produces its own rearrangement of the antigen receptors, they remain permanent and are passed on to the daughter cells.
+    
+    \item[Self-tolerance] This step aims at eliminating self-reactive lymphocytes, namely those that recognise own molecules as non self, and thus could trigger improper immune reaction against the body's own molecules and cells. These self-reactive lymphocytes are either destroyed through apoptosis, or rendered non functional. 
+
+    \item[Clonal selection and Cell Proliferation] The activation of the unique set of B or T cells requires the binding between the epitope of an antigen and an antigen receptor, with the match generally occurring in the lymph nodes \autocite[Figure 6, Chapter 43]{campbell_etal20}. But without clonal amplification, no effective adaptive response would be possible. 
+    
+    Once activated through binding to an antigen, lymphocytes proliferate into a clonal population, whose cells are all identical to the ancestor lymphocyte and bears the same antigen receptors. Then,  they become \textit{effector cells} and mediate a strong and personalised immune response through the action of (1) T CD4 or Th Helper that coordinate the adaptive response, through notably clonal amplification of effective lymphocytes, (2) T CD8 that kill cells infected
+by viruses (\textit{host cells}) and (3) activated B cells, the \textit{plasma cells}, that produce soluble proteins called antibodies that circulate freely in the body fluids. The whole process is termed \textit{clonal selection} as only the lymphocytes specific for a particular epitope will multiply. 
+
+Specifically, helper T cells only recognise antigens that are displayed by the class II MHC on the surface of antigen-presenting cells (APC), generally dendritic cells (DC), but it can also be macrophages or B cells. The specificity of the APC-Th Helper connection hinges on the CD4 protein that guarantees a strengthened joint and extensive information exchange between the lymphocyte and the APC. Once activated, TCD 4 secrete cytokines that promote the generation of a clonal population  and trigger two distinct immune responses that depend on the nature of the vector. The several missions and the crucial role of helper T cell as conductor of the adaptive response is summed up in \autocite[Figure 18, Chapter 43]{campbell_etal20}.
+
+The \textit{humoral immune response} involves the release of antibodies by plasma cells, that in turn promote bacteria elimination by facilitating phagocytosis (act as markers of foreign cells) and promoting the complement response. The released antibodies do not directly kill pathogens, but by targeting circulating toxins or epitopes cradled by the class I MHC of infected cells, prevent viral infection or bacterial activity through \textit{\gls{neutralisation}} or \textit{opsonisation} mechanisms. 
+The activation of B cells is a two-step process. At the first contact with the antigen in lymph nodes, the B cell engulfs some foreign molecules by receptor-mediated endocytosis and displays them through its class II MHC. But that is only when the B cell presents the antigen to a helper
+T cell already activated by a macrophage or a dentritic cell that an effective humoral response is activated, and that the B cell can turn into an efficient antibody-secreting factory, a process displayed in \autocite[Figure 19, Chapter 43]{campbell_etal20}.
+
+In the \textit{cell-mediated immune response}, another subset of T cells, the TCD 8, proliferate and differentiate into cytotoxic T cells. They target the destruction of cells infected by viruses, through mechanism similar to the process of NK cells, leading to cell apoptosis and lysis, \ref{subsec:innate-system}. 
+
+\item[Immunological Memory] 
+Finally, the immunological memory is responsible for the long-term protection elicited by a prior infection. This protective mechanism differs from the \textit{primary immune response} by a faster and prolonged response (peak intensity within two days against 10 days), with a greater magnitude (the concentration of antibodies or killer T cells increases by two or three folds). This mechanism has been directly leveraged in the massive vaccination campaigns, which notably eradicates the smallpox in 1980. 
+
+This heightened secondary response to the same antigen relies on a subset of the effector lymphocytes, called \textit{memory cells}, that were amplified in reaction to initial exposure of an antigen. A greater life duration places them at the forefront to rapidly initiate clonal amplification of thousands of highly-specialised effector cells, whereas the vast majority of lymphocytes are short-lived and are eliminated once the infection is overcome. 
+
+\end{enumerate}
+
+
+
+
+
+\subsection{Exchange of goodwill between the two immune systems}
+\label{subsec:collab-innate-adaptive}
+The adaptive and the innate system are not enclosed compartments, and interaction between them is paramount for an efficient and proportional response to the infiltration of foreign agents. 
+
+When antibodies facilitate phagocytosis, as in opsonization,
+they also help fine-tune the humoral immune response.
+Recall that phagocytosis enables macrophages and dendritic
+cells to present antigens to and stimulate helper T cells, which
+in turn stimulate the very B cells whose antibodies contribute
+to phagocytosis. This positive feedback between innate and
+adaptive immunity contributes to a coordinated, effective
+response to infection.
+Antibodies sometimes work together with the proteins
+of the complement system (Figure 43.21). (The name
+complement reflects the fact that these proteins add to the
+effectiveness of antibody-directed attacks on bacteria.)
+Binding of a complement protein to an antigen-antibody
+complex on a foreign cell triggers events leading to formation
+of a pore in the membrane of the cell. Ions and water rush
+into the cell, causing it to swell and lyse.
+
+When a
+virus uses a cell’s biosynthetic machinery to produce viral
+proteins, these viral products can appear on the cell surface.
+If antibodies specific for epitopes on these viral proteins
+bind to the exposed proteins, the presence of bound antibody
+at the cell surface can recruit a natural killer cell.
+The natural killer cell then releases proteins that cause the
+infected cell to undergo apoptosis. Thus the activities of
+the innate and adaptive immune systems are once again
+closely linked.
+
+
+The display of protein antigens occurs when a pathogen
+infects a cell of the animal host or when an immune
+cell engulfs pathogen proteins or a whole pathogen
+(Figure 43.12). Inside the animal cell, enzymes cleave each
+antigen into antigen fragments, which are small peptides.
+Each antigen fragment binds to an MHC molecule, which
+transports the bound peptide to the cell surface.
+antigen presentation, the display of the antigen fragment
+in an exposed groove of the MHC protein. This interaction
+of an MHC molecule, an antigen fragment, and an antigen
+receptor triggers an adaptive immune response, as we’ll
+explore
+
+At the end of the local inflammatory response, pus and
+excess fluid are taken up as lymph, the fluid transported
+in the network of vessels known as the lymphatic system
+(Figure 43.6). Small organs called lymph nodes scattered
+within the lymphatic system contain macrophages, which
+engulf pathogens that enter the lymph from the interstitial
+fluid. Dendritic cells reside outside the lymphatic system but migrate to the lymph nodes after interacting with pathogens.
+Within the lymph nodes, dendritic cells interact with
+other immune cells, stimulating adaptive immunity.
+
+
+There are three main pathways of complement activation: the classical pathway, the alternative pathway, and the lectin pathway. Each pathway can be activated by different triggers, such as the binding of antibodies to a pathogen (classical pathway) 
 
 \subsection{Immune dysregulation}
 
-\subsubsection{Immune diseases}
-\paragraph{Sjögren's disease}
 
 \subsubsection{Auto-immune diseases}
+\label{subsec:auto-immune disease}
+In addition to its role in fighting infections, the complement system also plays a role in other biological processes, such as tissue repair and development. However, dysregulation of the complement system can also contribute to a variety of diseases, including autoimmune diseases, inflammatory disorders, and infections.
+
+Dysregulation of interferon or cytokine production can lead to a variety of diseases, including autoimmune diseases, inflammatory disorders, and infections.
+\paragraph{Sjögren's disease}
 
 \subsubsection{Immunology-oncology}
 \paragraph{Overview: the hallmarks of cancer}
 \paragraph{Pro and anti-tumoral environments}
-\todo[fancyline]{The tumoral micro environment}
+\todo[fancyline]{The tumoral micro environment, the text below refers methods from \autocite{longo_etal21}}
+Although spatial transcriptomics analyses of several disease microenvironments exist, tumour microenvironments are presently the most extensively studied46. Tumour microenvironments are particularly heterogeneous and have complex, spatially restricted interactions with the immune system47,48. Until recently, the ability to interrogate the inner workings and heterogeneity of the tumour microenvironment has relied largely on bulk RNA-seq49. scRNA-seq has advanced our understanding by identifying cancer subpopulations that can drive drug resistance, predict metastatic risk and provide prognostic value50,51.
+A recent study combined spatial barcoding and scRNA-seq to localize an immunosuppressive tumour-specific keratinocyte subpopulation to a fibrovascular niche at the tumour borders (as defined by aligning haematoxylin and eosin images) in human squamous cell carcinoma33. This population expressed genes associated with immunotherapy resistance and numerous ligands inferred to modulate cancer-associated fibroblasts, suggesting ways tumour subpopulations may promote local immunosuppression. In pancreatic ductal adenocarcinoma, another study intersected scRNA-seq and spatial barcoding with annotated haematoxylin and eosin images to reveal that inflammatory fibroblasts play a significant role in cancer stress responses34. In addition to providing insights into tumour resistance and stress responses, such integrated data may offer insight into clinical prognosis. For example, one study observed that greater heterogeneity of a transition area within cross-sections of melanoma metastases was associated with poorer patient survival35. Furthermore, spatial data enabled the identification of the most abundantly expressed genes in the transition area
+\todo{Hétérogénéité tumorale et plasticité dans l’espace et le temps, conférence (et aussi pour le TME)}
 
 
 
