@@ -5,18 +5,17 @@ description={Mathematics is what mathematicians do}}
 
 \newglossaryentry{exogeneity}
 {name=exogeneity, 
-description={An \textit{exogenous} variable $X$ does not depend on the other parameters and variables of the model. In the context of linear regression, we often refer to the assumption of \textit{weak exogeneity}: the set of covariates $\boldsymbol{X}$ are considered fixed rather than variable, or alternatively that the predictor variables are assumed to be \textit{error-free}.The opposite term is endogenous.}}
+description={An \textit{exogenous} variable $X$ does not depend on the other parameters and variables of the model. In the context of linear regression, we often refer to the assumption of \textit{weak exogeneity}: the set of covariates $\boldsymbol{X}$ are considered fixed rather than variable, or alternatively that the predictor variables are assumed to be \textit{error-free}.The opposite term is endogenous}}
 
 \newglossaryentry{lineage tracing}
 {name=lineage tracing, 
-description={Lineage tracing methods enable to follow the fate of individual cells in real time without interfering with their mechanistic biological functions. They are particularly useful to delineate complex biological processes involving complex, intricate cell ontology.}}
+description={Lineage tracing methods enable to follow the fate of individual cells in real time without interfering with their mechanistic biological functions. They are particularly useful to delineate complex biological processes involving complex, intricate cell ontology}}
 
 \newglossaryentry{neutralisation}
 {name=neutralisation, 
 description={
 Neutralisation is the process by which antibodies prevent viral infection
-of a host cell or necrosis due to toxins circulating in blood, by binding to surface proteins, thus preventing the virus from entering body cells \autocite[Figure 20a, Chapter 43].
-
+of a host cell or necrosis due to toxins circulating in blood, by binding to surface proteins, thus preventing the virus from entering body cells \autocite[Figure 20a, Chapter 43]{campbell_etal20}.
 On the other hand, \textit{opsonisation} fends off bacteria invasion, not by stopping the infection, but rather by promoting phagocytosis (Figure 43.20b): the two antigen-binding sites can aggregate foreign substances, easing their engulfment, while the other end-tail acts as a marker for macropahes and neutrophiles \autocite[Figure 20b, Chapter 43]{campbell_etal20}
 }}
 
@@ -24,29 +23,25 @@ On the other hand, \textit{opsonisation} fends off bacteria invasion, not by sto
 {name=antibodoy, 
 description={
 Antibodies, also known as \textit{immunoglobulins} (Ig), are Y-shaped proteins composed of four polypeptide chains: two identical \textit{heavy chains} and \textit{light chains}. Each chain is additionally split into (1) a variable region at each end of the y-arm, responsible for binding to the antigen and (2) a \textit{constant region} at the stem of the antibody, which determines the  effector functions of the antibody, such as activating complement, recruiting other immune cells or neutralising toxins \cref{fig:B-cell-receptor}.
-
 On the other hand, the structure of the antigen receptor of T cells slightly differs, with only one antigen-binding site and only two different polypeptide chains ($\alpha$ and $\beta$). However, akin to the antibody structure, its base is a constant region that anchors the molecule in the cell’s plasma membrane, while the outer tip of the molecule is a variable region that gives the specificity of the epitope-receptor bound \cref{fig:T-cell-receptor}. 
-
 \begin{figure}
      \centering
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/B-cell-receptor.png}
-         \caption{\textbf{The structure of a B cell antigen receptor.}}
+         \caption{\textbf{The structure of a B cell antigen receptor}}
          \label{fig:B-cell-receptor}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
          \includegraphics[width=\textwidth]{figures/T-cell-receptor.png}
-         \caption{\textbf{The structure of a T cell antigen receptor.}}
+         \caption{\textbf{The structure of a T cell antigen receptor}}
          \label{fig:T-cell-receptor}
      \end{subfigure}
 \end{figure}
-
 B cells can express five different \textit{classes} of immunoglobulin
 (IgA, IgD, IgE, IgG, and IgM). All B cells display the same antigen receptor, known as IgD, at its surface. The four remaining have soluble forms and can be found in fluids, such as the blood, tears, saliva, and breast milk:
-
 \begin{itemize}
     \item[IgM antibodies] They are the first deployed on the battlefield and act as an early activator of the innate immune system. They are composed of five antibodies merged together at their hips, speeding up additionally the activation of the complement system.
     \item[IgG antibodies] They are the more specialised: some are involved in \textit{passive immunity}, passing trough mother activated antibodies to the fetus, while some down regulate the activity of the innate system, preventing chronic inflammation. 
@@ -64,16 +59,16 @@ description={The set of processes and biochemical reactions by which  external s
     \item[Receptor-ligand interaction:] A signal molecule, called a \textit{ligand}, binds to the corresponding specific \textit{receptor} on the cell membrane, triggering a signalling cascade. The two most common signalling pathways include the G protein-coupled signalling and Tyrosine kinase signalling, in which the phosphorylation of specific tyrosine residues on intracellular proteins is induced by the bound between the ligand and its receptor.
     \item[Second messengers]: Signalling pathways often involve the activation of second messengers, such as cyclic AMP or calcium ions, which amplify the signal and coordinate a response within the cell.
 \end{itemize}
-The changes implied by cell signalling include regulation of the gene expression, cell growth and division, cell movement, \ldots while dysfunctional cellular transduction results in various biological disorders, including cancer and neurological diseases.}}
+The changes implied by cell signalling include regulation of the gene expression, cell growth and division, cell movement, \ldots while dysfunctional cellular transduction results in various biological disorders, including cancer and neurological diseases}}
 
 \newglossaryentry{cellular communication}
 {name=cellular communication, 
 description={Cellular communication enumerates the process by which cells coordinate their activities and functions. This communication can be either direct (e.g. through gap junctions) or indirect (e.g. through the release of signalling molecules). Generally, the intermediate signalling molecules are special proteins named \textit{hormones} (from the Greek \enquote{horman}, to excite) that circulate throughout the body. While theoretically, a given hormone could trigger any cell type, in practice it only elicits a metabolic response in the complementary target cells, that can form a complex ligand-receptor that binds the hormone specifically. This way of communication is named the \textit{endocrine system}.
-The communication between cells is further classified with respect to two criteria: the type of secreting cell and the distance between the signal and its target \cref{fig:cellular-communication}. F
+The communication between cells is further classified with respect to two criteria: the type of secreting cell and the distance between the signal and its target \cref{fig:cellular-communication}. 
 \begin{figure}
     \centering
     \includegraphics{figures/cell-signalling.png}
-    \caption[Categories of intercellular communication.]{This figure is reproduced from ~\autocite[Fig.~45.2, p.~1000]{campbell_etal20}. Secreted molecules, in red small dots, bind specifically to a receptor protein, in purple half-arc. These receptors are either located inside cells (in that case, there is generally a direct interaction between the hormone-receptor complex and the associated biochemical process), or on the cell surface. For example, steroid-like hormones enter directly the cell, bind to an intracellular receptor protein and form a hormone-receptor complex acting as a transcription activator. On the reverse, nonsteroid hormones and growth factors only bind to cell-surface receptors and never enter the cell. Such molecules control gene expression indirectly by triggering signal \gls{transduction}.}
+    \caption[Categories of intercellular communication.]{This figure is reproduced from ~\autocite[Fig.~45.2, p.~1000]{campbell_etal20}. Secreted molecules, in red small dots, bind specifically to a receptor protein, in purple half-arc. These receptors are either located inside cells (in that case, there is generally a direct interaction between the hormone-receptor complex and the associated biochemical process), or on the cell surface. For example, steroid-like hormones enter directly the cell, bind to an intracellular receptor protein and form a hormone-receptor complex acting as a transcription activator. On the reverse, nonsteroid hormones and growth factors only bind to cell-surface receptors and never enter the cell. Such molecules control gene expression indirectly by triggering signal \gls{transduction}}
     \label{fig:cellular-communication}
 \end{figure}
 }}
@@ -81,23 +76,29 @@ The communication between cells is further classified with respect to two criter
 \newglossaryentry{metabolism}
 {name=metabolism, 
 description={Metabolism refers to the set of chemical reactions occurring in an organism to maintain homeostasis. These reactions are classified into two categories: catabolism and anabolism. Catabolism is the process of breaking down complex molecules into simpler compounds, releasing energy in the process. Catabolic reactions include the degradation of carbohydrates, lipids, and proteins, releasing energy conveyed by ATP molecules, that is used for cellular growth, reproduction, and movement. Anabolism is the opposite process,  building complex molecules from simpler compounds and requires energy. Anabolic reactions include the synthesis of carbohydrates, lipids, and proteins, whom some of them can be used as energy storage sources. Catabolism and anabolism work together in balance to support the needs of the organism. Imbalances in metabolism can result in various diseases, such as diabetes, obesity, and metabolic disorders.
-The \textit{metabolites} are the small molecules involved in metabolic reactions within an organism, acting as bricks, end products or precursors in various metabolic pathways. The \textit{metabolome} is the complete set of metabolites present at a given time, depicting the state of cellular processes and environmental influences.}}
+The \textit{metabolites} are the small molecules involved in metabolic reactions within an organism, acting as bricks, end products or precursors in various metabolic pathways. The \textit{metabolome} is the complete set of metabolites present at a given time, depicting the state of cellular processes and environmental influences}}
 
 \newglossaryentry{bioinformatic}
 {name=Bioinformatics, 
-description={The set of computational and statistical tools to analyse biological systems. }}
+description={The set of computational and statistical tools to analyse biological systems}}
 
-\textbf{\newglossaryentry{cell marker}
+\newglossaryentry{cell marker}
 {name=cell markers, 
-description={Cells markers, expressed either on the cell surface or intracellular, (proteins, lipids, glycosylation, etc.) can be used to set apart unique cell types.}}}
+description={Cells markers, expressed either on the cell surface or intracellular, (proteins, lipids, glycosylation, etc.) can be used to set apart unique cell types}}
 
-
-
-
+\newglossaryentry{hematopoiesis}
+{name=hematopoiesis, 
+description={The general process describing the generation and the renewal of the blood cells}}
 
 \newglossaryentry{backbone}
 {name=backbone, 
 description={In a protein, the \textit{backbone} refers to the main chain of amino acids, linked by peptide bonds. The backbone scaffold provides the structure, shape and stability of the protein. On the other hand, \textit{side chains} refers to the chemical functional groups attached to the backbone. The side chains are responsible for the ternary structure of proteins, providing it its unique chemical and functional identity.
+}}
+
+\newglossaryentry{epithelial}
+{name=epithelium, 
+description={The epithelium is one of the four types of tissues making up the organs of the body, along with the connective (support function), muscular and nervous components. 
+Similarly to the frontiers of a country, they have a protective role against potential intruders (mucous tissues, skin) and an exchange role (transfer of nutrients to the blood in the digestive tract and transfer of oxygen while flushing away carbon dioxide in the respiratory tract). Finally, as main component of glands, they play a key role in maintaining the homeostasis, releasing hormones in the blood system.  
 }}
 
 
