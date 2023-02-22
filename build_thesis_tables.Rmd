@@ -4,34 +4,14 @@ author: "Bastien-Gregory"
 date: "`r Sys.Date()`"
 output:
   pdf_document:
-    extra_dependencies: ["xcolor", "bbm", "bigints", "tcolorbox", "cancel", "mathtools", "inputenc", "longtable"]
+    extra_dependencies: ["xcolor", "bm", "bigints", "cancel", "mathtools", "inputenc", "longtable", "booktabs", "amsmath", "tabu", "makecell", "threeparttable", "multirow", "adjustbox", "hhline", "colortbl", "float", "wrapfig", "array"]
     fig_caption: yes
-    keep_tex: false
     number_sections: yes
     toc: no
     latex_engine: pdflatex
+    keep_tex: true
 header-includes:
   - \usepackage[most]{tcolorbox}
-  - \usepackage{booktabs}
-  - \usepackage{bm, amsmath}
-  - \usepackage{array}
-  - \usepackage{multirow}
-  - \usepackage{wrapfig}
-  - \usepackage{float}
-  - \usepackage{colortbl}
-  - \usepackage{hhline}
-  - \usepackage{xcolor}
-  - \usepackage{longtable}
-  - \usepackage{tabu}
-  - \usepackage{adjustbox}
-  - \usepackage{threeparttable}
-  - \usepackage{makecell}
-  - \def\greentick{\includegraphics[scale=0.05]{figs/green_tick.png}}
-  - \def\redcross{\includegraphics[scale=0.05]{figs/red_cross.png}}
-  - \newtcolorbox{blackbox}[1]{colback=white, colframe=black, coltext=black, boxsep=1.5pt, arc=4pt, before=\centering, title=#1}
-  - \newenvironment{cols}[1][]{}{} \newenvironment{col}[1]{\begin{minipage}{#1}\ignorespaces}{\end{minipage} \ifhmode\unskip\fi
-  - \aftergroup\useignorespacesandallpars} \def\useignorespacesandallpars#1\ignorespaces\fi{#1\fi\ignorespacesandallpars} \makeatletter  
-  - \def\ignorespacesandallpars{\@ifnextchar\par {\expandafter\ignorespacesandallpars\@gobble} {} } \makeatother
 ---
 
 ```{r setup, include=FALSE}
