@@ -3,3 +3,6 @@ bastien-chassagnol-thesis.Rproj
 .Rproj.user
 bastien-chassagnol-thesis.zip
 build_thesis*
+build_thesis_tables.Rmd
+tables/
+

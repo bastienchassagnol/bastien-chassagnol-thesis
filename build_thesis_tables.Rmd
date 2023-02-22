@@ -4,7 +4,7 @@ author: "Bastien-Gregory"
 date: "`r Sys.Date()`"
 output:
   pdf_document:
-    extra_dependencies: ["xcolor", "bm", "bigints", "cancel", "mathtools", "inputenc", "longtable", "booktabs", "amsmath", "tabu", "makecell", "threeparttable", "multirow", "adjustbox", "hhline", "colortbl", "float", "wrapfig", "array"]
+    extra_dependencies: ["xcolor", "inputenc", "booktabs",  "makecell",  "multirow", "hhline", "float", "array", "longtable"]
     fig_caption: yes
     number_sections: yes
     toc: no
@@ -23,14 +23,27 @@ knitr::opts_chunk$set(
 	fig.fullwidth=TRUE,
 	fig.pos = "h")
 
-library(ggplot2)
+
 library(dplyr)
-library(flextable)
 library(kableExtra)
-library(downlit)
-library(RGMMBench)
 
 options(dplyr.summarise.inform = FALSE) # remove the override .groups argument
 
 ```
 
+Table \ref{tab:generate-immune-table} used \LaTeX describes the specific features of the adaptive response. 
+
+```{r generate-immune-table}
+immune_dataset <- readr::read_delim("./tables/innate_vs_adaptive.csv", delim=";", show_col_types = F) %>%
+  dplyr::mutate(Feature=stringr::str_to_sentence(Feature), 
+                Signification= stringr::str_wrap(Signification, width = 60),
+                across(.cols = everything(),kableExtra::linebreak, align="c")) 
+immune_dataset[1, 1] <- cell_spec(immune_dataset[1, 1], format= "latex", bold = T) 
+immune_dataset[2, 1] <- cell_spec(immune_dataset[2, 1], format= "latex", bold = T) 
+
+immune_dataset %>% 
+  kbl(booktabs=T, caption = "The meain features of the adpative response, distinguishing it from the innate response", escape=F) %>%
+  kable_styling(latex_options=c("hold_position")) %>%
+  row_spec(0,bold=T, align = "c") %>%
+  row_spec(1:5, align = "c", hline_after = TRUE) 
+```
