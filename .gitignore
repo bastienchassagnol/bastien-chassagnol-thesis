@@ -7,7 +7,7 @@ tcolorbox.pdf
 ntheorem.pdf
 yamodern.pdf
 documentation-latex/
-tables/build_thesis_tables*
+tables/build_thesis_tables.*
 
 
 ## Core latex/pdflatex auxiliary files:
