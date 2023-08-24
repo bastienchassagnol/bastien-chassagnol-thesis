@@ -1,0 +1,383 @@
+\documentclass[mainlanguage=english,numlaboratories=2, nofrontcover=true,noaim=false, localbibs, colophon-location=verso-frontcover, oneside, 10pt, localtocs, version=final, nomakeabstract=true]{yathesis}
+
+% version=inprogress
+% output=paper or screen
+
+%%%%%%%%%%%%%% liste des packages à charger
+
+% \usepackage{pgfplots} % pgfplots
+% \usepackage[taupe, suite]{tdsfrmath} % lots of predefined maths operators, no need to call amsmaths, as alreay loaded
+\usepackage{lmodern} % load relevant fonts for cleveref
+\usepackage{amsmath,amssymb,bbm} % maths packages, the last one is used for an indicator
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{siunitx} % pour les unités métriques
+\usepackage{listings} % pour les environemments informatiques
+\usepackage[singlelinecheck=off,font=small,labelfont=bf]{caption} % to format the caption environment, allowing itemize environment
+\usepackage{todonotes} %\usepackage[disable]{todonotes} % to insert todonotes
+\usepackage{csquotes} % enquote macro for proper quotation formatting ""
+\usepackage{enumitem} % for latin-alpha lists
+\usepackage{subcaption} % pour les environnements avec plusieurs figures
+\usepackage{pdfpages} % to directly insert pdf pages
+
+
+
+% one of the last packages to be called
+\usepackage{hyperref, xurl} % to get hyperkinks and avoid URLs cut in half
+\hypersetup{pdfpagelayout=SinglePage} % pdfpagelayout=TwoPageRight by default
+
+%%%% Colourful Theorems  with cleveref redefinition%%%%
+\usepackage{cleveref} % for the use of Cref, à toujours placer en dernier
+\tcbuselibrary{theorems} % load additional keys, here the theorems
+\tcbset{ % not for nested boxes, define several boxes styles
+defstyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
+arc=2pt, colback=blue!5!white,colframe=blue!75!black},
+theostyle/.style={fonttitle=\bfseries\upshape, fontupper=\slshape,
+colback=red!10!white,colframe=red!75!black, arc=2pt, every float=\centering},
+propstyle/.style = {fonttitle=\bfseries\upshape, fontupper=\slshape,
+ arc=2pt, colback=green!5!white,colframe=green!75!black},
+proofstyle/.style = {colback=white,
+  colframe=black,  coltext=black, arc=2pt}
+}
+
+\newtcbtheorem[number within=section,crefname={definition}{definitions}]%
+{Definition}{Definition}{defstyle}{def}
+\newtcbtheorem[use counter from=Definition,crefname={theorem}{theorems}]%
+{Theorem}{Theorem}{theostyle}{th}
+\newtcbtheorem[use counter from=Theorem,crefname={Proof}{Proofs}]%
+{Proof}{Proof}{proofstyle}{proof}
+\newtcbtheorem[use counter from=Definition,crefname={corollary}{corollaries}]%
+{Corollary}{Corollary}{theostyle}{cr}
+\newtcbtheorem[number within=section,crefname={property}{properties}]%
+{Property}{Property}{propstyle}{pr}
+
+\usepackage[acronyms]{glossaries} % le glossaire, avec les définitions, cf % xindy option, if relevant, and symbols
+
+
+
+%%%%%%%%%%%%  Preamble  %%%%%%%%%%
+
+% macros
+\input{configuration/macros}
+
+% generate and load the gloassary, with its acronyms
+\makeglossaries
+%\makeindex
+%\makenoidxglossaries
+
+
+
+% la bibliographie
+% 
+\usepackage[backend=biber, style=ieee, sorting=ynt, maxcitenames=3,style=alphabetic]{biblatex}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space} % comma between author and year 
+\addbibresource{bibliographie.bib}
+
+% Génération du glossaire
+\loadglsentries{auxiliaires/acronymes}
+\loadglsentries{auxiliaires/glossaire}
+% \loadglsentries{auxiliaires/symboles}
+
+\begin{document}
+
+
+\maketitle[frametitle=shadowbox]
+% \makekeywords
+\makelaboratory
+
+% famous scientist quotes
+\frontepigraph[english]{I seem to have been only like a boy playing on the seashore, and diverting myself in now and then finding a smoother pebble or a prettier shell than ordinary, whilst the great ocean of truth lay all undiscovered before me.}{Isaac Newton}
+\makefrontepigraphs
+
+% acknowledgments
+\include{liminaires/remerciements}
+
+% resumé
+\include{liminaires/resume}
+
+% publications and other stuff
+\include{liminaires/publications}
+
+
+% Sommaire
+\tableofcontents[depth=subparagraph,name=Contents]
+
+\mainmatter
+
+\part{Biological Introduction}
+\include{introduction/biology}
+\include{introduction/cellular_deconvolution}
+\part{Mathematical Introduction}
+\include{introduction/mixture_models}
+ 
+\part{Biological Applications}
+
+\leadchapter{Primary Sjögren's disease (pSD) is a complex and highly heterogeneous autoimmune disease, characterized notably by lymphoid infiltration of exocrine glands and autoantibody generation. The heterogeneity in clinical manifestations and pathophysiology of the disease make the current development of an effective treatment or an approved targeted therapy a highly intractable task. To address this issue, we conducted a large \emph{stratification study} on a \gls{cross-sectional} cohort of blood samples from 300 patients, with both molecular and clinical validation of Sjögren's syndrome, to identify well-characterised transcriptomic patient subgroups. These clusters were then further annotated with genomic, epigenetic, cytokine, autoantibody expression as well as flow cytometry and clinical data, as summarised in \Cref{fig:infographic-sjogren-clustering}.
+
+
+Previous studies classified patients based only on their \acrshort{ifn} activation score status, yet, this study aims at extending these preliminary results, by adopting a comprehensive multi-omics approach. 
+
+
+The clustering algorithm was performed on pre-processed RNAseq data, $\boldsymbol{Y} \in \mathcal{M}^+_{G \times N}$, with $G$ the number of genes not belonging to the background noise, and $N=304$ the final number of individuals selected under the protocol extensively described in \Cref{chap:transcriptome-workflow} and \Cref{subfig:rnaseq-sjogren-pipeline}
+
+\begin{enumerate}
+\item The top $25\%$ most variant genes, defined by their degree of 
+variation coefficient(CV), were selected to perform the clustering analysis.
+
+\item To determine the number of clusters, a robust clustering method, previously applied to breast cancer transcriptomic profiles, \autocite{guedj_etal12} and \Cref{subfig:consensus-clustering}, was performed:
+
+\begin{itemize}
+\item \emph{Agglomerative Hierarchical Clustering} (\texttt{hclust} function from R mclust package, \autocite{scrucca_etal16}), using Pearson correlation as a similarity measure 
+\item $k$-means clustering \autocite{macqueen67}, using \texttt{kmeans} function from stats R package 
+\item Gaussian mixture clustering (GMM) using \texttt{mclust function} from R mclust package \autocite{scrucca_etal16}.
+\end{itemize}
+
+\item Next follows a supervised analysis, performed on the 149 patients with consistent cluster assignments between the three clustering methods (considered as \enquote{core} groups) to retrieve the minimal transcriptomic signature to identify unambiguously the 4 clusters. A pre-candidate set of \num{3577} genes was selected from a classical one-way ANOVA
+($\text{FDR} < \num {1.e-10}$), and then reduced by Random Forest to a final set of 257 top discriminating genes (\texttt{randomForest} function from randomForest \autocite{cutler_wiener22} R package). We then verified and confirmed afterwards the robustness of the clustering by re-applying Step 2 on our discovery set with the final minimal signature obtained.
+
+\item Finally, patients inconsistently assigned with the 3 clustering methods were associated for each of them to their respective closest centroid, as measured by their correlation similarity score.
+\end{enumerate}
+
+Since this algorithm consists of iterated unsupervised and supervised steps, \autocite{guedj_etal12} classifies it as \enquote{semi-supervised} .
+
+
+We eventually identified four distinct pSS patient clusters, illustrated in Heatmap \Cref{subfig:heatmap-sjogren}. Interestingly, they displayed distinct patterns of immune dysregulation, cellular composition and disease activities. Precisely, the four clusters were annotated as such:
+
+\begin{itemize}
+\item The C2 cluster displays a healthy-like profile, gathering patients with on average, lower disease activity and no \Gls{anti-ssa} antibodies.
+
+\item  On the contrary, cluster C4 exhibited the strongest severe clinical phenotype signature, characterized by a prominent \gls{interferon} Type II activation signature, significant inflammation, massive \emph{lymphopenia} (unexpected decrease of lymphocytes) and monocytes decrease as well as higher levels of neutrophils, all tending to output an inflammatory phenotype. These observations were further corroborated by methylation analysis on \acrshort{dmp}, since they revealed that C4 had the highest number of hypomethylated genes related to IFN signalling, inflammation and neutrophils, knowing that high levels of gene expression are often associated with low promoter methylation \autocite{wagner_etal14}. Finally, we should note too that C4 is the less populated group, with only 38 patients ($12.5\%$) in it. Besides, 
+
+\item The cluster C1 showcases the highest Type I and Type II \acrshort{ifn} scores, as exhibited by enrichment analysis studies of gene modules. Genome-wide association study (GWAS) analysis only pinpoint significant genetic differences in C1, particularly genes associated with the immune system, signal transduction and cell cycle.
+
+\item While the cluster C3 is characterised by a strong Type I \acrshort{ifn} score. Additionally, C3 showed a significant activation of pathways related to B cell activation and higher levels of autoantibodies, further supporting the relevance of B cells as additional potential therapeutic targets for the patients assigned to this cluster.
+\end{itemize}
+
+We verified a posteriori that systemic treatments had no impact on the cluster distribution, since half of the pSS patients were undergoing antimalarial, immunosuppressive or steroid treatment. However, comprehensive sensitivity analyses showed that treatments did not significantly affect the distribution of patients within clusters.
+
+
+We finally developed a composite model using machine learning approaches to predict to which cluster each patient belonged, using a reduced number of non transcriptomic variables. The accuracy of the model was high and validity confirmed using an external dataset of pSS patients as a validation marker. This model could help in selecting patients prior to clinical trials, more likely to display better therapeutic outcomes.
+To conclude, we were able to provide a new patient classification into \emph{endotypes} (subgroup patients defined by distinct functional and metabolic mechanisms). 
+
+
+\begin{figure}
+     \centering
+     \begin{subfigure}[p]{0.6\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/sjogren/pre-processing.png}
+         \caption[\textbf{RNAseq analysis flowchart}]{This flow-chart summarises the several steps used to pre-process and normalise RNASeq data. Notably, duplicated genes or displaying inconsistent updated HGNC gene annotations were discard. Log2 transformation and svt normalisation were then applied on gene expression data followed by removal of genes exhibiting low expression.}
+         \label{subfig:rnaseq-sjogren-pipeline}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[p]{0.35\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/sjogren/consensus_clustering.png}
+         \caption[Flow chart of \enquote{semi-supervised} hierarchical clustering]{In brief, we classified Primary Sjögren’s syndrome (pSS) patients into 4 clusters using three comparable clustering algorithms. Out of the 227 patients, 149 yielded a consensus identification in each of the clusters, even after applying gene feature selection refinement, leading to a minimal reference signature of 257 genes. }
+         \label{subfig:consensus-clustering}
+     \end{subfigure}
+     \vfill
+     \begin{subfigure}[p]{0.6\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/sjogren/heatmap_sjogren.png}
+         \caption[Heatmap performed for 304 pSS patients (Discovery set: 227, Validation set: 77) showing the distribution of gene transcripts.]{ In columns patients are grouped by cluster assignment and in rows genes are grouped by functional modules (three identified), with the \emph{discovery set} on the left and \emph{validation set} on the right. 
+         The level of transcriptomic expression is encoded by a colour scale, a red colour depicting a stronger expression value. We also added at the top additional phenotype annotations: the treatment (AM: antimalarials, STED: steroids and IMS: immunosuppressors), age, gender, ANTISSAPOS as an indicator variable of the presence of anti-SSA/Ro antibody and finally FOCUSSCOREPOS as the discretised variable of the focus score \autocite{liao_etal22}.}
+         \label{subfig:heatmap-sjogren}
+     \end{subfigure}        
+    \hfill
+     \begin{subfigure}[p]{0.35\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/sjogren/cellular_proportions.png}
+         \caption[\textbf{Cell population composition in blood samples from the 4 identified clusters.}]{The bar chart denotes the cell types proportion per cluster, normalised to sum to one, as inferred from the gold-standard deconvolution algorithm Cibersort \autocite{newman_etal15}.}
+         \label{subfig:cell-population-cibersort}
+     \end{subfigure}
+    \caption{Infographic of Chapter 4, about a practical use case of Gaussian mixture models applied to classify patients into groups with similar transcriptomic profiles.}
+    \label{fig:infographic-sjogren-clustering}
+\end{figure}
+}
+
+\chapter{Article 2: A new molecular classification in primary Sjögren’s syndrome}
+\label{sec:sjogren-clustering}
+
+\includepdf[nup=2x1, pages={-}]{gmm_sjogren.pdf}
+
+\section{Conclusion}
+
+This study sheds light on the complex heterogeneity of pSS and contributes to unravel the intricate role of IFN pathways in its \emph{physiopathogenesis}. Besides, dissecting the heterogeneity of pSS patients should promote the development of targeted therapies and led to more personal and efficient clinical trials. However, further investigation is needed, including longitudinal studies to understand the stability of these clusters over time and the impact of treatments on gene signalling dysregulation. Furthermore, although collecting blood samples is a much easier task, it should be noted that most of the observed clinical features of Sjögren's disease, particularly in the early stages, are concentrated in the salivary glands, which may explains the lack of significant correlation between the observed clinical features and the patients grouped on the basis of transcriptomics.
+
+
+I personally contribute to this paper through the following contributions:
+\begin{itemize}
+\item I participated to the standardisation and industrialisation of the RNASeq pipeline, and notably I contributed to the development of an unsupervised and statistically valid method to automatically discard the background transcriptomic noise, adjusting to the distribution nature of the transcriptomic data (see Details in Appendix \Cref{sec:truncated-distribution}).
+
+\item I provided some insight and recommendations on the development of a consensual clustering method to identify patients sharing similar transcriptomic profiles. 
+
+\item I ran and performed the statistical analyses to evaluate whether the cellular composition differs significantly between the identified clusters. Interestingly, not only we show strong heterogeneous cellular composition across patients, but it turns out that most of the transcriptomic variability observed could be explained by evolution of the cellular composition. \todo{add differences observed between the population of monocytes and B cells + cite cibersort again}
+\end{itemize}
+
+and detail in \Cref{sec:sjogren-extension} suggestions to perform co-clustering on both genes and patient samples.
+
+\section{Perspectives}
+\label{sec:sjogren-extension}
+
+To extend this preliminary exploration study, I would certainly have adopted another method to establish a robust clustering of Sjögren's patients, without resorting to a combination of existing methods. Indeed, $k$-means and hierarchical clustering methods, are very similar in principle to Gaussian mixture models. Besides, we are rather used them for parameter initialisation, since they rely on additional and controversial assumptions (thus, both methods do not explicitly integrate the uncertainty of assignment to a given cluster, moreover, $k$-means assumes clusters of similar size and variability). Thus, it would certainly have been more interesting to assert the robustness of the model under different choices of Gaussian mixture model parametrisations (only the model with full covariance matrix structures has been tested) and number of components, using \emph{empirical bootstrap} (see also \Cref{chap:gmm-benchmark}, appendix sections \texttt{Model selection} and \texttt{Derivation of confidence intervals in GMMs} ). In addition, with bootstrap methods, we can easily derive confidence intervals, evaluating the statistical uncertainty on the parameters specific to each cluster. Finally, GMMs provide a straightforward manner to assign a posterior any observation, using directly the maximum a posteriori inferred from the parameters of the \acrshort{gmm} model, in place of a controversial correlation distance.
+It's also worth noting that classical mixture models or $k$-means are not really suited to high-dimensional datasets, particularly when the number of variables (here genes, quantified by $G$) largely exceeds the number of observations, $N$. Projections on lower dimensional spaces, using for instance principal component analysis, and/or parsimonious parametrizations of the models (Appendix \Cref{sec:high-dimensional-simulations}) would certainly have enhanced the discrimination between the observed groups, while facilitating their visualisation and biological exploration, with a reduced computational cost.
+
+
+Finally, and contrary to what we announced in the abstract, the qualification of multi-omic clustering is misleading, since we do not perform in practice \emph{integrated clustering} and based the classification of Sjögren's patients solely on transcriptomic data. Indeed, we use posterior analyses to annotate biologically these clusters (without, moreover, being able to correlate them significantly with clinical traits). We thus deemed that holistic approaches, genuinely integrating heterogeneous omic data and clinical features are particularly promising to disentangle the causal biological mechanisms and pathophysiology of these autoimmune diseases, which mostly elude us till now.
+
+Integrated methods, combining several datasets of potential different nature, generally fall into the following categories: \textbf{early} (full), \textbf{late} (decision) or \textbf{intermediate} (partial) integration. Early integration methods involve combining all datasets into a single comprehensive dataset, which in turn is used as input for learning the model. However, this merging process requires representing the data in a common feature space, potentially leading to information loss. On the other hand, late integration approaches involve initially building individual models independently for each dataset and subsequently, combined them to generate an integrated model. However, this approach may not fully leverage the shared patterns present in the different datasets, potentially leading to suboptimal performance of the final integrated model.
+
+We describe some of these integrated, network-based methods below:
+
+\begin{itemize}
+
+\item Similarity Network Fusion (SNF) \autocite{wang_etal14} combines networks using a diffusion process, but might struggle finding shared patterns for highly heterogeneous datasets. A quick overview of this method is further detailed in next \Cref{chap:sjogren-cheima}.
+
+\item Variants of the \acrshort{nnmf} method might also be used to retrieve hidden structures shared across multiple datasets, projecting them into a smaller subspace, while enforcing the positivity constraint on gene or proteomic expression. Among these methods, we may quote Natural Gradient Weighted Simultaneous Symmetric NMTF (NG-WSSNMTF) \autocite{gligorijevic_etal16} or iCell (integrated Cell), a bottom-up,integrated model of cancer cells, relying on non-negative matrix tri-factorization (NMTF, \autocite{malod-dognin_etal19}).
+For instance, iCell combines three molecular interaction networks: protein-protein interaction (PPI), gene co-expression (COEX), and genetic interaction (GI) networks and has been used to compare cancer-specific cell networks for breast, prostate and colorectal cancers along with their corresponding control tissues.  Precisely, in the iCell framework, each network, represented by its \emph{adjacency matrix}, is decomposed into two matrices: one common that groups genes into clusters shared across all decompositions, and one compact, low dimensional representation of each omic network, describing how the gene clusters relate specifically to each other in it. The decomposition is achieved by minimising the Frobenius norm of the difference between the original adjacency matrix and the factorial decomposition product specific to each network, using an iterated, fixed-point method (an explicit formula returning the roots being unreachable, instead a local optimal solution is computed). Finally, a final threshold process refines the network by discarding the bottom $99\%$ of the lowest pairwise transcriptomic relationships. Interestingly, while the standard differential mean expression, especially on cohorts of relatively small sizes and thus lacking of statistical power, failed at retrieving varying gene expression between cancer and control cases, iCell methodology succeeds in exhibiting significantly altered \emph{wiring patterns}, namely the crosstalk patterns of transcriptomic interactions.
+
+\item Spectral clustering on multi-layer graphs (SC-ML) \autocite{dong_etal14} and GraphFuse \autocite{papalexakis_etal13} are both spectral methods, but may undergo poor cluster convergence or struggle with memory issue \autocite{malod-dognin_etal19}. The key idea behind spectral clustering is to project the data into a lower-dimensional subspace, by computing and keeping the largest eigenvectors of the corresponding Laplacian operator of the adjacency matrix, enhancing thus the separation between the clusters. Fllowing this dimension reduction, any clustering algorithm (usually $k$-means) applied to the transformed data can be used to assign each data point to a specific cluster, however, like most clustering methods, there is no universal method to derive the number of clusters. Spectral clustering is particularly useful when the underlying structure of the data is highly intricate, since it can reveal nonlinear patterns and complex relationships between data points. However, it requires careful parameter tuning and can be computationally demanding for large datasets. 
+
+\item Markov Clustering (MCL) \autocite{enright_etal02} is a single graph clustering method that requires at first merging all omics networks into one structure, and then clustering the resulting union graph. It relies on the idea that the asymptotic distribution of random walks on a graph reflects the degree of interaction relating two distant clusters.
+\end{itemize}
+
+However, we should point out that these integrated methods, due to the large, intractable network sizes, the potential presence of spurious and noisy pairwise edges and possibly the lack of shared biological mechanisms among several omics, struggle to converge into consistent and shared interaction patterns solutions. It may lead for instance to poor overlap between the identified clusters  across several cohorts from the same disease or even returns to an empty set of candidate solutions. Hence, a trade-off has to be found between integrating datasets of different nature, using prior knowledge, and focus on returning a robust and highly predictive model. This issue has been partly addressed in the following paper, , where the purpose was to determine the perfect balance between improving the accuracy and reproducibility of gene regulatory network inference while integrating prior knowledge datasets using transcription factor binding sites as proxy of gene interaction candidates. It turns out that only one third of the prior putative pairwise interactions significantly improved the predictability performance of the network, while others have no impact, or even worse impact the overall performance.
+
+
+\leadchapter{In this paper, we intended to understand the heterogeneity of patients suffering from pSD and deciphering the intertwined transcriptomic interactions by identifying larger gene modules summarising transcriptome expression.
+
+We identified 13 Consensus gene Modules (CMs) that contribute the most to the variability of the transcriptome across pSD patients. We retrieved them using unsupervised clustering methods on four different transcriptomic datasets, all processes from blood samples. Then, gene set enrichment analyses were used to annotate each module based on its connection with cell populations or biological function. Finally, flow cytometry data and cytokine measurements were used to validate biologically the annotations. \Cref{fig:infographic-louvain-clustering} details the major steps of the clustering pipeline, as well as the major biological results. 
+
+
+Precisely, the four datasets proceed from private sources funded by the NECESSITY consortium (ASSESS \autocite{gottenberg_etal13}, PreciseSADS \autocite{barturen_etal18} and UKPSSR \autocite{ng_etal11}) or publicly available repositories, such as GSE84844 \autocite{tasaki_etal17}. To reduce partly the intrinsic high dimensionality of transcriptomic data \footnote{with \num{20000} identified genes coding for proteins, the number of pairwise interactions covers the staggering number of  \num{4.e8} correlation coefficients}, often prone to high confusing technical noise, we tailored a dedicated analysis workflow, summarised in \Cref{subfig:cheima-pipeline}.
+
+Initially, each cohort's gene expression matrix was transformed into an affinity matrix representing the gene co-expression network. Each pairwise Pearson correlation coefficient was mapped to a non-linear but monotonic \emph{sigmoid function}, resulting in lower correlation coefficients being shrunk towards zero \autocite{wang_etal14}. Subsequently, an additional filtration step enables to further prune the built network and keep only highly co-expressed genes, generating a strongly sparse weighted graph. Secondly, we used the \acrfull{snf} algorithm (\autocite{wang_etal14} and \Cref{subfig:snf-method}) to emphasise shared network patterns and merge multiple affinity matrices across the four independent cohorts of pSD patients' blood.
+
+Finally, we applied Louvain clustering \autocite{blondel_etal08} to this sparse, \emph{consensus graph} and identified 13 CMs. In brief, Louvain's method is one of the graph clustering algorithms that focuses on maximising the \emph{modularity} of the network. This metric, bounded between -1 and 1, aims at computing the averaged density of edges within clusters with respect to the interaction density between communities, a graph composed only of \textit{cliques} unconnected to each other displaying a score of 1. However, Louvain's paper implements two innovative features: an approximate heuristic algorithm, briefly described in \Cref{subfig:louvain-method} to increase the scalability of the method to larger datasets (it has even been applied to social network, with tens of millions of user nodes) and an internal hierarchical approach, enabling to adjust the level of granularity to user requirements.
+
+\begin{figure}
+     \centering
+     \begin{subfigure}[p]{0.6\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/cheima_pipeline.png}
+         \caption{Schematic representation of the pipeline used in this paper, in which step i) encompasses all the construction steps to retrieve an individual similarity network, ranging from the preprocessing and data wrangling operations to the pruning of spurious correlations, step ii) covers the network and clustering operations to return consensual modules across all studied datasets and iii) includes all the post statistical and biological experiences to assert the soundness and relevance of the returned gene clusters.}
+         \label{subfig:cheima-pipeline}
+     \end{subfigure}
+     \vfill
+     \begin{subfigure}[p]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/similarity_network_fusion.png}
+         \caption{\acrshort{snf} [\autocite{wang_etal14}] is a \emph{cross-diffusion} process that outputs enhanced metrics by averaging in an integrated manner multiple similarity measures. Briefly, it consists first of computing similarity matrices for each dataset, one \emph{global} and one \emph{local}, discarding remote nodes. Then, iterative steps of matrix projection on the same endomorphic graph space and a final averaged operation results in a fused global network that concatenates relevant neighbourhood information across all datasets.}
+         \label{subfig:snf-method}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[p]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/louvain_clustering.png}
+         \caption{A schematic visualisation of Louvain's algorithm \autocite{blondel_etal08} each pass (alternatively \emph{epoch}) is made of two phases: a local optimisation phase, where modularity is increased only by local changes of community assignment followed by an aggregation phase, where sub-communities are merged in order to build a global network of clusters. The passes are repeated iteratively until the total modularity score no longer increases.}
+         \label{subfig:louvain-method}
+     \end{subfigure}        
+    \vfill
+     \begin{subfigure}[p]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/cheima_modules.png}
+         \caption{13 consensus modules have been identified between the studied datasets, and we were able to annotate consistently 12 of them with either metabolic pathways or cellular-related mechanisms represented in the following table. Voluntarily, we discard module CM3, since it strongly diverges between datasets.}
+         \label{subfig:cheima-modules}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[p]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/distribution_weights_snf.png}
+         \caption{Histogram showing the distribution of correlation weights in the total \acrshort{snf} matrix. We fit a mixture of positively skewed Gaussian distributions and uses the $0.05^\text{th}$ quantile of the second mode of the distribution, visualised by  the vertical red line, as the signal upper threshold to discard irrelevant weights.}
+         \label{subfig:weight-snf}
+     \end{subfigure}    
+    \caption{Infographic of Chapter 5, about a practical use case of high dimensional clustering, to identify shared gene modules across technical batches.}
+    \label{fig:infographic-louvain-clustering}
+\end{figure}
+
+Performing the same clustering independently on each cohort, keeping the same hyper-parameters confirm that these CMs are highly consistent, no matter the origin of the dataset. Notably, we found out that CM1 was correlated with type 1 interferon signalling, CM7 corroborates cell cycle-related genes and out of the 11 remaining, 9 modules were significantly enriched in different lymphoid and myeloid cell subsets \Cref{subfig:cheima-modules}. In addition, the identified CMs were then compared against two previous stratifications of gene expression, and we were able to recover significant overlap in the clusters assignment performed by both approaches. Nonetheless, we should point out that the module displaying the highest number of genes ($n=1247$) and the lowest averaged expression value showed inconsistent biological characterisation and was assimilated to a nuisance cluster, a commonly observed artefact in omics clustering papers \todo{refer to papers discussing this issue}.
+We also looked into the therapeutic effect of a drug combination of hydroxychloroquine and leflunomide on the blood transcriptome of pSD patients and revealed that the expression of some modules was significantly linked to treatment outcome, suggesting these modules could be leveraged as predictive biomarkers.
+
+
+While the construction of the main bricks of the pipeline and the biological exploitation of the results was mostly supervised by my co PhD Cheima, I mostly contribute to this paper with the following tasks:
+
+\begin{itemize}
+\item With the \acrshort{bbc} team, we have released an user-friendly, standardised and internal pipeline dedicated to the pre-processing, normalisation and downstream analysis of transcriptomic datasets, discussed in further details in \Cref{chap:transcriptome-workflow}.
+
+\item Precisely, unsupervised clustering methods, adjusted to fit the nature and the shape of the density distribution of transcriptomic datasets, which may strongly differ with respect to the normalisation method chosen, were intensively used to automatically set apart noisy genes from highly expressed transcripts, as well as to automate the decision threshold to prune irrelevant edge (see \Cref{subfig:weight-snf}).
+
+\item Finally, while several clustering methods have been benchmarked to identify closely related transcript networks, it turns out that the Gaussian mixture approach underperformed compared to the Louvain's method, yet, several assumptions underlying standard Gaussian mixtures were not met, namely that the number of observations, here the genes, largely exceeds those the number of variables, here the biological samples, and variants of \acrshort{gmm}, such as parsimonious parametrisations or projection to sub-dimensional space, as detailed in Appendix \Cref {sec:high-dimensional-simulations}, combined with strong refinement of the parameters and the number of components, might have improved the results. In addition, correlation data sets, by exhibiting naturally limited values, do not follow in general Gaussian distributions, with bell-shaped and symmetrical graphical representations.
+
+\end{itemize}
+}
+
+\chapter{Article 3: Gene clustering applied to primary Sjögren’s disease}
+\label{chap:sjogren-cheima}
+
+\includepdf[nup=2x1, pages={-}]{spectral_clustering.pdf}
+
+\section{Conclusion}
+\label{sec:conclu-gene-modules}
+
+In summary, this study revealed that 13 gene modules over a starting collection of \num{4196} genes were enough to capture most of the heterogeneity of the blood transcriptome in pSD patients. We were able to further annotate these modules with various cell types and biological functions, providing insights into the pathophysiology of pSD. 
+In addition, we suggest using these modules as biomarkers for patient stratification and prediction of treatment response in DBP. However, further clinical validation trials are required to fully understand the relevance of these genetic modules in identifying the causal mechanisms involved in disease progression.
+
+%\include{chapters/RNAseq_workflow}
+\include{chapters/deconvolution}
+
+\chapter{General discussion and perspectives}
+\label{chap:general-perspectives}
+
+%\todo{IA as a supportive tool, however, still sensitive to human biased construction of the datasets, see permedcoe summer school // drug combos // single cell and spatial analysis, example of DepMap // \url{https://www.cell.com/trends/pharmacological-sciences/fulltext/S0165-6147(23)00137-2} // \url{https://www.liebertpub.com/doi/full/10.1089/omi.2019.0151}; practical example with cancer features: \url{https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2020.588221/full} // cf section cours and self_learning in the root for nice overview of IA-based models; \textbf{RNA sequencing: the teenage years} to review what is beyond bulk-rna seq approaches // \url{https://www.intelligenthealth.tech/2023/07/17/ai-and-computational-biology-transforming-chronic-liver-disease-research/}}
+
+With the increasing use of artificial intelligence tools to foster efficient literature review, embrace and visualise highly-dimensional and connected datasets or perform tasks beyond the reach of conventional machine learning techniques, such as predicting the structure of proteins with AlphaFold \autocite{jumper_etal21} or the affinity between a computer-designed antibody and the corresponding antigen-binding site \autocite{kuroda_etal12}, it is crucial to comprehensively tackle the persistent challenges posed by deep-based neural networks, notably the explainability of the built models, especially for areas as paramount and touchy as human health\autocite{aittokallio22}. Hence, the development of AI-based methods require more than ever transversality and communication across numerous expertise domains, especially since these methods are highly sensible to the quality and the consistency of the datasets provided as inputs. Non negative matrix factorisation methods, mentioned further in \Cref{sec:perspectives-repositioning} or embedding representation of complex and high dimensional omic datasets \autocite{doria-belenguer_etal23} \autocite{xenos_etal21} are promising avenues to make IA-based models more interpretable, while reflecting better the mechanistic nature of biological systems. Briefly, network embedding algorithms project highly-dimensional datasets, such as the proteome or interactome, into much lower-dimensional spaces, and combine the resulting minimal eigen vectors to extract novel knowledge through standard vector additions. To that end, a Positive Pointwise Mutual Information (PPMI) matrix \autocite{xenos_etal21}, explicitly endorsing the positive nature of proteomic expression, while implicitly factorised by neural networks to obtain embeddings (in the specific context of omics datasets, the original large PPI space was decomposed into a collection of graphlets, each storing highly connected proteins), was generated to describe the human protein-protein interaction (PPI) network in a much more compact space, allowing to decrease by several orders of magnitude the inherent computational and memory burden inherent to any graph mining method. This methodology proves particularly valuable in handling the inherent \enquote{heterophilic} nature of biological networks, which, due to poor annotations and incomplete datasets, are likely to connect nodes without any shared biological function, and has proven successful to predict impaired functions and rewiring in cancer cases \autocite{doria-belenguer_etal23}.
+
+Another challenge arising in disease modelling is distinguishing causal genes or proteins from spurious findings. Graphical methods explicitly integrating directed interactions, such as Bayesian networks \autocite{luo_etal20} \autocite{needham_etal06} are still underused, while they could highly contribute to generate models more realistic to biological mechanisms. For instance, \autocite{rau_etal13} implements a new algorithm to infer causal Gaussian Bayesian networks. To that end, a \acrfull{mcmc} framework combined with a Mallows model \autocite{mallows57}, to generate new graph orderings proposals, were used to sample from the posterior distribution of causal node orderings, thus enabling to account for various intervention designs, and notably to integrate both \emph{interventional data}, such as partial or multiple knock-out experiments, with more standard \emph{observational data} (also referred to as \enquote{wild-type}). And \autocite{needham_etal06} indeed shows, through the Dialogue for Reverse Engineering Assessments and Methods (DREAM) dataset, that the model outperforms ones only proceeding observational data.
+
+There is still an unmet need for computational methods to develop and validate innovative therapeutic modalities beyond small molecules, such as \emph{biologics} \footnote{Biological medicines are directly derived from living organisms, including antibodies, and thus require specific studies to assert for their effectiveness and safety. For instance, antibody design evaluates the relevance of the built structure through epitope/paratope interaction and biological effectiveness \autocite{bennett_etal14}. However, while less prone to early failure or safety issue, biologically engineered drugs are much bigger and complex objects to design (\num{20000} atoms compose on average antibodies structure, against 21 atoms, for instance, for the well-known aspirin molecule), requiring thus much sophisticated production processes. In addition, since they are derived from biological material, they are more likely to inter- or even intra-species \emph{cross-reactivity}, hence the privileged development of biologics directly derived from human cells. For instance, the development of antibodies in preclinical studies require stronger focus on \emph{Immunogenicity} (i.e. induction of an auto-antibody response) and \emph{Immunotoxicity} (agents intended to modulate
+the immune response may trigger unforeseen cell-mediated changes) issues.}, antisense oligonucleotides, protein degradation targeting or even nanoparticles, which in many cases, are the only available and affordable treatments addressing rare diseases, and the potential of combination therapies, especially in the exploratory phase, remains largely unexplored.
+
+
+Constant education efforts to outreach and convince human experts of the benefits of AI, and more generally data-driven based models, are fundamental to bolster comprehensive understanding and enriching cooperation, knowing the advantages but also the limits of such models.
+No matter the statistical or artificial intelligence combination of tools in the study, maybe the strongest leverage to deal with the \enquote{reproducibility crisis} is underlain by the respect of the FAIR principles, and  the emphases applied to results that possess the following key qualities: \emph{robustness} (i.e., resistance to minor alterations in parameters and data), \emph{interpretability} (i.e., assert the biological or clinical significance of the returned results) and reproducibility (i.e., adhering to sound coding and data practices). On the last bullet point, article \autocite{scannell_bosley16} was a real eye-opener, by suggesting that the currently observed \enquote{reproducibility crisis} in the pharmaceutical domain could reflect the early abandonment of models with high Predictive Values for reasons of redundancy or focus on discovering undisclosed interactions, at the expense of predictability or/and biological interpretability. Hence, as illustrated in \autocite[Fig 7]{scannell_bosley16}, the models with the best accuracy scores are often the most obvious ones, thus rendering themselves redundant and depreciated in comparison to more fashioned and appealing models unearthing totally unknown biological interactions.
+\emph{Adaptive design}, within the statistical field, is another promising avenue against \emph{conventional} (non-adaptive) designs to the surging costs of drug development and reproducibility crisis, through combining data accumulated during the drug design process itself with other historical studies. Briefly, adaptive design theory tackles the demanding decision protocols of early cessation or preferential effort on drug therapies, arising from increasingly intricate treatment designs (such as \emph{umbrella} trials or \emph{basket trials}) by suggesting changes, without undermining its \emph{validity} and \emph{integrity}, and retrieving more mechanistic information for the same level of investment.
+
+
+
+\appendix
+\include{appendix/em_simulation}
+\todo{add appendix extension with differential networks}
+%\include{appendix/gene_networks}
+\include{appendix/optimisation}
+\include{appendix/Repurposing}
+
+
+\backmatter
+
+% biblio; to add citations for the ones only present in glossary
+\autocite{louis23} \autocite{franceschini_cavazzana05} \autocite{goeb_etal07} \autocite{gleicher_elkayam13}
+\autocite{lee_ashkar18} \autocite{platanias05} \autocite{lebon_etal01} \autocite{zajac_harrington14} \autocite{murray_etal02}
+
+\printbibliography 
+
+% the glossary itself
+\clearpage
+% define the glossary style
+\setacronymstyle{long-short}
+\setglossarystyle{listhypergroup}
+
+\printacronyms
+\printglossary
+% \printnoidxglossaries
+
+% print list of tables and figures
+%\listoftables
+%\listoffigures
+
+% génération de l'abstract
+%\makeabstract
+\input{liminaires/abstract}
+\makebackcover
+
+\end{document}
+

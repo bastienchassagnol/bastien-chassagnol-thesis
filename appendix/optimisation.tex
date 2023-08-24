@@ -1,0 +1,129 @@
+\chapter{Mathematical proofs}
+
+\section{Linear algebra and matrix calculus}
+
+%As already proposed by the DSection algorithm \parencite{erkkila_etal10} and DeMixt algorithm \parencite{wang_etal18}, we relaxed the weak \gls{exogeneity} assumption by asserting that the transcriptomic expression of each purified cell is not a fixed, error-free measure but rather a random variable having its own distribution. But we extend these results by allowing correlation between purified transcript expressions within a cell population.
+%
+%To do so, we model the $G$-dimensional random vector $\boldsymbol{X}_{j, c(i)}$ of each cell population $j$ with condition $c(i)$ by a multivariate Gaussian distribution \Cref{eq:10}
+%\begin{equation}
+%\label{eq:10}
+%\boldsymbol{X}_{j, c(i)} \sim \mathcal{N}_G(\mu_{j, c(i)}, \boldsymbol{\Sigma}_{j, c(i)})
+%\end{equation}
+%whose distribution is given by \Cref{def:multivariate-gaussian}.
+
+\begin{Definition}{Multivariate Gaussian distributions}{multivariate-gaussian}
+If random vector $\boldsymbol{X}$ of size $G$ follows a random multivariate Gaussian distribution, $\boldsymbol{X} \sim \mathcal{N}_G(\mu, \boldsymbol{\Sigma})$, then its distribution is given by:
+\begin{equation*}
+    \DET(2\pi\Sigma)^{-\frac{1}{2}} \exp\left( -\frac{1}{2} (\boldsymbol{x} - \mu) \Sigma^{-1} (\boldsymbol{x} - \mu)^\top\right)
+\end{equation*}
+in which:
+\begin{itemize}
+    \item $\mu=\boldsymbol{X}$ is the $G$-dimensional mean vector
+    \item $\boldsymbol{\Sigma}$ is a $G\times G$ positive-definite \Cref{def:positive-definite} \footnote{this constraint is imposed such that the distribution is identifiable, otherwise we fall in a degenerate case} covariance matrix, whose diagonal terms, $\diag(\boldsymbol{\Sigma})=[(\VV{X_{i,j}}), \, \forall (i, j) \in \widetilde{G}^2, i= j]^\top$ are the individual variances of each purified gene transcript in population $j$ and off-diagonal terms, $\boldsymbol{\Sigma}_{i,j}=\CC{X_{i}, X_{j}}, \, \forall (i, j) \in \widetilde{G}^2, i \neq j$ are the covariance between variables. We note $\Theta=\Sigma^{-1}$, the inverse of the covariance matrix, called the \textit{precision matrix}.
+\end{itemize}
+
+The corresponding log-likelihood for a $N$-sample of a random vector of iid observations is given by:
+\begin{equation}
+    \label{eq:loglikelihood-multivariate-gaussian}
+    \ell_{\theta}(\boldsymbol{x}_{1:N})=C + \frac{N}{2} \log\left(\DET(\Theta)\right) - \frac{1}{2} \sum_{i=1}^N (\boldsymbol{x_i} - \boldsymbol{\mu})^\top \Theta (\boldsymbol{x_i} - \boldsymbol{\mu})
+\end{equation}
+with $C=-\frac{NG}{2}\log(2\pi)$ a constant.
+
+\end{Definition}
+
+\begin{Definition}{Positive and semi-positive matrices}{positive-definite}
+A symmetric real matrix $\boldsymbol{A}$ of rank $G$ is said to be \textit{positive-definite} if $\boldsymbol{x}^\top \boldsymbol{A} \boldsymbol{x} > 0$ for all non-zero vectors $\boldsymbol{x}$ in $\RR^G$.
+\end{Definition}
+
+We further assume that only the variance of the purified cell expression $\boldsymbol{X}$ contributes to the variability of the overall bulk expression $\boldsymbol{Y_i}$ (no additional error term).
+
+Then, the conditional distribution of the random vector $\boldsymbol{Y_{i, c(i)}}|\boldsymbol{X_{c(i)}}$, using \Cref{pr:multivariate-affine-transformation}, and assumptions of independence between samples and between cell populations expression, is given by \Cref{eq:11}
+\begin{equation}
+\label{eq:11}
+   \boldsymbol{Y_{i, c(i)}}|\boldsymbol{X_{c(i)}} \sim \mathcal{N}_G(\boldsymbol{X_{c(i)}} \boldsymbol{p_i}, \Sigma_{ic(i)})
+\end{equation}
+with $\Sigma_{ic(i)}=\sum_{j=1}^J p_{ij}^2\Sigma_{jc(i)}$. Of note, \Cref{eq:11} is also the \textit{convolution product} of $J$ independent multivariate Gaussian variables. \footnote{Note that assumption 4 from \ref{th:MLE_estimate_univariate} does not hold anymore, as the predicted values are no longer uncorrelated.}
+
+
+\begin{Property}{Linear invariance property of the multivariate Gaussian distribution}{multivariate-affine-transformation}
+The two following properties hold for a multivariate Gaussian distribution:
+\begin{itemize}
+    \item if $\boldsymbol{X} \sim \mathcal{N}_G( \mu, \boldsymbol{\Sigma})$, then $p\boldsymbol{X}$, with $p$ a constant, follows itself a multivariate Gaussian distribution, given by:
+    $p\boldsymbol{X} \sim \mathcal{N}_G (p \mu, p^2 \Sigma)$ \footnote{We say that the multivariate Gaussian distribution is \textit{invariant} by affine transformation}
+    
+    \item given two independent random vectors $\boldsymbol{X_1} \sim \mathcal{N}_G(\mu_1, \boldsymbol{\Sigma_1})$ and  $\boldsymbol{X_2} \sim \mathcal{N}_G(\mu_2, \boldsymbol{\Sigma_2})$ of same size $G$ following a multivariate Gaussian distribution, then the random variable $\boldsymbol{X_1} + \boldsymbol{X_2}$ follows itself a multivariate Gaussian distribution: $X + Y \sim \mathcal{N}_G (\mu_1 + \mu_2, \boldsymbol{\Sigma_1} + \boldsymbol{\Sigma_2})$. The corresponding characteristic function can be used to easily show this result.
+    
+    By induction, this property generalises to the sum of $J$ independent random vectors of same size $G$, yielding $\sum_{j=1}^J \boldsymbol{X_j} \sim \mathcal{N}_G(\sum_{j=1}^J \mu_j, \sum_{j=1}^J \boldsymbol{\Sigma_j})$
+\end{itemize}
+\end{Property}
+
+Afterwards, we suppose that the parameters $\boldsymbol{\mu_j}$ and $\boldsymbol{\Sigma_j}$ are the \textit{plug-in} estimates from respectively the empirical mean and the gLasso estimation \todo[fancyline]{better notation for plug-in estimates}, and we suppose them known without error. Accordingly, the cellular ratios $\boldsymbol{p}_i$ are the only unknown parameters to estimate.
+
+Furthermore, we assume that the cell proportions of a sample are not correlated with each other under a given biological condition, and we also assume that the biological effect has been taken into account.  Therefore, we drop the individual index $i$ and the corresponding experimental condition $c(i)$ to simplify the notations.
+
+\subparagraph{Derivation of the mle}
+
+The linear invariance properties (\Cref{eq:11}) injected into the log-likelihood formula of a multivariate Gaussian distribution \Cref{eq:loglikelihood-multivariate-gaussian} yield the following log-likelihood for a sample \Cref{eq:12}
+\begin{equation}
+    \label{eq:12}
+\ell_{\boldsymbol{y} | \boldsymbol{X}, \Sigma}(\boldsymbol{p})=C + \log\left(\DET(\left(\sum_{j=1}^J p_{j}^2\Sigma_{j}\right)^{-1}\right) - \frac{1}{2} \underbrace{(\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top \left(\sum_{j=1}^J p_{j}^2\Sigma_{j}\right)^{-1} (\boldsymbol{y} - \boldsymbol{X}\boldsymbol{p})}_{\text{squared Mahalanobis distance}}   
+\end{equation}
+
+\begin{Property}{Transpose and determinants of matrices}{matrix-determinant}
+For a squared matrix $A$ of rank $G$ with defined inverse variance $A^{-1}$ and a constant $p$, the following properties hold:
+\begin{multicols}{3}
+\begin{enumerate}[label=\emph{\alph*})]
+\item $\DET(p\boldsymbol{A})=p^G \DET (\boldsymbol{A})$
+%\columnbreak
+\item $\Tr\left(p \boldsymbol{A}\right)=p \Tr(\boldsymbol{A})$
+%\columnbreak
+\item $\DET(A^{-1})=\frac{1}{\DET(A)}$
+\end{enumerate}
+\end{multicols}
+
+Given two matrices $\boldsymbol{A}$ and $\boldsymbol{B}$, the following properties hold when computing their transpose:
+\begin{multicols}{3}
+\begin{enumerate}
+    \item $(\boldsymbol{A}^\top)^\top=\boldsymbol{A}$
+    \item $(\boldsymbol{A}\boldsymbol{B})^\top=\boldsymbol{B}^\top\boldsymbol{A}^\top$
+    \item $\boldsymbol{A}^{{-1}^\top}=\boldsymbol{A}^{-1}$ \footnote{if $\boldsymbol{A}$ is itself a symmetric matrix}
+\end{enumerate}
+\end{multicols}
+
+Another useful equality, given two vectors $\boldsymbol{x}$ and $\boldsymbol{y}$ in $\RR^G$ and $\boldsymbol{A}$ a symmetric matrix \footnote{if a matrix is symmetric, then by definition, $\boldsymbol{A}^\top=\boldsymbol{A}$} of rank $G$:
+\begin{equation*}
+    \boldsymbol{x}^\top \boldsymbol{A} \boldsymbol{y} = \boldsymbol{y}^\top \boldsymbol{A} \boldsymbol{x}
+\end{equation*}
+\end{Property}
+
+
+
+
+\begin{Property}{Matrix calculus}{matrix-calculus}
+Given three matrices $\boldsymbol{A}$, $\boldsymbol{C}$, $\boldsymbol{D}$ and two vectors of same size $\boldsymbol{b}$ and $\boldsymbol{e}$ not depending of variable $\boldsymbol{p}$, the partial derivative with respect to $\boldsymbol{p}$ of the quadratic form $(\boldsymbol{A} \boldsymbol{p} + \boldsymbol{b})^\top \boldsymbol{C} (\boldsymbol{D} \boldsymbol{p} + \boldsymbol{e})$ is given by \Cref{eq:general-calculus-formula}
+\begin{equation}
+\label{eq:general-calculus-formula}
+    \frac{\partial (\boldsymbol{A} \boldsymbol{p} + \boldsymbol{b})^\top \boldsymbol{C} (\boldsymbol{D} \boldsymbol{p} + \boldsymbol{e})}{\partial \boldsymbol{p}} = (\boldsymbol{D} \boldsymbol{p} + \boldsymbol{e})^\top \boldsymbol{C}^\top \boldsymbol{A} + (\boldsymbol{A} \boldsymbol{p} + \boldsymbol{b})^\top \boldsymbol{C} \boldsymbol{D}
+\end{equation}
+
+Notably, using the transpose properties enumerated in \Cref{pr:matrix-determinant}, setting $\boldsymbol{A} = \boldsymbol{D} = - \boldsymbol{x}$ as vectors living in $\RR^G$, $p$ a real scalar and $\boldsymbol{b} = \boldsymbol{e} = \boldsymbol{y}$ the derivative \Cref{eq:general-calculus-formula} and additionally coercing $\Theta$ to be symmetric yields:
+\begin{equation*}
+\label{eq:general-calculus-formula-easy}
+    \frac{\partial (\boldsymbol{y} - \boldsymbol{x} p)^\top \Theta (\boldsymbol{y} - \boldsymbol{x} p)}{\partial p} = -2  (\boldsymbol{y} - \boldsymbol{x} p)^\top \Theta \boldsymbol{x} = -2 \boldsymbol{x}^\top \Theta (\boldsymbol{y} - \boldsymbol{x} p)
+\end{equation*}
+
+\footnote{Other relevant matrix calculus formulas can be found here: \href{https://en.wikipedia.org/wiki/Matrix_calculus\#Scalar-by-vector}{Matrix calculus}.}
+\end{Property}
+
+To find the \gls{mle}, we need to determine the values for which the of the log-likelihood (\Cref{eq:derivative-log-likelihood-reference}) cancels : 
+\begin{equation}
+\label{eq:derivative-log-likelihood-reference}
+\begin{split}
+\frac{\partial \ell_{\boldsymbol{y} | \boldsymbol{X}, \Sigma}}{\partial p_j} =& \frac{\partial \log\left(\DET(\boldsymbol{\Theta})\right)}{\partial p_j} -\frac{1}{2} \left[\frac{\partial (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top}{\partial p_j}\boldsymbol{\Theta}(\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p}) + (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top\frac{\partial\boldsymbol{\Theta}}{\partial p_j}(\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p}) + (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top\boldsymbol{\Theta} \frac{\partial (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})}{\partial p_j} \right]\\
+=&-\Tr \left(\boldsymbol{\Sigma}^{-1} \frac{\partial \boldsymbol{\Sigma}}{\partial p_j} \right) - \frac{1}{2} \left[ - \boldsymbol{x_{.j}}^\top\boldsymbol{\Theta}(\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p}) - (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top\Theta\frac{\partial \Sigma}{\partial p_j}\Theta(\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p}) - (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top\boldsymbol{\Theta}  \boldsymbol{x_{.j}} \right] \\
+=& -2p_j \Tr \left(\boldsymbol{\Sigma}^{-1}\right) + (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top\boldsymbol{\Theta}  \boldsymbol{x_{.j}} \, + p_j (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})^\top\Theta \Sigma_j \Theta (\boldsymbol{y} - \boldsymbol{X} \boldsymbol{p})
+\end{split}
+\end{equation}
+
+
+\section{Tensors to automate complex derivations}

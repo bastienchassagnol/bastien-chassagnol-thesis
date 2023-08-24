@@ -1,0 +1,150 @@
+
+% Sets
+\newcommand \NN {\mathbb{N}}
+\newcommand \ZZ {\mathbb{Z}}
+\newcommand \QQ {\mathbb{Q}}
+\newcommand \RR {\mathbb{R}}
+
+% Indicator
+\newcommand \indic {\mathbbm{1}}
+
+% Optimisation
+\newcommand\vect[1]{\boldsymbol{#1}}
+\newcommand\norm[2]{\left\|#1\right\|^{#2}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% matrix operators
+\DeclareMathOperator*{\Tr}{Tr}
+\DeclareMathOperator*{\DET}{Det}
+\DeclareMathOperator*{\diag}{Diag}
+\DeclareMathOperator*{\rank}{Rank}
+
+% Probability Operators
+\DeclareMathOperator*{\prob}{\mathbb{P}}
+\DeclareMathOperator*{\esp}{\mathbb{E}}
+\DeclareMathOperator*{\var}{\mathbb{V}\text{ar}}
+\DeclareMathOperator*{\cov}{\mathbb{C}\text{ov}}
+\newcommand \PP [1]{\prob\left({#1}\right)}
+\newcommand \EE [1]{\esp\left[{#1}\right]}
+\newcommand \VV [1]{\var\left[{#1}\right]}
+\newcommand \CC [1]{\cov\left[{#1}\right]}
+
+% Law
+\newcommand \unif [1] {\mathcal{U}\left({#1}\right)}
+\newcommand \normal [2] {\mathcal{N}\left({#1},{#2}\right)}
+
+% setting citation styles
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\Cref*{#1} \nameref*{#1}}}
+
+
+% To name R packages
+\newcommand{\strong}[1]{\texorpdfstring%
+{{\normalfont\fontseries{b}\selectfont #1}}%
+{#1}}
+\let\pkg=\strong
+\newcommand{\CRANpkg}[1]{\href{https://CRAN.R-project.org/package=#1}{\textbf{#1}}}
+
+% green tick and red box
+\def\greentick{\includegraphics[scale=0.05]{figures/green_tick.png}}
+\def\redcross{\includegraphics[scale=0.05]{figures/red_cross.png}}
+
+% algorithmic environment
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+%%%%%%%%%%%% special awesome boxes, to generate logos  %%%%%
+\usepackage{awesomebox}
+% general commands
+\setlength{\aweboxsignraise}{0mm}
+\setlength{\aweboxvskip}{0mm}
+\setlength{\aweboxrulewidth}{0pt}
+\setlength{\aweboxleftmargin}{0.01\linewidth}
+\setlength{\aweboxcontentwidth}{1\linewidth}
+
+% logos per box
+\newcommand{\conclulogo}[1]{\awesomebox{0pt}{\faMarker}{black}{\textbf{Conclusion:} #1}}
+\newcommand{\infologo}[1]{\awesomebox{0pt}{\faInfoCircle}{black}{\textbf{Information:} #1}}
+\newcommand{\warninglogo}[1]{\awesomebox{0pt}{\faExclamationTriangle}{black}{\textbf{Warning:} #1}}
+
+%%%%%%%%%% tcolorbox environment %%%%%
+\newtcolorbox{blackbox}[1]{colback=white, colframe=black,
+coltext=black, boxsep=1.5pt, arc=4pt, before=\centering, title=#1}
+
+ % icons, special boxes, colbacktitle
+\newtcolorbox{info}[1]{colback=green!15!white,  coltitle =white, colframe=green,
+ coltext=black, boxsep=1.5pt, arc=5pt, before=\centering,
+ title={\infologo{#1}}, drop shadow, boxrule=1mm}
+\newtcolorbox{warning}[1]{colback=red!15!white, colframe=red,
+coltext=black, boxsep=1.5pt, arc=5pt, before=\centering,
+title={\warninglogo{#1}}, drop shadow, boxrule=1mm}
+\newtcolorbox{conclusion}[1]{colback=orange!15!white, colframe=orange, coltext=black,
+boxsep=1.5pt, arc=5pt, before=\centering, title={\conclulogo{#1}},
+ drop shadow, boxrule=1mm}
+
+
+% Remove irrelevant warnings, some being caused by the yathesis class itself!!
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+\rmfamily
+\DeclareFontShape{T1}{lmr}{b}{sc}{<->ssub*cmr/bx/sc}{}
+\DeclareFontShape{T1}{lmr}{bx}{sc}{<->ssub*cmr/bx/sc}{}
+
+
+%%%% pour des beaux tableaux
+\usepackage{booktabs} 
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{hhline}
+\newlength\Oldarrayrulewidth
+\newlength\Oldtabcolsep
+\usepackage{tabu}
+\usepackage{adjustbox}
+\usepackage{makecell}
+\usepackage{longtable}
+\usepackage{fancyvrb} % to get fancy colors
+
+% mise en valeur du code
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{calc} % for calculating minipage widths
+
+
+
+
