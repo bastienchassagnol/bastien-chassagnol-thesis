@@ -115,7 +115,7 @@ However, while part of the automated data curation is performed by \href{https:/
 \end{itemize}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \NormalTok{gse149050\_pheno\_data }\OtherTok{\textless{}{-}}\NormalTok{ Biobase}\SpecialCharTok{::}\FunctionTok{pData}\NormalTok{(gse149050\_raw\_count\_clean) }
 \NormalTok{gse149050\_pheno\_data }\OtherTok{\textless{}{-}}\NormalTok{ gse149050\_pheno\_data  }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"geo\_accession"}\NormalTok{,}
@@ -142,7 +142,7 @@ However, while part of the automated data curation is performed by \href{https:/
 \end{Shaded}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \NormalTok{pheno\_data\_137143 }\OtherTok{\textless{}{-}}\NormalTok{ Biobase}\SpecialCharTok{::}\FunctionTok{pData}\NormalTok{(gse137143\_TPM\_count\_clean)}
 \NormalTok{pheno\_data\_137143 }\OtherTok{\textless{}{-}}\NormalTok{ pheno\_data\_137143  }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"title"}\NormalTok{, }\StringTok{"srx\_id"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
@@ -165,7 +165,7 @@ However, while part of the automated data curation is performed by \href{https:/
 In our example, we decided to concatenate closely related cell populations, by summing up their expressions within the same individual, based on our linear assumption of the reconstruction of the whole mixture:
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# helper function to aggregate expression and phenotype feature, using a common factor}
 \NormalTok{gse137143\_TPM\_count\_clean }\OtherTok{\textless{}{-}}\NormalTok{ bbcWrangling}\SpecialCharTok{::}\FunctionTok{aggregate\_by\_pdata}\NormalTok{(gse137143\_TPM\_count\_clean,}
                                                                   \AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"sample\_id"}\NormalTok{), sum)}
@@ -617,7 +617,7 @@ However, we implemented our own set of annotation functions, that both extend si
 \renewcommand*{\arraystretch}{1}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \NormalTok{gse149050\_raw\_count\_clean }\OtherTok{\textless{}{-}}
 \NormalTok{  bbcPreprocessing}\SpecialCharTok{::}\FunctionTok{from\_probe\_to\_gene}\NormalTok{(gse149050\_raw\_count\_clean,}
   \AttributeTok{microarray\_type =} \ConstantTok{FALSE}
@@ -763,7 +763,7 @@ To simplify and standardise in an automated manner the mapping from the original
 We illustrate below the increased reproducibility power provided by these tools, providing useful commands to identify and map cell terms, especially when they slightly differ from the ones provided by default in the cell ontology, as well as commands to handle more easily the graph, for instance enforcing the directed graph to be a tree and performing standard network queries, such as retrieving the set of siblings, ancestors, descendants and first-order relatives for a given node:
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \DocumentationTok{\#\#\# load cell ontology}
 \NormalTok{co }\OtherTok{\textless{}{-}}\NormalTok{ ontoProc}\SpecialCharTok{::}\FunctionTok{getCellOnto}\NormalTok{() }
 
@@ -1010,7 +1010,7 @@ With RNASeq, as illustrated below, we consider two parametric distributions:
 \end{itemize}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# This function is applied on the distribution of raw counts}
 \NormalTok{threshold\_gse149050 }\OtherTok{\textless{}{-}}\NormalTok{ bbcPreprocessing}\SpecialCharTok{::}\FunctionTok{estimate\_cutoff\_lowcounts}\NormalTok{(}
 \NormalTok{  gse149050\_raw\_count\_clean }\SpecialCharTok{\%\textgreater{}\%}
@@ -1025,7 +1025,7 @@ With RNASeq, as illustrated below, we consider two parametric distributions:
 We then generate melted datasets for downstream use in the pipeline and apply gene filtering for background noise. Usually, we apply a stringent gene selection criteria, keeping genes with an expression superior to the \(0.95\) quantile of the first peak (considered then as \emph{expressed}) in at least \(30\%\) of the total cohort:
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \NormalTok{NSample }\OtherTok{\textless{}{-}} \FloatTok{0.3} \SpecialCharTok{*} \FunctionTok{ncol}\NormalTok{(gse149050\_raw\_count\_clean) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{round}\NormalTok{()}
 \NormalTok{threshold\_gse149050 }\OtherTok{\textless{}{-}} \DecValTok{7}
 \NormalTok{gse149050\_raw\_count\_filtered }\OtherTok{\textless{}{-}}
@@ -1052,7 +1052,7 @@ In some cases, the phenotype dataset comes along with RIN indication, indicating
 \end{itemize}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \NormalTok{gse149050\_log2\_filtered }\OtherTok{\textless{}{-}}\NormalTok{ bbcWrangling}\SpecialCharTok{::}\FunctionTok{transfrom\_exprs}\NormalTok{(}
 \NormalTok{  gse149050\_raw\_count\_filtered, }\SpecialCharTok{\textasciitilde{}}\FunctionTok{log2}\NormalTok{(.x }\SpecialCharTok{+} \DecValTok{1}\NormalTok{))}
 \end{Highlighting}
@@ -1065,7 +1065,7 @@ In some cases, the phenotype dataset comes along with RIN indication, indicating
 \end{itemize}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# Creation of a DESeq object}
 \NormalTok{dds }\OtherTok{\textless{}{-}}\NormalTok{ DESeq2}\SpecialCharTok{::}\FunctionTok{DESeqDataSetFromMatrix}\NormalTok{(}
   \AttributeTok{countData =}\NormalTok{ Biobase}\SpecialCharTok{::}\FunctionTok{exprs}\NormalTok{(gse149050\_raw\_count\_filtered),}
@@ -1256,7 +1256,7 @@ An additional supervised way to correct for batch correction is provided by func
 Finally, when the latent, technical variable is unobserved, you may apply an unsupervised batch normalisation correction, as illustrated in the piece of code below, using function \href{https://rdrr.io/pkg/sva/man/svaseq.html}{\texttt{sva::svaseq}}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# Full model including all variables of interest }
 \CommentTok{\# (supposing having an effect on the phenotype outcome)}
 \NormalTok{mod\_sva }\OtherTok{\textless{}{-}}
@@ -1311,7 +1311,7 @@ Without assumption on the distribution of the transcripts, or without using any 
 \end{itemize}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# Contrasts}
 \NormalTok{contr\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"sle//hc"}\NormalTok{)}
 
@@ -1369,7 +1369,7 @@ in which \(S\) is the indicator variable returning the cell type assignment for 
 The following script performs DESeq analysis and returns a tibble with, for each contrast, the table of DEGs (differentially expressed genes):
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# common biological thresholds}
 \NormalTok{t\_pvalue }\OtherTok{\textless{}{-}} \FloatTok{0.05}\NormalTok{; t\_FC }\OtherTok{\textless{}{-}} \DecValTok{2}
 
@@ -1420,7 +1420,7 @@ The following script performs DESeq analysis and returns a tibble with, for each
 \todo{Show by calcul that indeed the computed contrats are the ones of interest}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# common biological thresholds}
 \NormalTok{t\_pvalue }\OtherTok{\textless{}{-}} \FloatTok{0.05}\NormalTok{; t\_FC }\OtherTok{\textless{}{-}} \DecValTok{2}
 
@@ -1463,7 +1463,7 @@ The following script performs DESeq analysis and returns a tibble with, for each
 Instead, we could have considered a \emph{linear-mixed} model, including in the experimental design both random and fixed variables (in that context, we assume that \texttt{cell\_type} has a \emph{fixed} effect, while \texttt{patient\_id} has a \emph{random} effect, since the patients included in the clinical trial are likely to constitute only a sample of the whole population). An example of such a design is proposed in the code below: \todo{Add pictures comparing several clinical trials}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 
 \CommentTok{\# Linear{-}mixed model specification}
 \NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{model.matrix}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \DecValTok{0} \SpecialCharTok{+}\NormalTok{ cell\_type }\SpecialCharTok{+}\NormalTok{ patient\_id, }\AttributeTok{data =}\NormalTok{ gse149050\_raw\_count\_filtered)}
@@ -1497,7 +1497,7 @@ y \sim \text{age} + \text{disease}
 and computed in practice with the following code:
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# Model specification}
 \NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{model.matrix}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \DecValTok{0} \SpecialCharTok{+}\NormalTok{ disease }\SpecialCharTok{+}\NormalTok{ disease}\SpecialCharTok{:}\NormalTok{age, }\AttributeTok{data =}\NormalTok{ gse149050\_raw\_count\_filtered)}
 \CommentTok{\# Contrasts (evaluate the interaction of both age and sle disease}
@@ -1786,7 +1786,7 @@ One way to evaluate the quality of the batch correction effect is to compare whe
 More interestingly, it can be interesting to compare the set of genes that are differentially expressed between monocytes and T cells, for each batch and for the concatenated expression matrix. It can also be interesting to evaluate the global impact of the batch effect on the transcriptomic expression. We supply in the following snippet of code instructions to generate the corresponding contrasts of interest \todo{detail a bit more how to make design, and what is factorial analysis, from p44-47 of limma vignette}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# add dummy variable combining all categorical modalities}
 \NormalTok{Biobase}\SpecialCharTok{::}\FunctionTok{pData}\NormalTok{(combined\_eset) }\OtherTok{\textless{}{-}}\NormalTok{ Biobase}\SpecialCharTok{::}\FunctionTok{pData}\NormalTok{(combined\_eset) }\SpecialCharTok{\%\textgreater{}\%}
 \NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{unite}\NormalTok{(}\AttributeTok{col=}\StringTok{"combined\_factor"}\NormalTok{, platform, cell\_type, }\AttributeTok{remove =} \ConstantTok{FALSE}\NormalTok{)}
@@ -1919,7 +1919,7 @@ A straightforward when dealing with multiple phenotype categories is certainly t
 \end{itemize}
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \DocumentationTok{\#\#\# Retrieve the minimal set of coefficients}
 \CommentTok{\# Compute the averaged expression of each cell type, }
 \CommentTok{\# without intercept or reference cell line}
@@ -2019,7 +2019,7 @@ To conclude, in order to minimise gene symbol confusion, the HGNC recommends to 
 Let's step in programmatic details: to build automatically our own, regularly updated \texttt{NCBI\_gene} database, we first start by loading \href{NA}{\texttt{org.Hs.eg.db}} \autocite{R-org-Hs-eg-db}, a genome annotation database for Human, together with the wrapper Bioconductor package \href{NA}{\texttt{AnnotationDbi}} \autocite{R-AnnotationDbi}, an user-friendly interface using SQLite-based conventions to query omics databases\footnote{Alternatively, you may leverage \autocite{R-EnsDb-Hsapiens-v86} database, another \texttt{AnnotationDbi} object, however, keep in mind that Ensembl databases are less curated and homogenised than ENTREZ ID or HUGO-based databases. A wrapper function to \href{https://rdrr.io/pkg/AnnotationDbi/man/AnnotationDb-class.html}{\texttt{AnnotationDbi::select}}, \href{https://rdrr.io/pkg/clusterProfiler/man/bitr.html}{\texttt{clusterProfiler::bitr()}} is also available in \href{NA}{\texttt{clusterProfiler}} package \autocite{R-clusterProfiler}--\autocite{clusterProfiler2012}}.
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \FunctionTok{library}\NormalTok{(org.Hs.eg.db); }\FunctionTok{library}\NormalTok{(AnnotationDbi)}
 \NormalTok{symbol\_humans }\OtherTok{\textless{}{-}}\NormalTok{ AnnotationDbi}\SpecialCharTok{::}\FunctionTok{keys}\NormalTok{(org.Hs.eg.db, }\AttributeTok{keytype=}\StringTok{"SYMBOL"}\NormalTok{)}
 \NormalTok{NCBI\_gene }\OtherTok{\textless{}{-}}\NormalTok{ AnnotationDbi}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(org.Hs.eg.db, }\AttributeTok{keys=}\NormalTok{symbol\_humans,}
@@ -2053,7 +2053,7 @@ Let's step in programmatic details: to build automatically our own, regularly up
 In a second time, we use \href{NA}{\texttt{biomaRt}} \autocite{biomaRt2005}--\autocite{R-biomaRt} package to access detailed gene annotations, such as the most likely biological function assigned to the transcript, or its precise localisation in the genome. To do so, we first download the database storing Homo sapiens annotation with function \href{https://rdrr.io/pkg/biomaRt/man/useEnsembl.html}{\texttt{biomaRt::useEnsembl}}, then retrieve biological function and precise nucleotide/mapping locations in the human genome with \href{https://rdrr.io/pkg/biomaRt/man/getBM.html}{\texttt{biomaRt::getBM}} function and respectively keys \texttt{gene\_biotype}, \texttt{start\_position} and \texttt{end\_position}\footnote{Since there is no \texttt{1-1} mapping between biological function and HGNC symbol, we only keep the first entry in the list, except when coding for a gene. Similarly, there is no unique localisation of the start and the end of the gene sequence, thus, we compute instead the mean of all known positions. From these values, we can then easily deduce the \texttt{GENELENGTH} for each gene, a required entry for most RNASeq normalisation methods: \(\text{GENESEQEND} - \text{GENESEQSTART} + 1\)}. Finally, we use the key \texttt{cdna} to retrieve all the known RNA transcripts of a given HGNC gene\footnote{Since this operation might generate memory overflow due to the size taken by the complementary sequences, and since we are only interested in getting the number and the average size of transcripts, it is recommended to run this last operation in parallel, or sequentially process each transcript.}.
 
 \begin{Shaded}
-\begin{Highlighting}[]
+\begin{Highlighting}
 \CommentTok{\# download associated database}
 \NormalTok{human\_ensembl }\OtherTok{\textless{}{-}}\NormalTok{ biomaRt}\SpecialCharTok{::}\FunctionTok{useEnsembl}\NormalTok{(}\AttributeTok{biomart =} \StringTok{"ensembl"}\NormalTok{, }\AttributeTok{dataset =} \StringTok{"hsapiens\_gene\_ensembl"}\NormalTok{)}
 
